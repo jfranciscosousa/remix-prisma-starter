@@ -1,5 +1,6 @@
 import { Note, User } from "@prisma/client";
 import { useEffect, useRef } from "react";
+import { usePrevious } from "react-use";
 import {
   MetaFunction,
   LoaderFunction,
@@ -7,6 +8,7 @@ import {
   useTransition,
 } from "remix";
 import { useLoaderData, redirect, json, Form, useActionData } from "remix";
+import LoggedInLayout from "~/layouts/LoggedInLayout";
 import { createNote, deleteNote, listNotes } from "~/lib/data/notes.server";
 import userFromRequest from "~/lib/web/userFromRequest";
 
@@ -47,38 +49,36 @@ export const action: ActionFunction = async ({ request }) => {
   return redirect("/notes");
 };
 
-// https://remix.run/api/conventions#meta
 export let meta: MetaFunction = () => {
   return {
-    title: "Remix Starter",
+    title: "Remix Prisma Starter",
     description: "Welcome to remix!",
   };
 };
 
 export default function Index() {
-  let { user, notes } = useLoaderData<IndexData>();
+  const { user, notes } = useLoaderData<IndexData>();
   const error = useActionData();
-  const { state } = useTransition();
+  const previousNotesLength = usePrevious<number>(notes.length);
+  const notesContainerRef = useRef<HTMLUListElement>(null);
   const inputContentRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (state === "idle" && inputContentRef.current) {
-      inputContentRef.current.value = "";
+    if (notes.length > (previousNotesLength || 0)) {
+      if (inputContentRef.current) inputContentRef.current.value = "";
+
+      if (notesContainerRef.current) {
+        notesContainerRef.current.scrollTop =
+          notesContainerRef.current.scrollHeight -
+          notesContainerRef.current.clientHeight;
+      }
     }
-  }, [state]);
+  }, [notes.length, previousNotesLength]);
 
   return (
-    <div>
-      <nav className="flex w-full justify-between">
-        <p>Welcome, {user.name}!</p>
-
-        <form method="POST" action="/logout">
-          <button className="btn">Logout</button>
-        </form>
-      </nav>
-
+    <LoggedInLayout user={user}>
       <main className="max-w-xl mx-auto">
-        <div className="h-[500px] space-y-6 overflow-auto">
+        <div className="h-[500px] space-y-6">
           {notes.length === 0 && (
             <div className="flex flex-col justify-center items-center h-full">
               <p className="text-center">
@@ -87,27 +87,49 @@ export default function Index() {
             </div>
           )}
 
-          {notes.map((note) => (
-            <div
-              key={note.id}
-              className="card p-4 bg-base-100 flex flex-row justify-between"
+          {notes.length > 0 && (
+            <ul
+              className="space-y-6 max-h-full overflow-auto mt-8"
+              ref={notesContainerRef}
             >
-              <p>{note.content}</p>
+              {notes.map((note) => (
+                <li
+                  key={note.id}
+                  className="card p-4 bg-base-100 flex flex-row justify-between"
+                >
+                  <div className="flex flex-col space-y-6">
+                    <p>{note.content}</p>
 
-              <Form method="post">
-                <input
-                  name="method"
-                  readOnly
-                  value="delete"
-                  className="hidden"
-                />
-                <input name="id" readOnly value={note.id} className="hidden" />
-                <button type="submit" className="link">
-                  X
-                </button>
-              </Form>
-            </div>
-          ))}
+                    <p className="text-xs opacity-75">
+                      Created at:{" "}
+                      {new Date(note.createdAt).toLocaleString("en-us")}
+                    </p>
+                  </div>
+
+                  <Form
+                    method="post"
+                    className="flex flex-col items-center justify-center"
+                  >
+                    <input
+                      name="method"
+                      readOnly
+                      value="delete"
+                      className="hidden"
+                    />
+                    <input
+                      name="id"
+                      readOnly
+                      value={note.id}
+                      className="hidden"
+                    />
+                    <button type="submit" className="link">
+                      X
+                    </button>
+                  </Form>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
 
         <Form method="post" className="flex flex-col space-y-4 mt-12">
@@ -132,6 +154,6 @@ export default function Index() {
           </div>
         </Form>
       </main>
-    </div>
+    </LoggedInLayout>
   );
 }

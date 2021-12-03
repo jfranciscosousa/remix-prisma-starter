@@ -1,4 +1,4 @@
-import type { ActionFunction, LoaderFunction } from "remix";
+import type { ActionFunction, LoaderFunction, MetaFunction } from "remix";
 import { Form, Link, useActionData, redirect } from "remix";
 import { createUser } from "~/lib/data/users.server";
 import { authCookie } from "~/lib/web/cookies.server";
@@ -23,12 +23,21 @@ export const action: ActionFunction = async ({ request }) => {
   if (!user) return "404";
 
   return new Response(null, {
+    status: 302,
     headers: {
+      location: "/",
       "Set-Cookie": await authCookie.serialize({
         userId: user.id,
       }),
     },
   });
+};
+
+export let meta: MetaFunction = () => {
+  return {
+    title: "Remix Prisma Starter",
+    description: "Welcome to remix!",
+  };
 };
 
 export default function NewPost() {
