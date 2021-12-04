@@ -1,4 +1,5 @@
 import { Note, User } from "@prisma/client";
+import classNames from "classnames";
 import { useEffect, useRef } from "react";
 import { usePrevious } from "react-use";
 import {
@@ -59,9 +60,20 @@ export let meta: MetaFunction = () => {
 export default function Index() {
   const { user, notes } = useLoaderData<IndexData>();
   const error = useActionData();
+  const { state, submission } = useTransition();
   const previousNotesLength = usePrevious<number>(notes.length);
   const notesContainerRef = useRef<HTMLUListElement>(null);
   const inputContentRef = useRef<HTMLInputElement>(null);
+  const isLoading = state === "submitting" || state === "loading";
+  const isLoadingCreate =
+    isLoading && submission?.formData?.get("method") === "create";
+
+  function getIsLoadingDelete(id: string): boolean {
+    const isLoadingDelete =
+      isLoading && submission?.formData?.get("method") === "delete";
+
+    return isLoadingDelete && submission?.formData?.get("id") === id;
+  }
 
   useEffect(() => {
     if (notes.length > (previousNotesLength || 0)) {
@@ -92,42 +104,51 @@ export default function Index() {
               className="space-y-6 max-h-full overflow-auto"
               ref={notesContainerRef}
             >
-              {notes.map((note) => (
-                <li
-                  key={note.id}
-                  className="card p-4 bg-base-100 flex flex-row justify-between"
-                >
-                  <div className="flex flex-col space-y-6">
-                    <p>{note.content}</p>
-
-                    <p className="text-xs opacity-75">
-                      Created at:{" "}
-                      {new Date(note.createdAt).toLocaleString("en-us")}
-                    </p>
-                  </div>
-
-                  <Form
-                    method="post"
-                    className="flex flex-col items-center justify-center"
+              {notes.map((note) => {
+                const isLoadingDelete = getIsLoadingDelete(note.id);
+                return (
+                  <li
+                    key={note.id}
+                    className="card p-4 bg-base-200 flex flex-row justify-between"
                   >
-                    <input
-                      name="method"
-                      readOnly
-                      value="delete"
-                      className="hidden"
-                    />
-                    <input
-                      name="id"
-                      readOnly
-                      value={note.id}
-                      className="hidden"
-                    />
-                    <button type="submit" className="link">
-                      X
-                    </button>
-                  </Form>
-                </li>
-              ))}
+                    <div className="flex flex-col space-y-6">
+                      <p>{note.content}</p>
+
+                      <p className="text-xs opacity-75">
+                        Created at:{" "}
+                        {new Date(note.createdAt).toLocaleString("en-us")}
+                      </p>
+                    </div>
+
+                    <Form
+                      method="post"
+                      className="flex flex-col items-center justify-center"
+                    >
+                      <input
+                        name="method"
+                        readOnly
+                        value="delete"
+                        className="hidden"
+                      />
+                      <input
+                        name="id"
+                        readOnly
+                        value={note.id}
+                        className="hidden"
+                      />
+                      <button
+                        type="submit"
+                        className={classNames("link", {
+                          "cursor-not-allowed": isLoadingDelete,
+                        })}
+                        disabled={isLoadingDelete}
+                      >
+                        X
+                      </button>
+                    </Form>
+                  </li>
+                );
+              })}
             </ul>
           )}
         </div>
@@ -143,13 +164,19 @@ export default function Index() {
                 name="content"
                 type="text"
                 required
-                className="input"
+                className="input input-bordered"
                 ref={inputContentRef}
               />
             </div>
 
-            <button type="submit" className="btn btn-primary block">
-              Submit
+            <button
+              type="submit"
+              className={classNames("btn btn-primary w-[120px]", {
+                loading: isLoadingCreate,
+              })}
+              disabled={isLoadingCreate}
+            >
+              {!isLoadingCreate && "Submit"}
             </button>
           </div>
         </Form>

@@ -1,5 +1,6 @@
+import classNames from "classnames";
 import type { ActionFunction, LoaderFunction, MetaFunction } from "remix";
-import { Form, Link, useActionData, redirect } from "remix";
+import { Form, Link, useActionData, redirect, useTransition } from "remix";
 import { createUser } from "~/lib/data/users.server";
 import { authCookie } from "~/lib/web/cookies.server";
 import userFromRequest from "~/lib/web/userFromRequest";
@@ -42,6 +43,9 @@ export let meta: MetaFunction = () => {
 
 export default function NewPost() {
   const error = useActionData();
+  const { state, submission } = useTransition();
+  const isLoading =
+    (state === "submitting" || state === "loading") && submission;
 
   return (
     <div className="max-w-lg mx-auto">
@@ -94,8 +98,14 @@ export default function NewPost() {
 
         <div className="mt-4" />
 
-        <button type="submit" className="btn btn-primary block">
-          Sign up
+        <button
+          type="submit"
+          className={classNames("btn btn-primary", {
+            loading: isLoading,
+          })}
+          disabled={isLoading}
+        >
+          {!isLoading && "Sign up"}
         </button>
 
         <Link to="/login" className="link text-center">

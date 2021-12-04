@@ -7,7 +7,7 @@ import {
   ScrollRestoration,
   useCatch,
 } from "remix";
-import styles from "./tailwind.css";
+import styles from "./styles/index.css";
 
 // https://remix.run/api/app#links
 export function links() {
@@ -90,7 +90,7 @@ function Document({
   title?: string;
 }) {
   return (
-    <html className="bg-base-200" lang="en">
+    <html className="bg-base-100" lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
