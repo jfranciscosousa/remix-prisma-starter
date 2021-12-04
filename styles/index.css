@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+.btn:disabled {
+  background-color: gray;
+}

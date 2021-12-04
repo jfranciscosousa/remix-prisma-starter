@@ -65,8 +65,6 @@ export default function Index() {
   const notesContainerRef = useRef<HTMLUListElement>(null);
   const inputContentRef = useRef<HTMLInputElement>(null);
   const isLoading = state === "submitting" || state === "loading";
-  const isLoadingCreate =
-    isLoading && submission?.formData?.get("method") === "create";
 
   function getIsLoadingDelete(id: string): boolean {
     const isLoadingDelete =
@@ -75,6 +73,7 @@ export default function Index() {
     return isLoadingDelete && submission?.formData?.get("id") === id;
   }
 
+  // Scroll the notes to bottom if a new one comes in
   useEffect(() => {
     if (notes.length > (previousNotesLength || 0)) {
       if (inputContentRef.current) inputContentRef.current.value = "";
@@ -139,9 +138,9 @@ export default function Index() {
                       <button
                         type="submit"
                         className={classNames("link", {
-                          "cursor-not-allowed": isLoadingDelete,
+                          "cursor-not-allowed": isLoading,
                         })}
-                        disabled={isLoadingDelete}
+                        disabled={isLoading}
                       >
                         X
                       </button>
@@ -172,11 +171,11 @@ export default function Index() {
             <button
               type="submit"
               className={classNames("btn btn-primary w-[120px]", {
-                loading: isLoadingCreate,
+                loading: isLoading,
               })}
-              disabled={isLoadingCreate}
+              disabled={isLoading}
             >
-              {!isLoadingCreate && "Submit"}
+              {!isLoading && "Submit"}
             </button>
           </div>
         </Form>
