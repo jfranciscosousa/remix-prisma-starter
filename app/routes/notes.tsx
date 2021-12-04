@@ -77,7 +77,7 @@ export default function Index() {
 
   return (
     <LoggedInLayout user={user}>
-      <main className="max-w-xl mx-auto">
+      <main className="max-w-xl mx-auto mt-8">
         <div className="h-[500px] space-y-6">
           {notes.length === 0 && (
             <div className="flex flex-col justify-center items-center h-full">
@@ -89,7 +89,7 @@ export default function Index() {
 
           {notes.length > 0 && (
             <ul
-              className="space-y-6 max-h-full overflow-auto mt-8"
+              className="space-y-6 max-h-full overflow-auto"
               ref={notesContainerRef}
             >
               {notes.map((note) => (
