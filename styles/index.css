@@ -5,3 +5,7 @@
 .btn:disabled {
   background-color: gray;
 }
+
+.btn {
+  animation: none;
+}

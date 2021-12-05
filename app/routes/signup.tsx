@@ -1,9 +1,9 @@
-import classNames from "classnames";
 import type { ActionFunction, LoaderFunction, MetaFunction } from "remix";
-import { Form, Link, useActionData, redirect, useTransition } from "remix";
+import { useActionData, redirect, useTransition } from "remix";
 import { createUser } from "~/lib/data/users.server";
 import { authCookie } from "~/lib/web/cookies.server";
 import userFromRequest from "~/lib/web/userFromRequest";
+import SignUp from "~/modules/SignUp";
 
 export let loader: LoaderFunction = async ({ request }) => {
   let user = await userFromRequest(request);
@@ -41,77 +41,11 @@ export let meta: MetaFunction = () => {
   };
 };
 
-export default function NewPost() {
+export default function SignUpPage() {
   const error = useActionData();
   const { state, submission } = useTransition();
   const isLoading =
-    (state === "submitting" || state === "loading") && submission;
+    (state === "submitting" || state === "loading") && !!submission;
 
-  return (
-    <div className="max-w-lg mx-auto">
-      <Form
-        method="post"
-        className="p-10 card bg-base-200 flex flex-col space-y-4"
-      >
-        <h1 className="text-xl text-center">Please sign up</h1>
-
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Email</span>
-          </label>
-          <input
-            name="email"
-            type="email"
-            required
-            placeholder="hello@email.com"
-            className="input"
-          />
-        </div>
-
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Name</span>
-          </label>
-          <input
-            name="name"
-            type="text"
-            required
-            placeholder="How you would like to be called"
-            className="input"
-          />
-        </div>
-
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Password</span>
-          </label>
-          <input
-            name="password"
-            type="password"
-            required
-            placeholder="**************"
-            className="input"
-          />
-        </div>
-
-        {error === "404" && <p>User and password combination not found!</p>}
-
-        <div className="mt-4" />
-
-        <button
-          type="submit"
-          className={classNames("btn btn-primary", {
-            loading: isLoading,
-          })}
-          disabled={isLoading}
-        >
-          {!isLoading && "Sign up"}
-        </button>
-
-        <Link to="/login" className="link text-center">
-          Or login instead
-        </Link>
-      </Form>
-    </div>
-  );
+  return <SignUp error={error} isLoading={isLoading} />;
 }
