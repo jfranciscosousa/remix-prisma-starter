@@ -5,9 +5,9 @@ const scrypt = promisify(crypto.scrypt);
 
 export async function encryptPassword(password: string): Promise<string> {
   const salt = crypto.randomBytes(8).toString("hex");
-  const derivedKey = await scrypt(password, salt, 64) as Buffer;
+  const derivedKey = (await scrypt(password, salt, 64)) as Buffer;
 
-  return salt + ":" + derivedKey.toString("hex");
+  return `${salt}:${derivedKey.toString("hex")}`;
 }
 
 export async function verifyPassword(
@@ -16,11 +16,7 @@ export async function verifyPassword(
 ): Promise<boolean> {
   const [salt, key] = hash.split(":");
   const keyBuffer = Buffer.from(key, "hex");
-  const derivedKey = (await scrypt(
-    password,
-    salt,
-    64
-  )) as Buffer;
+  const derivedKey = (await scrypt(password, salt, 64)) as Buffer;
 
   return crypto.timingSafeEqual(keyBuffer, derivedKey);
 }

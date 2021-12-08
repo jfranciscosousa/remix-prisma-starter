@@ -18,6 +18,4 @@ export async function login(params: LoginParams): Promise<User | undefined> {
 
     return user;
   }
-
-  return;
 }

@@ -5,8 +5,8 @@ import { authCookie } from "~/lib/web/cookies.server";
 import userFromRequest from "~/lib/web/userFromRequest.server";
 import SignUp from "~/modules/SignUp";
 
-export let loader: LoaderFunction = async ({ request }) => {
-  let user = await userFromRequest(request);
+export const loader: LoaderFunction = async ({ request }) => {
+  const user = await userFromRequest(request);
 
   if (user) return redirect("/");
 
@@ -41,12 +41,10 @@ export const action: ActionFunction = async ({ request }) => {
   });
 };
 
-export let meta: MetaFunction = () => {
-  return {
-    title: "Remix Prisma Starter",
-    description: "Welcome to remix!",
-  };
-};
+export const meta: MetaFunction = () => ({
+  title: "Remix Prisma Starter",
+  description: "Welcome to remix!",
+});
 
 export default function SignUpPage() {
   const error = useActionData();

@@ -12,7 +12,7 @@ export default function LoggedInLayout({
   return (
     <div>
       <nav className="flex w-full justify-between mb-10">
-        <p>Welcome, {user.name}!</p>
+        <p>Welcome,{user.name}!</p>
 
         <ul className="flex flex-row space-x-4 items-center">
           <li>
@@ -24,7 +24,7 @@ export default function LoggedInLayout({
           </li>
 
           <li>
-            <NavLink to="/logout" className="btn btn-secondary">
+            <NavLink to="/logout" target="_blank" className="btn btn-secondary">
               Logout
             </NavLink>
           </li>

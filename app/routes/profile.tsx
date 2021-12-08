@@ -7,7 +7,7 @@ import {
   useLoaderData,
   json,
 } from "remix";
-import { findUserByEmail, updateUser } from "~/lib/data/users.server";
+import { updateUser } from "~/lib/data/users.server";
 import userFromRequest from "~/lib/web/userFromRequest.server";
 import Profile from "~/modules/Profile";
 
@@ -15,8 +15,8 @@ type ProfileData = {
   user: User;
 };
 
-export let loader: LoaderFunction = async ({ request }) => {
-  let user = await userFromRequest(request);
+export const loader: LoaderFunction = async ({ request }) => {
+  const user = await userFromRequest(request);
 
   if (!user) return redirect("/login");
 
@@ -43,12 +43,10 @@ export const action: ActionFunction = async ({ request }) => {
   return redirect("/profile");
 };
 
-export let meta: MetaFunction = () => {
-  return {
-    title: "Remix Prisma Starter",
-    description: "Welcome to remix!",
-  };
-};
+export const meta: MetaFunction = () => ({
+  title: "Remix Prisma Starter",
+  description: "Welcome to remix!",
+});
 
 export default function ProfilePage() {
   const { user } = useLoaderData<ProfileData>();

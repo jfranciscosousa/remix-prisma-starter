@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { Form, Link } from "remix";
 
 interface LoginProps {
-  error?: any;
+  error?: string;
   isLoading: boolean;
 }
 
@@ -16,10 +16,11 @@ export default function Login({ error, isLoading }: LoginProps) {
         <h1 className="text-xl text-center">Please login</h1>
 
         <div className="form-control">
-          <label className="label">
+          <label className="label" htmlFor="login-email">
             <span className="label-text">Email</span>
           </label>
           <input
+            id="login-email"
             name="email"
             type="email"
             required
@@ -29,10 +30,11 @@ export default function Login({ error, isLoading }: LoginProps) {
         </div>
 
         <div className="form-control">
-          <label className="label">
+          <label className="label" htmlFor="login-password">
             <span className="label-text">Password</span>
           </label>
           <input
+            id="login-password"
             name="password"
             type="password"
             required
@@ -42,7 +44,9 @@ export default function Login({ error, isLoading }: LoginProps) {
         </div>
 
         {error === "404" && (
-          <p className="pt-4 text-red-500 text-center">User and password combination not found!</p>
+          <p className="pt-4 text-red-500 text-center">
+            User and password combination not found!
+          </p>
         )}
 
         <div className="mt-4" />

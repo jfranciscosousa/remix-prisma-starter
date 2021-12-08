@@ -3,13 +3,13 @@ import classNames from "classnames";
 import { Form } from "remix";
 import LoggedInLayout from "~/components/layouts/LoggedInLayout";
 
-interface SignUpProps {
+interface ProfileProps {
   user: User;
   error?: string;
   isLoading: boolean;
 }
 
-export default function Profile({ user, error, isLoading }: SignUpProps) {
+export default function Profile({ user, error, isLoading }: ProfileProps) {
   return (
     <LoggedInLayout user={user}>
       <div className="max-w-lg mx-auto h-full flex items-center justify-center">
@@ -20,50 +20,53 @@ export default function Profile({ user, error, isLoading }: SignUpProps) {
           <h1 className="text-xl text-center">Edit your profile</h1>
 
           <div className="form-control">
-            <label className="label">
+            <label className="label" htmlFor="profile-email">
               <span className="label-text">Email</span>
             </label>
             <input
+              id="profile-email"
               name="email"
               type="email"
               required
               placeholder="hello@email.com"
               className="input"
-              defaultValue={user.email}
             />
           </div>
 
           <div className="form-control">
-            <label className="label">
+            <label className="label" htmlFor="profile-name">
               <span className="label-text">Name</span>
             </label>
             <input
+              id="profile-name"
               name="name"
               type="text"
               required
               placeholder="How you would like to be called"
               className="input"
-              defaultValue={user.name}
             />
           </div>
 
           <div className="form-control">
-            <label className="label">
+            <label className="label" htmlFor="profile-password">
               <span className="label-text">Password</span>
             </label>
             <input
+              id="profile-password"
               name="password"
               type="password"
+              required
               placeholder="**************"
               className="input"
             />
           </div>
 
           <div className="form-control">
-            <label className="label">
+            <label className="label" htmlFor="profile-passwordConfirmation">
               <span className="label-text">Confirm password</span>
             </label>
             <input
+              id="profile-passwordConfirmation"
               name="passwordConfirmation"
               type="password"
               placeholder="**************"

@@ -9,7 +9,7 @@ interface NotesProps {
   user: User;
   notes: Note[];
   isLoading: boolean;
-  error?: any;
+  error?: string;
 }
 
 export default function Notes({ user, notes, isLoading }: NotesProps) {
@@ -24,8 +24,8 @@ export default function Notes({ user, notes, isLoading }: NotesProps) {
 
       if (notesContainerRef.current) {
         notesContainerRef.current.scrollTop =
-          notesContainerRef.current.scrollHeight -
-          notesContainerRef.current.clientHeight;
+          notesContainerRef.current.scrollHeight;
+        notesContainerRef.current.clientHeight;
       }
     }
   }, [notes.length, previousNotesLength]);
@@ -97,10 +97,11 @@ export default function Notes({ user, notes, isLoading }: NotesProps) {
           <div className="flex flex-row items-end space-x-4 w-full">
             <div className="form-control flex-grow">
               <input name="method" readOnly value="create" className="hidden" />
-              <label className="label">
+              <label className="label" htmlFor="notes-content">
                 <span className="label-text">New todo</span>
               </label>
               <input
+                id="notes-content"
                 name="content"
                 type="text"
                 required

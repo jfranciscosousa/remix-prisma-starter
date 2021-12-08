@@ -4,8 +4,11 @@ import {
   LoaderFunction,
   ActionFunction,
   useTransition,
+  useLoaderData,
+  redirect,
+  json,
+  useActionData,
 } from "remix";
-import { useLoaderData, redirect, json, useActionData } from "remix";
 import { createNote, deleteNote, listNotes } from "~/lib/data/notes.server";
 import userFromRequest from "~/lib/web/userFromRequest.server";
 import Notes from "~/modules/Notes";
@@ -15,8 +18,8 @@ type NotesData = {
   notes: Note[];
 };
 
-export let loader: LoaderFunction = async ({ request }) => {
-  let user = await userFromRequest(request);
+export const loader: LoaderFunction = async ({ request }) => {
+  const user = await userFromRequest(request);
 
   if (!user) return redirect("/login");
 
@@ -26,7 +29,7 @@ export let loader: LoaderFunction = async ({ request }) => {
 };
 
 export const action: ActionFunction = async ({ request }) => {
-  let user = await userFromRequest(request);
+  const user = await userFromRequest(request);
 
   if (!user) return redirect("/login");
 
@@ -47,12 +50,10 @@ export const action: ActionFunction = async ({ request }) => {
   return redirect("/notes");
 };
 
-export let meta: MetaFunction = () => {
-  return {
-    title: "Remix Prisma Starter",
-    description: "Welcome to remix!",
-  };
-};
+export const meta: MetaFunction = () => ({
+  title: "Remix Prisma Starter",
+  description: "Welcome to remix!",
+});
 
 export default function NotesPage() {
   const { user, notes } = useLoaderData<NotesData>();

@@ -1,10 +1,9 @@
-import { LoaderFunction } from "remix";
-import { redirect } from "remix";
+import { LoaderFunction, redirect } from "remix";
 import userFromRequest from "~/lib/web/userFromRequest.server";
 
-export let loader: LoaderFunction = async ({ request }) => {
-  let user = await userFromRequest(request);
+export const loader: LoaderFunction = async ({ request }) => {
+  const user = await userFromRequest(request);
 
   if (!user) return redirect("/login");
-  else return redirect("/notes");
+  return redirect("/notes");
 };

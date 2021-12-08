@@ -16,10 +16,11 @@ export default function SignUp({ error, isLoading }: SignUpProps) {
         <h1 className="text-xl text-center">Please sign up</h1>
 
         <div className="form-control">
-          <label className="label">
+          <label className="label" htmlFor="signup-email">
             <span className="label-text">Email</span>
           </label>
           <input
+            id="signup-email"
             name="email"
             type="email"
             required
@@ -29,10 +30,11 @@ export default function SignUp({ error, isLoading }: SignUpProps) {
         </div>
 
         <div className="form-control">
-          <label className="label">
+          <label className="label" htmlFor="signup-name">
             <span className="label-text">Name</span>
           </label>
           <input
+            id="signup-name"
             name="name"
             type="text"
             required
@@ -42,10 +44,11 @@ export default function SignUp({ error, isLoading }: SignUpProps) {
         </div>
 
         <div className="form-control">
-          <label className="label">
+          <label className="label" htmlFor="signup-password">
             <span className="label-text">Password</span>
           </label>
           <input
+            id="signup-password"
             name="password"
             type="password"
             required
@@ -55,10 +58,11 @@ export default function SignUp({ error, isLoading }: SignUpProps) {
         </div>
 
         <div className="form-control">
-          <label className="label">
+          <label className="label" htmlFor="signup-passwordConfirmation">
             <span className="label-text">Confirm password</span>
           </label>
           <input
+            id="signup-passwordConfirmation"
             name="passwordConfirmation"
             type="password"
             placeholder="**************"
