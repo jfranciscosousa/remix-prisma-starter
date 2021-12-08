@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { Form, Link } from "remix";
 
 interface SignUpProps {
-  error?: any;
+  error?: string;
   isLoading: boolean;
 }
 
@@ -54,7 +54,19 @@ export default function SignUp({ error, isLoading }: SignUpProps) {
           />
         </div>
 
-        {error === "404" && <p>User and password combination not found!</p>}
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Confirm password</span>
+          </label>
+          <input
+            name="passwordConfirmation"
+            type="password"
+            placeholder="**************"
+            className="input"
+          />
+        </div>
+
+        {error && <p className="pt-4 text-red-500 text-center">{error}</p>}
 
         <div className="mt-4" />
 

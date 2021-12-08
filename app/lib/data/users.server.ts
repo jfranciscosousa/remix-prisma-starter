@@ -8,6 +8,14 @@ export interface UserParams {
   password: string;
 }
 
+export async function findUserByEmail(email: string): Promise<User | null> {
+  const user = await prisma.user.findUnique({ where: { email } });
+
+  if (user) user.password = "";
+
+  return user;
+}
+
 export async function createUser({
   email,
   name,

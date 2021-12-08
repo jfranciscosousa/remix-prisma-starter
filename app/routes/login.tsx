@@ -2,7 +2,7 @@ import type { ActionFunction, LoaderFunction, MetaFunction } from "remix";
 import { useActionData, redirect, useTransition } from "remix";
 import { login } from "~/lib/data/auth.server";
 import { authCookie } from "~/lib/web/cookies.server";
-import userFromRequest from "~/lib/web/userFromRequest";
+import userFromRequest from "~/lib/web/userFromRequest.server";
 import Login from "~/modules/Login";
 
 export let loader: LoaderFunction = async ({ request }) => {

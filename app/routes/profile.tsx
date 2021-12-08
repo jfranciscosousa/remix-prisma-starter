@@ -1,44 +1,46 @@
+import { User } from "@prisma/client";
 import type { ActionFunction, LoaderFunction, MetaFunction } from "remix";
-import { useActionData, redirect, useTransition } from "remix";
-import { createUser, findUserByEmail } from "~/lib/data/users.server";
-import { authCookie } from "~/lib/web/cookies.server";
+import {
+  useActionData,
+  redirect,
+  useTransition,
+  useLoaderData,
+  json,
+} from "remix";
+import { findUserByEmail, updateUser } from "~/lib/data/users.server";
 import userFromRequest from "~/lib/web/userFromRequest.server";
-import SignUp from "~/modules/SignUp";
+import Profile from "~/modules/Profile";
+
+type ProfileData = {
+  user: User;
+};
 
 export let loader: LoaderFunction = async ({ request }) => {
   let user = await userFromRequest(request);
 
-  if (user) return redirect("/");
+  if (!user) return redirect("/login");
 
-  return null;
+  return json({ user });
 };
 
 export const action: ActionFunction = async ({ request }) => {
-  const form = await request.formData();
+  const user = await userFromRequest(request);
 
-  if (await findUserByEmail(form.get("email") as string)) {
-    return "User already exists!";
-  }
+  if (!user) return redirect("/login");
+
+  const form = await request.formData();
 
   if (form.get("password") !== form.get("passwordConfirmation")) {
     return "Passwords do not match!";
   }
 
-  const user = await createUser({
+  await updateUser(user, {
     email: form.get("email") as string,
     name: form.get("name") as string,
     password: form.get("password") as string,
   });
 
-  return new Response(null, {
-    status: 302,
-    headers: {
-      location: "/",
-      "Set-Cookie": await authCookie.serialize({
-        userId: user.id,
-      }),
-    },
-  });
+  return redirect("/profile");
 };
 
 export let meta: MetaFunction = () => {
@@ -48,11 +50,12 @@ export let meta: MetaFunction = () => {
   };
 };
 
-export default function SignUpPage() {
+export default function ProfilePage() {
+  const { user } = useLoaderData<ProfileData>();
   const error = useActionData();
   const { state, submission } = useTransition();
   const isLoading =
     (state === "submitting" || state === "loading") && !!submission;
 
-  return <SignUp error={error} isLoading={isLoading} />;
+  return <Profile user={user} error={error} isLoading={isLoading} />;
 }

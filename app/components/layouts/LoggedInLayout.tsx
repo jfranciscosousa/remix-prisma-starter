@@ -1,5 +1,6 @@
 import { User } from "@prisma/client";
 import { ReactNode } from "react";
+import { NavLink } from "remix";
 
 export default function LoggedInLayout({
   user,
@@ -10,12 +11,24 @@ export default function LoggedInLayout({
 }) {
   return (
     <div>
-      <nav className="flex w-full justify-between">
+      <nav className="flex w-full justify-between mb-10">
         <p>Welcome, {user.name}!</p>
 
-        <form method="POST" action="/logout">
-          <button className="btn btn-secondary">Logout</button>
-        </form>
+        <ul className="flex flex-row space-x-4 items-center">
+          <li>
+            <NavLink to="/notes">Notes</NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/profile">Profile</NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/logout" className="btn btn-secondary">
+              Logout
+            </NavLink>
+          </li>
+        </ul>
       </nav>
 
       {children}

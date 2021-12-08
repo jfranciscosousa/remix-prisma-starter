@@ -7,10 +7,10 @@ import {
 } from "remix";
 import { useLoaderData, redirect, json, useActionData } from "remix";
 import { createNote, deleteNote, listNotes } from "~/lib/data/notes.server";
-import userFromRequest from "~/lib/web/userFromRequest";
+import userFromRequest from "~/lib/web/userFromRequest.server";
 import Notes from "~/modules/Notes";
 
-type IndexData = {
+type NotesData = {
   user: User;
   notes: Note[];
 };
@@ -55,7 +55,7 @@ export let meta: MetaFunction = () => {
 };
 
 export default function NotesPage() {
-  const { user, notes } = useLoaderData<IndexData>();
+  const { user, notes } = useLoaderData<NotesData>();
   const actionData = useActionData();
   const { state } = useTransition();
   const isLoading = state === "submitting" || state === "loading";

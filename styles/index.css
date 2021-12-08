@@ -9,3 +9,7 @@
 .btn {
   animation: none;
 }
+
+a.active {
+  @apply underline;
+}
