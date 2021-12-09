@@ -35,7 +35,7 @@ export default function Notes({ user, notes, isLoading }: NotesProps) {
   return (
     <LoggedInLayout user={user}>
       <main className="max-w-xl mx-auto">
-        <div className="h-[500px] space-y-6">
+        <div className="h-[500px]">
           {notes.length === 0 && (
             <div className="flex flex-col justify-center items-center h-full">
               <p className="text-center">
