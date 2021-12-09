@@ -9,7 +9,12 @@
   "settings": {
     "react": {
       "version": "detect"
-    }
+    },
+    "formComponents": ["Form"],
+    "linkComponents": [
+      { "name": "Link", "linkAttribute": "to" },
+      { "name": "NavLink", "linkAttribute": "to" }
+    ]
   },
   "plugins": [
     "prettier",
@@ -47,6 +52,14 @@
     ],
     "react/boolean-prop-naming": "error",
     "react/react-in-jsx-scope": "off",
-    "react/button-has-type": "error"
+    "react/button-has-type": "error",
+    "react/jsx-no-target-blank": [
+      "error",
+      {
+        "warnOnSpreadAttributes": true,
+        "links": true,
+        "forms": true
+      }
+    ]
   }
 }

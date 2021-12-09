@@ -1,6 +1,6 @@
 import { User } from "@prisma/client";
 import { ReactNode } from "react";
-import { NavLink } from "remix";
+import { Form, NavLink } from "remix";
 
 export default function LoggedInLayout({
   user,
@@ -24,9 +24,11 @@ export default function LoggedInLayout({
           </li>
 
           <li>
-            <NavLink to="/logout" target="_blank" className="btn btn-secondary">
-              Logout
-            </NavLink>
+            <Form method="post" action="/logout">
+              <button type="submit" className="btn btn-secondary">
+                Logout
+              </button>
+            </Form>
           </li>
         </ul>
       </nav>
