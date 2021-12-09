@@ -65,6 +65,7 @@ export default function SignUp({ error, isLoading }: SignUpProps) {
             id="signup-passwordConfirmation"
             name="passwordConfirmation"
             type="password"
+            required
             placeholder="**************"
             className="input"
           />

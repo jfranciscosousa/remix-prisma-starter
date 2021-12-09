@@ -30,6 +30,7 @@ export default function Profile({ user, error, isLoading }: ProfileProps) {
               required
               placeholder="hello@email.com"
               className="input"
+              defaultValue={user.email}
             />
           </div>
 
@@ -44,6 +45,7 @@ export default function Profile({ user, error, isLoading }: ProfileProps) {
               required
               placeholder="How you would like to be called"
               className="input"
+              defaultValue={user.name}
             />
           </div>
 
@@ -55,7 +57,6 @@ export default function Profile({ user, error, isLoading }: ProfileProps) {
               id="profile-password"
               name="password"
               type="password"
-              required
               placeholder="**************"
               className="input"
             />
