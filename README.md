@@ -2,6 +2,13 @@
 
 - [Remix Docs](https://remix.run/docs)
 
+## Custom things to this repo
+
+- Authentication with cookies
+- Backed by Prisma and Postgres
+- Authorizing resource access
+- Locale handling with SSR
+
 ## Deployment
 
 After having run the `create-remix` command and selected "Vercel" as a deployment target, you only need to [import your Git repository](https://vercel.com/new) into Vercel, and it will be deployed.

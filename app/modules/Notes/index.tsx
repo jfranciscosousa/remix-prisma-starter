@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { usePrevious } from "react-use";
 import { Form } from "remix";
 import LoggedInLayout from "~/components/layouts/LoggedInLayout";
+import useLocale from "~/lib/hooks/useLocale";
 
 interface NotesProps {
   user: User;
@@ -13,6 +14,7 @@ interface NotesProps {
 }
 
 export default function Notes({ user, notes, isLoading }: NotesProps) {
+  const locale = useLocale();
   const previousNotesLength = usePrevious<number>(notes.length);
   const notesContainerRef = useRef<HTMLUListElement>(null);
   const inputContentRef = useRef<HTMLInputElement>(null);
@@ -57,7 +59,7 @@ export default function Notes({ user, notes, isLoading }: NotesProps) {
 
                     <p className="text-xs opacity-75">
                       Created at:{" "}
-                      {new Date(note.createdAt).toLocaleString("en-us")}
+                      {new Date(note.createdAt).toLocaleString(locale)}
                     </p>
                   </div>
 
