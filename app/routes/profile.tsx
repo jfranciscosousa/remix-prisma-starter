@@ -7,8 +7,8 @@ import {
   useLoaderData,
   json,
 } from "remix";
-import { updateUser } from "~/lib/data/users.server";
-import userFromRequest from "~/lib/web/userFromRequest.server";
+import { updateUser } from "~/data/users.server";
+import userFromRequest from "~/web/userFromRequest.server";
 import Profile from "~/modules/Profile";
 
 type ProfileData = {

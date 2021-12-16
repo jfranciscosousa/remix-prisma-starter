@@ -1,5 +1,5 @@
 import { ActionFunction } from "remix";
-import { authCookie } from "~/lib/web/cookies.server";
+import { authCookie } from "~/web/cookies.server";
 
 export const action: ActionFunction = async () =>
   new Response(null, {

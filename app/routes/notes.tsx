@@ -9,8 +9,8 @@ import {
   json,
   useActionData,
 } from "remix";
-import { createNote, deleteNote, listNotes } from "~/lib/data/notes.server";
-import userFromRequest from "~/lib/web/userFromRequest.server";
+import { createNote, deleteNote, listNotes } from "~/data/notes.server";
+import userFromRequest from "~/web/userFromRequest.server";
 import Notes from "~/modules/Notes";
 
 type NotesData = {

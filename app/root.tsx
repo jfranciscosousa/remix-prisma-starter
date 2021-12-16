@@ -10,7 +10,7 @@ import {
 } from "remix";
 import type { LoaderFunction } from "remix";
 import acceptLanguage from "accept-language-parser";
-import { LocaleProvider } from "./lib/hooks/useLocale";
+import { LocaleProvider } from "./hooks/useLocale";
 import styles from "./styles/index.css";
 
 // https://remix.run/api/app#links

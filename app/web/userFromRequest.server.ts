@@ -1,5 +1,5 @@
 import { User } from "@prisma/client";
-import prisma from "~/lib/data/prisma.server";
+import prisma from "~/data/prisma.server";
 import { authCookie } from "./cookies.server";
 
 export default async function userFromRequest(

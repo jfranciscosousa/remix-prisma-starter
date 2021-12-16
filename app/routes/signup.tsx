@@ -1,14 +1,14 @@
 import type { ActionFunction, LoaderFunction, MetaFunction } from "remix";
 import { useActionData, redirect, useTransition } from "remix";
-import { createUser, findUserByEmail } from "~/lib/data/users.server";
-import { authCookie } from "~/lib/web/cookies.server";
-import userFromRequest from "~/lib/web/userFromRequest.server";
+import { createUser, findUserByEmail } from "~/data/users.server";
+import { authCookie } from "~/web/cookies.server";
+import userFromRequest from "~/web/userFromRequest.server";
 import SignUp from "~/modules/SignUp";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await userFromRequest(request);
 
-  if (user) return redirect("/");
+  if (user) return redirect("/notes");
 
   return null;
 };
@@ -33,7 +33,7 @@ export const action: ActionFunction = async ({ request }) => {
   return new Response(null, {
     status: 302,
     headers: {
-      location: "/",
+      location: "/notes",
       "Set-Cookie": await authCookie.serialize({
         userId: user.id,
       }),
