@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext } from "react";
 
-const LocaleContext = createContext<string | undefined>(undefined);
+const LocaleContext = createContext<string>(undefined as unknown as string);
 
 export function LocaleProvider({
   children,

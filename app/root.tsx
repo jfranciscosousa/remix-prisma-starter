@@ -24,8 +24,10 @@ export const loader: LoaderFunction = async ({ request }) => {
     request.headers.get("Accept-Language") as string
   );
 
+  // If somehow the header is empty, return a default locale
   if (languages?.length < 1) return "en-us";
 
+  // If there is no region for this locale, just return the country code
   if (!languages[0].region) return languages[0].code;
 
   return `${languages[0].code}-${languages[0].region.toLowerCase()}`;
