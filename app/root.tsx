@@ -13,7 +13,6 @@ import acceptLanguage from "accept-language-parser";
 import { LocaleProvider } from "./hooks/useLocale";
 import styles from "./styles/index.css";
 
-// https://remix.run/api/app#links
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
 }
@@ -32,8 +31,6 @@ export const loader: LoaderFunction = async ({ request }) => {
   return `${languages[0].code}-${languages[0].region.toLowerCase()}`;
 };
 
-// https://remix.run/api/conventions#default-export
-// https://remix.run/api/conventions#route-filenames
 export default function App() {
   const locale = useLoaderData();
 
@@ -48,9 +45,9 @@ export default function App() {
   );
 }
 
-// https://remix.run/docs/en/v1/api/conventions#errorboundary
 export function ErrorBoundary({ error }: { error: Error }) {
-  console.error(error);
+  console.error("Error", error);
+
   return (
     <Document title="Error!">
       <Layout>
@@ -68,7 +65,6 @@ export function ErrorBoundary({ error }: { error: Error }) {
   );
 }
 
-// https://remix.run/docs/en/v1/api/conventions#catchboundary
 export function CatchBoundary() {
   const caught = useCatch();
 
