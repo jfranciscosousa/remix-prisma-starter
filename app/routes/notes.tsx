@@ -35,7 +35,7 @@ export const action: ActionFunction = async ({ request }) => {
 
   const form = await request.formData();
 
-  switch (form.get("method")) {
+  switch (form.get("_action")) {
     case "create":
       await createNote(user, {
         content: form.get("content") as string,

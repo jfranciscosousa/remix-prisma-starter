@@ -45,7 +45,6 @@ export default function NotesList({ notes, isLoading }: NoteProps) {
             method="post"
             className="flex flex-col items-center justify-center"
           >
-            <input name="method" readOnly value="delete" className="hidden" />
             <input name="id" readOnly value={note.id} className="hidden" />
             <button
               type="submit"
@@ -53,6 +52,8 @@ export default function NotesList({ notes, isLoading }: NoteProps) {
                 "cursor-not-allowed": isLoading,
               })}
               disabled={isLoading}
+              name="_action"
+              value="delete"
             >
               X
             </button>

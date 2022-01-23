@@ -27,7 +27,6 @@ export default function NotesInput({ isLoading, error }: NotesInputProps) {
     <Form method="post" className="flex flex-col space-y-4 mt-12">
       <div className="flex flex-row items-end space-x-4 w-full">
         <div className="form-control flex-grow">
-          <input name="method" readOnly value="create" className="hidden" />
           <label className="label" htmlFor="notes-content">
             <span className="label-text">New todo</span>
           </label>
@@ -47,6 +46,8 @@ export default function NotesInput({ isLoading, error }: NotesInputProps) {
             loading: isLoading,
           })}
           disabled={isLoading}
+          name="_action"
+          value="create"
         >
           {!isLoading && "Submit"}
         </button>
