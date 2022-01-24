@@ -10,7 +10,7 @@ export default function Profile() {
   const { state, submission } = useTransition();
   const isLoading =
     (state === "submitting" || state === "loading") && !!submission;
-  console.log(errors);
+
   return (
     <LoggedInLayout user={user}>
       <div className="max-w-lg mx-auto h-full flex items-center justify-center">
