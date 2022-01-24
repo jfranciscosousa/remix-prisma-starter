@@ -6,22 +6,23 @@ import { Form } from "remix";
 
 interface NotesInputProps {
   isLoading: boolean;
-  error?: string;
+  errors?: Record<string, string>;
 }
 
-export default function NotesInput({ isLoading, error }: NotesInputProps) {
+export default function NotesInput({ isLoading, errors }: NotesInputProps) {
   const previousIsLoading = usePrevious(isLoading);
   const inputRef = useRef<HTMLInputElement>(null);
+  const hasErrors = errors && Object.keys(errors).length > 1;
 
   // Clear input when isLoading goes
   // from true to false if there is no error
   useEffect(() => {
-    if (!inputRef.current || error) return;
+    if (!inputRef.current || hasErrors) return;
 
     if (previousIsLoading && !isLoading) {
       inputRef.current.value = "";
     }
-  }, [isLoading, error, previousIsLoading]);
+  }, [isLoading, hasErrors, previousIsLoading]);
 
   return (
     <Form method="post" className="flex flex-col space-y-4 mt-12">

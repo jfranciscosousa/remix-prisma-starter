@@ -1,6 +1,6 @@
 import type { ActionFunction, LoaderFunction, MetaFunction } from "remix";
-import { useActionData, redirect, useTransition } from "remix";
-import { login } from "~/data/auth.server";
+import { redirect } from "remix";
+import { login, LoginParams } from "~/data/auth.server";
 import { authCookie } from "~/web/cookies.server";
 import userFromRequest from "~/web/userFromRequest.server";
 import Login from "~/modules/Login";
@@ -14,20 +14,17 @@ export const loader: LoaderFunction = async ({ request }) => {
 };
 
 export const action: ActionFunction = async ({ request }) => {
-  const form = await request.formData();
-  const user = await login({
-    email: form.get("email") as string,
-    password: form.get("password") as string,
-  });
+  const form = Object.fromEntries(await request.formData());
+  const result = await login(form as LoginParams);
 
-  if (!user) return "404";
+  if (result.errors) return result.errors;
 
   return new Response(null, {
     status: 302,
     headers: {
       location: "/notes",
       "Set-Cookie": await authCookie.serialize({
-        userId: user.id,
+        userId: result.data.id,
       }),
     },
   });
@@ -39,10 +36,5 @@ export const meta: MetaFunction = () => ({
 });
 
 export default function LoginPage() {
-  const error = useActionData();
-  const { state, submission } = useTransition();
-  const isLoading =
-    (state === "submitting" || state === "loading") && !!submission;
-
-  return <Login error={error} isLoading={isLoading} />;
+  return <Login />;
 }

@@ -1,12 +1,12 @@
 import classNames from "classnames";
-import { Form, Link } from "remix";
+import { Form, Link, useActionData, useTransition } from "remix";
 
-interface SignUpProps {
-  error?: string;
-  isLoading: boolean;
-}
+export default function SignUp() {
+  const errors = useActionData() || {};
+  const { state, submission } = useTransition();
+  const isLoading =
+    (state === "submitting" || state === "loading") && !!submission;
 
-export default function SignUp({ error, isLoading }: SignUpProps) {
   return (
     <div className="max-w-lg mx-auto h-full flex items-center justify-center">
       <Form
@@ -22,11 +22,11 @@ export default function SignUp({ error, isLoading }: SignUpProps) {
           <input
             id="signup-email"
             name="email"
-            type="email"
             required
             placeholder="hello@email.com"
             className="input"
           />
+          {errors.email && <p className="pt-4 text-red-500">{errors.email}</p>}
         </div>
 
         <div className="form-control">
@@ -41,6 +41,7 @@ export default function SignUp({ error, isLoading }: SignUpProps) {
             placeholder="How you would like to be called"
             className="input"
           />
+          {errors.name && <p className="pt-4 text-red-500">{errors.name}</p>}
         </div>
 
         <div className="form-control">
@@ -55,6 +56,9 @@ export default function SignUp({ error, isLoading }: SignUpProps) {
             placeholder="**************"
             className="input"
           />
+          {errors.password && (
+            <p className="pt-4 text-red-500">{errors.password}</p>
+          )}
         </div>
 
         <div className="form-control">
@@ -69,9 +73,10 @@ export default function SignUp({ error, isLoading }: SignUpProps) {
             placeholder="**************"
             className="input"
           />
+          {errors.passwordConfirmation && (
+            <p className="pt-4 text-red-500">{errors.passwordConfirmation}</p>
+          )}
         </div>
-
-        {error && <p className="pt-4 text-red-500 text-center">{error}</p>}
 
         <div className="mt-4" />
 

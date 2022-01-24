@@ -1,16 +1,15 @@
-import { User, Note } from "@prisma/client";
+import { useActionData, useLoaderData, useTransition } from "remix";
 import LoggedInLayout from "~/components/layouts/LoggedInLayout";
+import { NotesRouteData } from "~/routes/notes";
 import NotesInput from "./NotesInput";
 import NotesList from "./NotesList";
 
-interface NotesProps {
-  user: User;
-  notes: Note[];
-  isLoading: boolean;
-  error?: string;
-}
+export default function Notes() {
+  const { user, notes } = useLoaderData<NotesRouteData>();
+  const errors = useActionData();
+  const { state } = useTransition();
+  const isLoading = state === "submitting" || state === "loading";
 
-export default function Notes({ user, notes, isLoading, error }: NotesProps) {
   return (
     <LoggedInLayout user={user}>
       <main className="max-w-xl mx-auto">
@@ -28,7 +27,7 @@ export default function Notes({ user, notes, isLoading, error }: NotesProps) {
           )}
         </div>
 
-        <NotesInput isLoading={isLoading} error={error} />
+        <NotesInput isLoading={isLoading} errors={errors} />
       </main>
     </LoggedInLayout>
   );

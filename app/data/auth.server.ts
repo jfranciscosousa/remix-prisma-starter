@@ -1,21 +1,32 @@
 import { User } from "@prisma/client";
 import prisma from "./prisma.server";
 import { verifyPassword } from "./passwordUtils.server";
+import { DataResult } from "./types";
+import errorsFromSchema from "./validate.server";
+import { InferType, object, string } from "yup";
 
-export interface LoginParams {
-  email: string;
-  password: string;
-}
+const loginParams = object({
+  email: string().email().required(),
+  password: string().required(),
+});
+
+export type LoginParams = InferType<typeof loginParams>;
 
 // eslint-disable-next-line import/prefer-default-export
-export async function login(params: LoginParams): Promise<User | undefined> {
+export async function login(params: LoginParams): Promise<DataResult<User>> {
+  const errors = errorsFromSchema(loginParams, params);
+
+  if (errors) return { errors };
+
   const user = await prisma.user.findUnique({ where: { email: params.email } });
 
-  if (!user) return;
+  if (!user) return { errors: { email: "Email/Password combo not found" } };
 
   if (await verifyPassword(user.password, params.password)) {
     user.password = "";
 
-    return user;
+    return { data: user };
   }
+
+  return { errors: { email: "Email/Password combo not found" } };
 }

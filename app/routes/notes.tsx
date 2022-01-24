@@ -3,17 +3,14 @@ import {
   MetaFunction,
   LoaderFunction,
   ActionFunction,
-  useTransition,
-  useLoaderData,
   redirect,
   json,
-  useActionData,
 } from "remix";
 import { createNote, deleteNote, listNotes } from "~/data/notes.server";
 import userFromRequest from "~/web/userFromRequest.server";
 import Notes from "~/modules/Notes";
 
-type NotesData = {
+export type NotesRouteData = {
   user: User;
   notes: Note[];
 };
@@ -33,17 +30,17 @@ export const action: ActionFunction = async ({ request }) => {
 
   if (!user) return redirect("/login");
 
-  const form = await request.formData();
+  const form = Object.fromEntries(await request.formData());
 
-  switch (form.get("_action")) {
+  switch (form._action) {
     case "create":
       await createNote(user, {
-        content: form.get("content") as string,
+        content: form.content as string,
       });
       break;
 
     case "delete":
-      await deleteNote(user, form.get("id") as string);
+      await deleteNote(user, form.id as string);
       break;
   }
 
@@ -56,12 +53,5 @@ export const meta: MetaFunction = () => ({
 });
 
 export default function NotesPage() {
-  const { user, notes } = useLoaderData<NotesData>();
-  const actionData = useActionData();
-  const { state } = useTransition();
-  const isLoading = state === "submitting" || state === "loading";
-
-  return (
-    <Notes user={user} notes={notes} isLoading={isLoading} error={actionData} />
-  );
+  return <Notes />;
 }

@@ -1,15 +1,16 @@
-import { User } from "@prisma/client";
 import classNames from "classnames";
-import { Form } from "remix";
+import { Form, useActionData, useLoaderData, useTransition } from "remix";
+import InputError from "~/components/InputError";
 import LoggedInLayout from "~/components/layouts/LoggedInLayout";
+import { ProfileRouteData } from "~/routes/profile";
 
-interface ProfileProps {
-  user: User;
-  error?: string;
-  isLoading: boolean;
-}
-
-export default function Profile({ user, error, isLoading }: ProfileProps) {
+export default function Profile() {
+  const { user } = useLoaderData<ProfileRouteData>();
+  const errors = useActionData();
+  const { state, submission } = useTransition();
+  const isLoading =
+    (state === "submitting" || state === "loading") && !!submission;
+  console.log(errors);
   return (
     <LoggedInLayout user={user}>
       <div className="max-w-lg mx-auto h-full flex items-center justify-center">
@@ -26,12 +27,14 @@ export default function Profile({ user, error, isLoading }: ProfileProps) {
             <input
               id="profile-email"
               name="email"
-              type="email"
+              type="text"
               required
               placeholder="hello@email.com"
               className="input"
               defaultValue={user.email}
             />
+
+            <InputError errors={errors} path="email" />
           </div>
 
           <div className="form-control">
@@ -47,19 +50,39 @@ export default function Profile({ user, error, isLoading }: ProfileProps) {
               className="input"
               defaultValue={user.name}
             />
+
+            <InputError errors={errors} path="name" />
           </div>
 
           <div className="form-control">
-            <label className="label" htmlFor="profile-password">
-              <span className="label-text">Password</span>
+            <label className="label" htmlFor="profile-current-password">
+              <span className="label-text">Current password</span>
             </label>
             <input
-              id="profile-password"
-              name="password"
+              id="profile-current-password"
+              name="currentPassword"
+              type="password"
+              placeholder="**************"
+              className="input"
+              required
+            />
+
+            <InputError errors={errors} path="currentPassword" />
+          </div>
+
+          <div className="form-control">
+            <label className="label" htmlFor="profile-new-password">
+              <span className="label-text">New password</span>
+            </label>
+            <input
+              id="profile-new-password"
+              name="newPassword"
               type="password"
               placeholder="**************"
               className="input"
             />
+
+            <InputError errors={errors} path="newPassword" />
           </div>
 
           <div className="form-control">
@@ -73,9 +96,9 @@ export default function Profile({ user, error, isLoading }: ProfileProps) {
               placeholder="**************"
               className="input"
             />
-          </div>
 
-          {error && <p className="pt-4 text-red-500 text-center">{error}</p>}
+            <InputError errors={errors} path="passwordConfirmation" />
+          </div>
 
           <div className="mt-4" />
 

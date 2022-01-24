@@ -1,12 +1,12 @@
 import classNames from "classnames";
-import { Form, Link } from "remix";
+import { Form, Link, useActionData, useTransition } from "remix";
 
-interface LoginProps {
-  error?: string;
-  isLoading: boolean;
-}
+export default function Login() {
+  const errors = useActionData() || {};
+  const { state, submission } = useTransition();
+  const isLoading =
+    (state === "submitting" || state === "loading") && !!submission;
 
-export default function Login({ error, isLoading }: LoginProps) {
   return (
     <div className="max-w-lg mx-auto h-full flex items-center justify-center">
       <Form
@@ -22,11 +22,11 @@ export default function Login({ error, isLoading }: LoginProps) {
           <input
             id="login-email"
             name="email"
-            type="email"
             required
             placeholder="hello@email.com"
             className="input"
           />
+          {errors.email && <p className="pt-4 text-red-500">{errors.email}</p>}
         </div>
 
         <div className="form-control">
@@ -41,13 +41,10 @@ export default function Login({ error, isLoading }: LoginProps) {
             placeholder="**************"
             className="input"
           />
+          {errors.password && (
+            <p className="pt-4 text-red-500">{errors.password}</p>
+          )}
         </div>
-
-        {error === "404" && (
-          <p className="pt-4 text-red-500 text-center">
-            User and password combination not found!
-          </p>
-        )}
 
         <div className="mt-4" />
 
