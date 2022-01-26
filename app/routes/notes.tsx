@@ -1,28 +1,19 @@
-import { Note, User } from "@prisma/client";
-import {
-  MetaFunction,
-  LoaderFunction,
-  ActionFunction,
-  redirect,
-  json,
-} from "remix";
+import { MetaFunction, ActionFunction, redirect } from "remix";
+import type { DataFunctionArgs } from "@remix-run/server-runtime";
 import { createNote, deleteNote, listNotes } from "~/data/notes.server";
 import userFromRequest from "~/web/userFromRequest.server";
 import Notes from "~/modules/Notes";
 
-export type NotesRouteData = {
-  user: User;
-  notes: Note[];
-};
+export type NotesRouteData = Awaited<ReturnType<typeof loader>>;
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: DataFunctionArgs) => {
   const user = await userFromRequest(request);
 
-  if (!user) return redirect("/login");
+  if (!user) throw redirect("/login");
 
   const notes = await listNotes(user);
 
-  return json({ user, notes });
+  return { user, notes };
 };
 
 export const action: ActionFunction = async ({ request }) => {

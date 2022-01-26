@@ -1,20 +1,18 @@
-import { User } from "@prisma/client";
-import type { ActionFunction, LoaderFunction, MetaFunction } from "remix";
-import { redirect, json } from "remix";
+import type { ActionFunction, MetaFunction } from "remix";
+import { redirect } from "remix";
+import type { DataFunctionArgs } from "@remix-run/server-runtime";
 import { updateUser, UpdateUserParams } from "~/data/users.server";
 import userFromRequest from "~/web/userFromRequest.server";
 import Profile from "~/modules/Profile";
 
-export interface ProfileRouteData {
-  user: User;
-}
+export type ProfileRouteData = Awaited<ReturnType<typeof loader>>;
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: DataFunctionArgs) => {
   const user = await userFromRequest(request);
 
-  if (!user) return redirect("/login");
+  if (!user) throw redirect("/login");
 
-  return json({ user });
+  return { user };
 };
 
 export const action: ActionFunction = async ({ request }) => {
