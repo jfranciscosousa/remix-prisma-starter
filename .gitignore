@@ -5,7 +5,7 @@ node_modules
 .output
 
 public/build
-api/build
+api/*
 /app/tailwind.css
 /app/styles
 .env
