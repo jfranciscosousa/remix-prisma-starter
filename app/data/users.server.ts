@@ -9,6 +9,7 @@ const createUserParams = object({
   email: string().email().required(),
   name: string().required(),
   password: string().required(),
+  passwordConfirmation: string().required(),
 });
 
 export type CreateUserParams = InferType<typeof createUserParams>;
@@ -25,10 +26,28 @@ export async function createUser({
   email,
   name,
   password,
+  passwordConfirmation,
 }: CreateUserParams): Promise<DataResult<User>> {
-  const errors = errorsFromSchema(createUserParams, { email, name, password });
+  const errors = errorsFromSchema(createUserParams, {
+    email,
+    name,
+    password,
+    passwordConfirmation,
+  });
 
   if (errors) return { errors };
+
+  if (password !== passwordConfirmation) {
+    return {
+      errors: { passwordConfirmation: "Passwords do not match!" },
+    };
+  }
+
+  if (await findUserByEmail(email)) {
+    return {
+      errors: { email: "User already exists!" },
+    };
+  }
 
   const encryptedPassword = await encryptPassword(password);
   const user = await prisma.user.create({
