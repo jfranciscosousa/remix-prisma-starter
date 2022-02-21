@@ -1,11 +1,4 @@
 import { ActionFunction } from "remix";
-import { authCookie } from "~/web/cookies.server";
+import { logout } from "~/web/auth.server";
 
-export const action: ActionFunction = async () =>
-  new Response(null, {
-    status: 302,
-    headers: {
-      Location: "/login",
-      "Set-Cookie": await authCookie.serialize({}),
-    },
-  });
+export const action: ActionFunction = async () => logout();

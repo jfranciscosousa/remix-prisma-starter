@@ -1,7 +1,7 @@
 import { User } from "@prisma/client";
-import prisma from "./prisma.server";
+import prisma from "./utils/prisma.server";
 import { verifyPassword } from "./passwordUtils.server";
-import { DataResult } from "./types";
+import { DataResult } from "./utils/types";
 import errorsFromSchema from "./validate.server";
 import { InferType, object, string } from "yup";
 

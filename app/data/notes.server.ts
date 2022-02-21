@@ -1,5 +1,5 @@
 import { Note, User } from "@prisma/client";
-import prisma from "./prisma.server";
+import prisma from "./utils/prisma.server";
 
 export async function listNotes(user: User): Promise<Note[]> {
   if (!user) return [];

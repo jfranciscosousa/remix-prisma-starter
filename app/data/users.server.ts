@@ -1,8 +1,8 @@
 import { User } from "@prisma/client";
 import { InferType, object, string } from "yup";
 import { encryptPassword, verifyPassword } from "./passwordUtils.server";
-import prisma from "./prisma.server";
-import { DataResult } from "./types";
+import prisma from "./utils/prisma.server";
+import { DataResult } from "./utils/types";
 import errorsFromSchema from "./validate.server";
 
 const createUserParams = object({

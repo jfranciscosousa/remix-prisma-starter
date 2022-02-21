@@ -1,8 +1,8 @@
 import { MetaFunction, ActionFunction, redirect } from "remix";
 import type { DataFunctionArgs } from "@remix-run/server-runtime";
 import { createNote, deleteNote, listNotes } from "~/data/notes.server";
-import userFromRequest from "~/web/userFromRequest.server";
 import Notes from "~/modules/Notes";
+import { userFromRequest } from "~/web/auth.server";
 
 export type NotesRouteData = Awaited<ReturnType<typeof loader>>;
 

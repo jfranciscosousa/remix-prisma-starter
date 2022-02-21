@@ -1,9 +1,8 @@
 import type { ActionFunction, LoaderFunction, MetaFunction } from "remix";
 import { redirect } from "remix";
 import { createUser } from "~/data/users.server";
-import { authCookie } from "~/web/cookies.server";
-import userFromRequest from "~/web/userFromRequest.server";
 import SignUp from "~/modules/SignUp";
+import { authenticate, userFromRequest } from "~/web/auth.server";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await userFromRequest(request);
@@ -24,15 +23,7 @@ export const action: ActionFunction = async ({ request }) => {
 
   if (result.errors) return result.errors;
 
-  return new Response(null, {
-    status: 302,
-    headers: {
-      location: "/notes",
-      "Set-Cookie": await authCookie.serialize({
-        userId: result.data.id,
-      }),
-    },
-  });
+  return authenticate(result.data);
 };
 
 export const meta: MetaFunction = () => ({

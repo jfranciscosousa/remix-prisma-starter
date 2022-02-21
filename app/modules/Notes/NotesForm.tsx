@@ -9,7 +9,7 @@ interface NotesInputProps {
   errors?: Record<string, string>;
 }
 
-export default function NotesInput({ isLoading, errors }: NotesInputProps) {
+export default function NotesForm({ isLoading, errors }: NotesInputProps) {
   const previousIsLoading = usePrevious(isLoading);
   const inputRef = useRef<HTMLInputElement>(null);
   const hasErrors = errors && Object.keys(errors).length > 1;

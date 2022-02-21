@@ -2,8 +2,8 @@ import type { ActionFunction, MetaFunction } from "remix";
 import { redirect } from "remix";
 import type { DataFunctionArgs } from "@remix-run/server-runtime";
 import { updateUser, UpdateUserParams } from "~/data/users.server";
-import userFromRequest from "~/web/userFromRequest.server";
 import Profile from "~/modules/Profile";
+import { userFromRequest } from "~/web/auth.server";
 
 export type ProfileRouteData = Awaited<ReturnType<typeof loader>>;
 

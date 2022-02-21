@@ -1,7 +1,7 @@
 import { useActionData, useLoaderData, useTransition } from "remix";
 import LoggedInLayout from "~/components/layouts/LoggedInLayout";
 import { NotesRouteData } from "~/routes/notes";
-import NotesInput from "./NotesInput";
+import NotesForm from "./NotesForm";
 import NotesList from "./NotesList";
 
 export default function Notes() {
@@ -27,7 +27,7 @@ export default function Notes() {
           )}
         </div>
 
-        <NotesInput isLoading={isLoading} errors={errors} />
+        <NotesForm isLoading={isLoading} errors={errors} />
       </main>
     </LoggedInLayout>
   );
