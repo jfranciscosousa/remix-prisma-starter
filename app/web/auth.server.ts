@@ -1,6 +1,6 @@
 import { User } from "@prisma/client";
 import { createCookie } from "remix";
-import prisma from "~/data/prisma.server";
+import prisma from "~/data/utils/prisma.server";
 
 const authCookie = createCookie("auth", {
   secrets: [process.env.SECRET_KEY_BASE as string],
