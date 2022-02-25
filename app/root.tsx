@@ -12,6 +12,7 @@ import type { LoaderFunction } from "remix";
 import acceptLanguage from "accept-language-parser";
 import { LocaleProvider } from "./hooks/useLocale";
 import styles from "./styles/index.css";
+import { CLIENT_ENV_VARS } from "./lib/env.server";
 
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
@@ -19,7 +20,7 @@ export function links() {
 
 // Load the locale from the Accept-Language header to later
 // inject it on the app's context
-export const loader: LoaderFunction = async ({ request }) => {
+function localeFromRequest(request: Request): string {
   const languages = acceptLanguage.parse(
     request.headers.get("Accept-Language") as string
   );
@@ -31,14 +32,25 @@ export const loader: LoaderFunction = async ({ request }) => {
   if (!languages[0].region) return languages[0].code;
 
   return `${languages[0].code}-${languages[0].region.toLowerCase()}`;
+}
+
+export const loader: LoaderFunction = async ({ request }) => {
+  return { locale: localeFromRequest(request), ENV: CLIENT_ENV_VARS };
 };
 
 export default function App() {
-  const locale = useLoaderData();
+  const { locale, ENV } = useLoaderData();
 
   return (
     <LocaleProvider locale={locale}>
       <Document>
+        <script
+          // Set the variables for our `envVars` modules
+          dangerouslySetInnerHTML={{
+            __html: `window.ENV = ${JSON.stringify(ENV)}`,
+          }}
+        />
+
         <Layout>
           <Outlet />
         </Layout>
