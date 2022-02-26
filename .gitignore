@@ -3,7 +3,7 @@ node_modules
 .cache
 .vercel
 .output
-
+build
 public/build
 api/*
 /app/tailwind.css

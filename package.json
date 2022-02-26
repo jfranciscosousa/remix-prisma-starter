@@ -4,6 +4,7 @@
   "description": "A Remix starter with Prisma and Vercel",
   "license": "MIT",
   "scripts": {
+    "start": "remix-serve build",
     "build": "NODE_ENV=production npm run build:css && remix build",
     "build:css": "postcss styles --base styles --dir app/styles --env production",
     "dev": "NODE_ENV=development concurrently \"npm run dev:css\" \"remix dev\"",
@@ -14,7 +15,8 @@
     "db:gen:migration": "prisma migrate dev",
     "db:reset": "prisma migrate reset",
     "lint": "yarn eslint \"**/*.{js,jsx,ts,tsx}\"",
-    "test": "playwright test"
+    "test": ". ./.envrc.test && yarn db:reset --force && yarn db:migrate && yarn build && playwright test",
+    "test:ci": "yarn db:migrate && playwright test"
   },
   "dependencies": {
     "@prisma/client": "3.10.0",

@@ -13,8 +13,7 @@ import { devices } from "@playwright/test";
 const config: PlaywrightTestConfig = {
   testDir: "./e2e",
   webServer: {
-    command:
-      "source .envrc.test; yarn db:reset --force && yarn db:migrate && yarn dev",
+    command: "PORT=3001 yarn start",
     port: 3001,
   },
   /* Maximum time one test can run for. */
