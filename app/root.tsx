@@ -7,12 +7,12 @@ import {
   ScrollRestoration,
   useCatch,
   useLoaderData,
+  useMatches,
 } from "remix";
-import type { LoaderFunction } from "remix";
 import acceptLanguage from "accept-language-parser";
-import { LocaleProvider } from "./hooks/useLocale";
 import styles from "./styles/index.css";
 import { CLIENT_ENV_VARS } from "./lib/env.server";
+import { DataFunctionArgs } from "@remix-run/server-runtime";
 
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
@@ -34,28 +34,32 @@ function localeFromRequest(request: Request): string {
   return `${languages[0].code}-${languages[0].region.toLowerCase()}`;
 }
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: DataFunctionArgs) => {
   return { locale: localeFromRequest(request), ENV: CLIENT_ENV_VARS };
 };
 
+export type RootLoaderType = Awaited<ReturnType<typeof loader>>;
+
+export function useRootLoaderData(): RootLoaderType {
+  return useMatches()[0].data as RootLoaderType;
+}
+
 export default function App() {
-  const { locale, ENV } = useLoaderData();
+  const { ENV } = useLoaderData();
 
   return (
-    <LocaleProvider locale={locale}>
-      <Document>
-        <script
-          // Set the variables for our `envVars` modules
-          dangerouslySetInnerHTML={{
-            __html: `window.ENV = ${JSON.stringify(ENV)}`,
-          }}
-        />
+    <Document>
+      <script
+        // Set the variables for our `envVars` modules
+        dangerouslySetInnerHTML={{
+          __html: `window.ENV = ${JSON.stringify(ENV)}`,
+        }}
+      />
 
-        <Layout>
-          <Outlet />
-        </Layout>
-      </Document>
-    </LocaleProvider>
+      <Layout>
+        <Outlet />
+      </Layout>
+    </Document>
   );
 }
 

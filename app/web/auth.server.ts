@@ -1,5 +1,5 @@
 import { User } from "@prisma/client";
-import { createCookie } from "remix";
+import { createCookie, redirect } from "remix";
 import prisma from "~/data/utils/prisma.server";
 
 const authCookie = createCookie("auth", {
@@ -32,13 +32,24 @@ export async function logout() {
   });
 }
 
-export async function userFromRequest(
-  request: Request
-): Promise<User | undefined | null> {
+export async function userFromRequest(request: Request): Promise<User> {
   const cookieHeader = request.headers.get("Cookie");
   const { userId } = (await authCookie.parse(cookieHeader)) || {};
 
-  if (!userId) return;
+  if (!userId) throw redirect("/login");
 
-  return prisma.user.findUnique({ where: { id: userId } });
+  const user = await prisma.user.findUnique({ where: { id: userId } });
+
+  if (!user) throw redirect("/login");
+
+  return user;
+}
+
+export async function userIdFromRequest(request: Request): Promise<string> {
+  const cookieHeader = request.headers.get("Cookie");
+  const { userId } = (await authCookie.parse(cookieHeader)) || {};
+
+  if (!userId) throw redirect("/login");
+
+  return userId;
 }

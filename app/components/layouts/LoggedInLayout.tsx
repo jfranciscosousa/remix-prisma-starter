@@ -1,6 +1,7 @@
 import { User } from "@prisma/client";
 import { ReactNode } from "react";
 import { Form, NavLink } from "remix";
+import { UserProvider } from "~/hooks/useUser";
 
 export default function LoggedInLayout({
   user,
@@ -10,17 +11,17 @@ export default function LoggedInLayout({
   children: ReactNode;
 }) {
   return (
-    <div>
+    <UserProvider user={user}>
       <nav className="flex w-full justify-between mb-10">
         <p>Welcome, {user.name}!</p>
 
         <ul className="flex flex-row space-x-4 items-center">
           <li>
-            <NavLink to="/notes">Notes</NavLink>
+            <NavLink to="/app/notes">Notes</NavLink>
           </li>
 
           <li>
-            <NavLink to="/profile">Profile</NavLink>
+            <NavLink to="/app/profile">Profile</NavLink>
           </li>
 
           <li>
@@ -34,6 +35,6 @@ export default function LoggedInLayout({
       </nav>
 
       {children}
-    </div>
+    </UserProvider>
   );
 }

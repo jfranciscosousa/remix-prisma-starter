@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { useEffect, useRef } from "react";
 import { usePrevious } from "react-use";
 import { Form } from "remix";
-import useLocale from "~/hooks/useLocale";
+import { useRootLoaderData } from "~/root";
 
 interface NoteProps {
   notes: Note[];
@@ -11,7 +11,7 @@ interface NoteProps {
 }
 
 export default function NotesList({ notes, isLoading }: NoteProps) {
-  const locale = useLocale();
+  const { locale } = useRootLoaderData();
   const previousNotesLength = usePrevious<number>(notes.length);
   const notesContainerRef = useRef<HTMLUListElement>(null);
 

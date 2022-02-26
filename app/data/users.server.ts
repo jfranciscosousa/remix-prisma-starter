@@ -64,14 +64,25 @@ const updateUserParams = object({
   name: string(),
   currentPassword: string().required(),
   newPassword: string(),
+  passwordConfirmation: string(),
 });
 
 export type UpdateUserParams = InferType<typeof updateUserParams>;
 
 export async function updateUser(
   user: User,
-  { email, name, currentPassword, newPassword }: UpdateUserParams
+  {
+    email,
+    name,
+    currentPassword,
+    newPassword,
+    passwordConfirmation,
+  }: UpdateUserParams
 ): Promise<DataResult<User>> {
+  if (newPassword !== passwordConfirmation) {
+    return { errors: { passwordConfirmation: "Passwords do not match!" } };
+  }
+
   const errors = errorsFromSchema(updateUserParams, {
     email,
     name,

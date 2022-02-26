@@ -2,40 +2,34 @@ import { MetaFunction, ActionFunction, redirect } from "remix";
 import type { DataFunctionArgs } from "@remix-run/server-runtime";
 import { createNote, deleteNote, listNotes } from "~/data/notes.server";
 import Notes from "~/modules/Notes";
-import { userFromRequest } from "~/web/auth.server";
+import { userIdFromRequest } from "~/web/auth.server";
 
 export type NotesRouteData = Awaited<ReturnType<typeof loader>>;
 
 export const loader = async ({ request }: DataFunctionArgs) => {
-  const user = await userFromRequest(request);
+  const userId = await userIdFromRequest(request);
+  const notes = await listNotes(userId);
 
-  if (!user) throw redirect("/login");
-
-  const notes = await listNotes(user);
-
-  return { user, notes };
+  return { notes };
 };
 
 export const action: ActionFunction = async ({ request }) => {
-  const user = await userFromRequest(request);
-
-  if (!user) return redirect("/login");
-
+  const userId = await userIdFromRequest(request);
   const form = Object.fromEntries(await request.formData());
 
   switch (form._action) {
     case "create":
-      await createNote(user, {
+      await createNote(userId, {
         content: form.content as string,
       });
       break;
 
     case "delete":
-      await deleteNote(user, form.id as string);
+      await deleteNote(userId, form.id as string);
       break;
   }
 
-  return redirect("/notes");
+  return redirect("/app/notes");
 };
 
 export const meta: MetaFunction = () => ({

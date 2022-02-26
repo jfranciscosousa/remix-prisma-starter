@@ -5,5 +5,5 @@ export const loader: LoaderFunction = async ({ request }) => {
   const user = await userFromRequest(request);
 
   if (!user) return redirect("/login");
-  return redirect("/notes");
+  return redirect("/app/notes");
 };

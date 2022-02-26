@@ -1,23 +1,26 @@
 import { Note, User } from "@prisma/client";
 import prisma from "./utils/prisma.server";
 
-export async function listNotes(user: User): Promise<Note[]> {
-  if (!user) return [];
+export async function listNotes(userId: string): Promise<Note[]> {
+  if (!userId) return [];
 
   return prisma.note.findMany({
-    where: { userId: user.id },
+    where: { userId },
     orderBy: { createdAt: "asc" },
   });
 }
 
-export async function deleteNote(user: User, id: string): Promise<boolean> {
+export async function deleteNote(userId: string, id: string): Promise<boolean> {
   return (
-    (await prisma.note.deleteMany({ where: { id, userId: user.id } })).count > 1
+    (await prisma.note.deleteMany({ where: { id, userId: userId } })).count > 1
   );
 }
 
-export async function createNote(user: User, noteParams: { content: string }) {
+export async function createNote(
+  userId: string,
+  noteParams: { content: string }
+) {
   return prisma.note.create({
-    data: { ...noteParams, user: { connect: { id: user.id } } },
+    data: { ...noteParams, user: { connect: { id: userId } } },
   });
 }
