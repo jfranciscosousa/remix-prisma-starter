@@ -3,3 +3,5 @@ build
 public/build
 app/styles
 dist/
+node_modules
+api/
