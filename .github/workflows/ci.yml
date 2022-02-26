@@ -10,6 +10,8 @@ jobs:
     services:
       postgres:
         image: postgres:14-alpine
+        env:
+          POSTGRES_PASSWORD: postgres
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
@@ -42,4 +44,4 @@ jobs:
           yarn lint
           yarn test
         env:
-          DATABASE_URL: "postgres://postgres@localhost:5432/test_database_name"
+          DATABASE_URL: "postgres://postgres:postgres@localhost:5432/test_db"
