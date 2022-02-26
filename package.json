@@ -13,7 +13,8 @@
     "db:migrate": "prisma migrate deploy && yarn db:generate",
     "db:gen:migration": "prisma migrate dev",
     "db:reset": "prisma migrate reset",
-    "lint": "yarn eslint \"**/*.{js,jsx,ts,tsx}\""
+    "lint": "yarn eslint \"**/*.{js,jsx,ts,tsx}\"",
+    "test": "playwright test"
   },
   "dependencies": {
     "@prisma/client": "3.10.0",
@@ -33,6 +34,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@playwright/test": "^1.19.2",
     "@remix-run/dev": "^1.2.2",
     "@types/accept-language-parser": "^1.5.3",
     "@types/react": "^17.0.39",

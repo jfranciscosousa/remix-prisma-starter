@@ -5,9 +5,9 @@ import Login from "~/modules/Login";
 import { authenticate, userFromRequest } from "~/web/auth.server";
 
 export const loader: LoaderFunction = async ({ request }) => {
-  const user = await userFromRequest(request);
+  const user = await userFromRequest(request, false);
 
-  if (user) return redirect("/notes");
+  if (user) return redirect("/app/notes");
 
   return null;
 };

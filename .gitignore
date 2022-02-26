@@ -8,6 +8,9 @@ public/build
 api/*
 /app/tailwind.css
 /app/styles
-.env
-.env.*
-!.env.sample
+.envrc
+.envrc.*
+!.envrc.sample
+!.envrc.*.sample
+test-results/
+playwright-report/

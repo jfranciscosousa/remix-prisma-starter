@@ -14,7 +14,7 @@ export async function authenticate(user: User) {
   return new Response(null, {
     status: 302,
     headers: {
-      location: "/notes",
+      location: "/app/notes",
       "Set-Cookie": await authCookie.serialize({
         userId: user.id,
       }),
@@ -32,24 +32,31 @@ export async function logout() {
   });
 }
 
-export async function userFromRequest(request: Request): Promise<User> {
+export async function userFromRequest(
+  request: Request,
+  throwIfUnauthenticated = true
+): Promise<User> {
   const cookieHeader = request.headers.get("Cookie");
   const { userId } = (await authCookie.parse(cookieHeader)) || {};
 
-  if (!userId) throw redirect("/login");
+  if (!userId && throwIfUnauthenticated) throw redirect("/login");
+  if (!userId && !throwIfUnauthenticated) return null as unknown as User;
 
   const user = await prisma.user.findUnique({ where: { id: userId } });
 
-  if (!user) throw redirect("/login");
+  if (!user && throwIfUnauthenticated) throw redirect("/login");
 
-  return user;
+  return user as User;
 }
 
-export async function userIdFromRequest(request: Request): Promise<string> {
+export async function userIdFromRequest(
+  request: Request,
+  throwIfUnauthenticated = false
+): Promise<string> {
   const cookieHeader = request.headers.get("Cookie");
   const { userId } = (await authCookie.parse(cookieHeader)) || {};
 
-  if (!userId) throw redirect("/login");
+  if (!userId && !throwIfUnauthenticated) throw redirect("/login");
 
   return userId;
 }

@@ -1,0 +1,3 @@
+export DATABASE_URL=postgresql://user:password@host:port/remix-prisma-starter-test
+export SECRET_KEY_BASE=some_crypto_secure_rng_string
+export PORT=3001
