@@ -5,7 +5,7 @@ import SignUp from "~/modules/SignUp";
 import { authenticate, userFromRequest } from "~/web/auth.server";
 
 export const loader: LoaderFunction = async ({ request }) => {
-  const user = await userFromRequest(request, false);
+  const user = await userFromRequest(request);
 
   if (user) return redirect("/app/notes");
 

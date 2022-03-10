@@ -1,16 +1,18 @@
 import classNames from "classnames";
-import { Form, Link, useActionData, useTransition } from "remix";
+import { Form, Link, useActionData, useLocation, useTransition } from "remix";
 
 export default function Login() {
   const errors = useActionData() || {};
   const { state, submission } = useTransition();
   const isLoading =
     (state === "submitting" || state === "loading") && !!submission;
+  const location = useLocation();
 
   return (
     <div className="max-w-lg mx-auto h-full flex items-center justify-center">
       <Form
         method="post"
+        action="/login"
         className="p-10 card bg-base-200 w-full flex flex-col space-y-4"
       >
         <h1 className="text-xl text-center">Please login</h1>
@@ -45,6 +47,12 @@ export default function Login() {
             <p className="pt-4 text-red-500">{errors.password}</p>
           )}
         </div>
+
+        <input
+          name="redirectUrl"
+          type="hidden"
+          defaultValue={location.pathname + location.search}
+        />
 
         <div className="mt-4" />
 

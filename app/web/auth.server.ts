@@ -1,5 +1,5 @@
 import { User } from "@prisma/client";
-import { createCookie, redirect } from "remix";
+import { createCookie } from "remix";
 import prisma from "~/data/utils/prisma.server";
 
 const authCookie = createCookie("auth", {
@@ -10,11 +10,11 @@ const authCookie = createCookie("auth", {
   maxAge: 604_800, // one week,
 });
 
-export async function authenticate(user: User) {
+export async function authenticate(user: User, redirectUrl = "/") {
   return new Response(null, {
     status: 302,
     headers: {
-      location: "/app/notes",
+      location: redirectUrl,
       "Set-Cookie": await authCookie.serialize({
         userId: user.id,
       }),
@@ -32,31 +32,24 @@ export async function logout() {
   });
 }
 
-export async function userFromRequest(
-  request: Request,
-  throwIfUnauthenticated = true
-): Promise<User> {
+export async function userFromRequest(request: Request): Promise<User> {
   const cookieHeader = request.headers.get("Cookie");
   const { userId } = (await authCookie.parse(cookieHeader)) || {};
 
-  if (!userId && throwIfUnauthenticated) throw redirect("/login");
-  if (!userId && !throwIfUnauthenticated) return null as unknown as User;
+  // We can assume this as we only expect a nil value as a edge case on /app parent route
+  if (!userId) return null as unknown as User;
 
   const user = await prisma.user.findUnique({ where: { id: userId } });
-
-  if (!user && throwIfUnauthenticated) throw redirect("/login");
 
   return user as User;
 }
 
-export async function userIdFromRequest(
-  request: Request,
-  throwIfUnauthenticated = false
-): Promise<string> {
+export async function userIdFromRequest(request: Request): Promise<string> {
   const cookieHeader = request.headers.get("Cookie");
   const { userId } = (await authCookie.parse(cookieHeader)) || {};
 
-  if (!userId && !throwIfUnauthenticated) throw redirect("/login");
+  // We can assume this as we only expect a nil value as a edge case on /app parent route
+  if (!userId) return undefined as unknown as string;
 
   return userId;
 }

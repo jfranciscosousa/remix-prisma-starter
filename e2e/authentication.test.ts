@@ -26,3 +26,13 @@ test("logins", async ({ page }) => {
 
   await page.waitForURL(BUILD_URL("/app/notes"), { timeout: 2000 });
 });
+
+test("shows login and then redirects to original page", async ({ page }) => {
+  await page.goto(BUILD_URL("/app/profile"));
+
+  await page.fill("#login-email", EMAIL);
+  await page.fill("#login-password", PASSWORD);
+  await page.locator('button:has-text("Login")').click();
+
+  await page.waitForURL(BUILD_URL("/app/profile"), { timeout: 2000 });
+});

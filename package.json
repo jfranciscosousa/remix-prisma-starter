@@ -16,7 +16,8 @@
     "db:reset": "prisma migrate reset",
     "lint": "yarn eslint \"**/*.{js,jsx,ts,tsx}\"",
     "test": ". ./.envrc.test && yarn db:reset --force && yarn db:migrate && yarn build && playwright test",
-    "test:ci": "yarn db:migrate && playwright test"
+    "test:ci": "yarn db:migrate && playwright test",
+    "ts-check": "tsc --project tsconfig.json --noEmit --skipLibCheck"
   },
   "dependencies": {
     "@prisma/client": "3.10.0",
