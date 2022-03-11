@@ -1,5 +1,5 @@
 export const CLIENT_ENV_VARS = { EXAMPLE: process.env.EXAMPLE };
-export const SERVER_ENV_VARS = {};
+export const SERVER_ENV_VARS = { SECRET_KEY_BASE: process.env.SECRET_KEY_BASE };
 
 /**
  * A module to manage SERVER SIDE environment variables.
