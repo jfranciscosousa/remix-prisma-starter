@@ -47,12 +47,14 @@ jobs:
           path: ~/.cache/ms-playwright
           key: ${{ runner.os }}-build-playwright-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-build-node_modules-
+            ${{ runner.os }}-build-playwright-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
       - name: Install dependencies
-        run: yarn
+        run: |
+          yarn
+          npx playwright install
 
       - name: Lint
         run: |
