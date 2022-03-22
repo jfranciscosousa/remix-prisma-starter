@@ -10,8 +10,8 @@ import type { CLIENT_ENV_VARS } from "./env.server";
  * or the `process.env`.
  */
 
-export function getClientEnvVar(key: keyof typeof CLIENT_ENV_VARS) {
+export function getClientEnvVar(key: keyof typeof CLIENT_ENV_VARS): string {
   if (typeof window !== "undefined") return (window as any).ENV[key];
 
-  return process.env[key];
+  return process.env[key] as string;
 }

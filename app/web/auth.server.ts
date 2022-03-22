@@ -1,12 +1,14 @@
 import { User } from "@prisma/client";
 import { createCookie } from "remix";
+import CONFIG from "~/config";
 import prisma from "~/data/utils/prisma.server";
+import { getServerEnvVar } from "~/lib/env.server";
 
 const authCookie = createCookie("auth", {
-  secrets: [process.env.SECRET_KEY_BASE as string],
+  secrets: [getServerEnvVar("SECRET_KEY_BASE")],
   sameSite: "lax",
   httpOnly: true,
-  secure: process.env.NODE_ENV === "production",
+  secure: CONFIG.secureAuthCookie,
   maxAge: 604_800, // one week,
 });
 
