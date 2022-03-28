@@ -1980,10 +1980,10 @@ currently-unhandled@^0.4.1:
   dependencies:
     array-find-index "^1.0.1"
 
-daisyui@^2.11.0:
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-2.11.0.tgz#e12850bc845c4f7d04b2ad9145e65149b984e59d"
-  integrity sha512-v+jng19L5/9LEmQv26gxDiK/w2aYLAb3LtwasSDCJWwCxn2rh+BgueTFP5mz5g38tBZ8lyAD6ZzcpMDeSnYieg==
+daisyui@^2.13.4:
+  version "2.13.4"
+  resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-2.13.4.tgz#e641a2cf99029f3cd2263b778e65583361953fad"
+  integrity sha512-seLNXMqOV0C2VigLi2OSmVm7LOr+ZcbnHW5f1byjWNhCc0DU8eX/Xc+aqPOynRnofAZ8igciKq6qmAYunewPAQ==
   dependencies:
     color "^4.2"
     css-selector-tokenizer "^0.8.0"
