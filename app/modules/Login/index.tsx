@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import { Form, Link, useActionData, useLocation, useTransition } from "remix";
+import FullInput from "~/components/Input";
 
 export default function Login() {
   const errors = useActionData() || {};
@@ -17,44 +18,30 @@ export default function Login() {
       >
         <h1 className="text-xl text-center">Please login</h1>
 
-        <div className="form-control">
-          <label className="label" htmlFor="login-email">
-            <span className="label-text">Email</span>
-          </label>
-          <input
-            id="login-email"
-            name="email"
-            required
-            placeholder="hello@email.com"
-            className="input"
-          />
-          {errors.email && <p className="pt-4 text-red-500">{errors.email}</p>}
-        </div>
+        <FullInput
+          label="Email"
+          name="email"
+          type="text"
+          required
+          placeholder="hello@email.com"
+          errors={errors}
+        />
 
-        <div className="form-control">
-          <label className="label" htmlFor="login-password">
-            <span className="label-text">Password</span>
-          </label>
-          <input
-            id="login-password"
-            name="password"
-            type="password"
-            required
-            placeholder="**************"
-            className="input"
-          />
-          {errors.password && (
-            <p className="pt-4 text-red-500">{errors.password}</p>
-          )}
-        </div>
+        <FullInput
+          label="Password"
+          name="password"
+          type="password"
+          placeholder="**************"
+          required
+          errors={errors}
+          className="pb-4"
+        />
 
         <input
           name="redirectUrl"
           type="hidden"
           defaultValue={location.pathname + location.search}
         />
-
-        <div className="mt-4" />
 
         <button
           type="submit"

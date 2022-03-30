@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import { Form, Link, useActionData, useTransition } from "remix";
+import FullInput from "~/components/Input";
 
 export default function SignUp() {
   const errors = useActionData() || {};
@@ -16,74 +17,46 @@ export default function SignUp() {
       >
         <h1 className="text-xl text-center">Please sign up</h1>
 
-        <div className="form-control">
-          <label className="label" htmlFor="signup-email">
-            <span className="label-text">Email</span>
-          </label>
-          <input
-            id="signup-email"
-            name="email"
-            required
-            placeholder="hello@email.com"
-            className="input"
-          />
-          {errors.email && <p className="pt-4 text-red-500">{errors.email}</p>}
-        </div>
+        <FullInput
+          label="Email"
+          name="email"
+          type="text"
+          required
+          placeholder="hello@email.com"
+          errors={errors}
+        />
 
-        <div className="form-control">
-          <label className="label" htmlFor="signup-name">
-            <span className="label-text">Name</span>
-          </label>
-          <input
-            id="signup-name"
-            name="name"
-            type="text"
-            required
-            placeholder="How you would like to be called"
-            className="input"
-          />
-          {errors.name && <p className="pt-4 text-red-500">{errors.name}</p>}
-        </div>
+        <FullInput
+          label="Name"
+          name="name"
+          type="text"
+          required
+          placeholder="How you would like to be called"
+          errors={errors}
+        />
 
-        <div className="form-control">
-          <label className="label" htmlFor="signup-password">
-            <span className="label-text">Password</span>
-          </label>
-          <input
-            id="signup-password"
-            name="password"
-            type="password"
-            required
-            placeholder="**************"
-            className="input"
-          />
-          {errors.password && (
-            <p className="pt-4 text-red-500">{errors.password}</p>
-          )}
-        </div>
+        <FullInput
+          label="Password"
+          name="password"
+          type="password"
+          placeholder="**************"
+          required
+          errors={errors}
+        />
 
-        <div className="form-control">
-          <label className="label" htmlFor="signup-passwordConfirmation">
-            <span className="label-text">Confirm password</span>
-          </label>
-          <input
-            id="signup-passwordConfirmation"
-            name="passwordConfirmation"
-            type="password"
-            required
-            placeholder="**************"
-            className="input"
-          />
-          {errors.passwordConfirmation && (
-            <p className="pt-4 text-red-500">{errors.passwordConfirmation}</p>
-          )}
-        </div>
-
-        <div className="mt-4" />
+        <FullInput
+          label="Confirm password"
+          name="passwordConfirmation"
+          type="password"
+          placeholder="**************"
+          required
+          errors={errors}
+          className="pb-4"
+        />
 
         <button
           type="submit"
-          className={classNames("btn btn-primary", {
+          className={classNames("btn btn-primary mt-8", {
             loading: isLoading,
           })}
           disabled={isLoading}

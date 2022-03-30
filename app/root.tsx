@@ -13,6 +13,7 @@ import acceptLanguage from "accept-language-parser";
 import styles from "./styles/index.css";
 import { CLIENT_ENV_VARS } from "./lib/env.server";
 import { DataFunctionArgs } from "@remix-run/server-runtime";
+import React from "react";
 
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
@@ -126,21 +127,23 @@ function Document({
   title?: string;
 }) {
   return (
-    <html className="bg-base-100" lang="en">
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        {title ? <title>{title}</title> : null}
-        <Meta />
-        <Links />
-      </head>
-      <body>
-        {children}
-        <ScrollRestoration />
-        <Scripts />
-        {process.env.NODE_ENV === "development" && <LiveReload />}
-      </body>
-    </html>
+    <React.StrictMode>
+      <html className="bg-base-100" lang="en">
+        <head>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width,initial-scale=1" />
+          {title ? <title>{title}</title> : null}
+          <Meta />
+          <Links />
+        </head>
+        <body>
+          {children}
+          <ScrollRestoration />
+          <Scripts />
+          {process.env.NODE_ENV === "development" && <LiveReload />}
+        </body>
+      </html>
+    </React.StrictMode>
   );
 }
 

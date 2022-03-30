@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { usePrevious } from "react-use";
 
 import { Form } from "remix";
+import FullInput from "~/components/Input";
 
 interface NotesInputProps {
   isLoading: boolean;
@@ -27,19 +28,15 @@ export default function NotesForm({ isLoading, errors }: NotesInputProps) {
   return (
     <Form method="post" className="flex flex-col space-y-4 mt-12">
       <div className="flex flex-row items-end space-x-4 w-full">
-        <div className="form-control flex-grow">
-          <label className="label" htmlFor="notes-content">
-            <span className="label-text">New todo</span>
-          </label>
-          <input
-            id="notes-content"
-            name="content"
-            type="text"
-            required
-            className="input input-bordered"
-            ref={inputRef}
-          />
-        </div>
+        <FullInput
+          label="New todo"
+          name="content"
+          type="text"
+          required
+          ref={inputRef}
+          className="w-full"
+          inputClassName="input-bordered"
+        />
 
         <button
           type="submit"
