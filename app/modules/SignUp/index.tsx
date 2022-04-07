@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { Form, Link, useActionData, useTransition } from "remix";
-import FullInput from "~/components/Input";
+import FullInput from "~/components/FullInput";
 
 export default function SignUp() {
   const errors = useActionData() || {};

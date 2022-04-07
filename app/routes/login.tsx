@@ -16,7 +16,7 @@ export const action: ActionFunction = async ({ request }) => {
   const form = Object.fromEntries(await request.formData());
   const result = await login(form as LoginParams);
 
-  if (result.errors) return result.errors;
+  if (result.errors) return { errors: result.errors, original: form };
 
   return authenticate(result.data, form.redirectUrl as string);
 };

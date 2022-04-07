@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { Form, useActionData, useTransition } from "remix";
-import FullInput from "~/components/Input";
+import FullInput from "~/components/FullInput";
 import useUser from "~/hooks/useUser";
 
 export default function Profile() {

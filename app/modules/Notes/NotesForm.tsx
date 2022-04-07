@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import { usePrevious } from "react-use";
 
 import { Form } from "remix";
-import FullInput from "~/components/Input";
+import FullInput from "~/components/FullInput";
 
 interface NotesInputProps {
   isLoading: boolean;

@@ -1,9 +1,9 @@
 import classNames from "classnames";
 import { Form, Link, useActionData, useLocation, useTransition } from "remix";
-import FullInput from "~/components/Input";
+import FullInput from "~/components/FullInput";
 
 export default function Login() {
-  const errors = useActionData() || {};
+  const { errors, original } = useActionData() || {};
   const { state, submission } = useTransition();
   const isLoading =
     (state === "submitting" || state === "loading") && !!submission;
@@ -25,6 +25,7 @@ export default function Login() {
           required
           placeholder="hello@email.com"
           errors={errors}
+          defaultValue={original?.email}
         />
 
         <FullInput
@@ -34,6 +35,7 @@ export default function Login() {
           placeholder="**************"
           required
           errors={errors}
+          defaultValue={original?.password}
           className="pb-4"
         />
 
