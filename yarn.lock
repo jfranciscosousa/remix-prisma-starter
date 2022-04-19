@@ -673,10 +673,10 @@
   resolved "https://registry.yarnpkg.com/@phc/format/-/format-1.0.0.tgz#b5627003b3216dc4362125b13f48a4daa76680e4"
   integrity sha512-m7X9U6BG2+J+R1lSOdCiITLLrxm+cWlNI3HUFA92oLO77ObGNzaKdh8pMLqdZcshtkKuV84olNNXDfMc4FezBQ==
 
-"@playwright/test@^1.21.0":
-  version "1.21.0"
-  resolved "https://registry.yarnpkg.com/@playwright/test/-/test-1.21.0.tgz#611dd3f469c539e5be3a764395effa40735742a6"
-  integrity sha512-jvgN3ZeAG6rw85z4u9Rc4uyj6qIaYlq2xrOtS7J2+CDYhzKOttab9ix9ELcvBOCHuQ6wgTfxfJYdh6DRZmQ9hg==
+"@playwright/test@^1.21.1":
+  version "1.21.1"
+  resolved "https://registry.yarnpkg.com/@playwright/test/-/test-1.21.1.tgz#2b55676fc45cfa013537a98ff7c3fdd1cb44256b"
+  integrity sha512-XkkTXl5gvEm4fciqeHvY5IuSS/OfQef0MO6RpBNmtm6EuYSdtUvP/sDVuWRKsDqyVdB3WSA0az7iSw79f2//JQ==
   dependencies:
     "@babel/code-frame" "7.16.7"
     "@babel/core" "7.16.12"
@@ -707,7 +707,7 @@
     ms "2.1.3"
     open "8.4.0"
     pirates "4.0.4"
-    playwright-core "1.21.0"
+    playwright-core "1.21.1"
     rimraf "3.0.2"
     source-map-support "0.4.18"
     stack-utils "2.0.5"
@@ -769,12 +769,12 @@
     ws "^7.4.5"
     xdm "^2.0.0"
 
-"@remix-run/express@1.3.5":
-  version "1.3.5"
-  resolved "https://registry.yarnpkg.com/@remix-run/express/-/express-1.3.5.tgz#044e799873cbed79637f3d41fa7a6c76c8696d68"
-  integrity sha512-Gi3K4k63gcaHarRJeCiWqFUIUXr37kR2R2lheQhZwkBtJd9N2dzAkXm2yB9nQa75a3LxeiTdRXO6n+AI1HyMfQ==
+"@remix-run/express@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@remix-run/express/-/express-1.4.0.tgz#cca06aa7d7c253664419b2f62f30146e5711e876"
+  integrity sha512-OyA+vkN5r2Ito0htafc9s7zkL5o2wioyswUoINpM85E2ITKM5j6Ehlp8WExYf5Xocpmkc+L+PlAkrpebSwUlBA==
   dependencies:
-    "@remix-run/node" "1.3.5"
+    "@remix-run/node" "1.4.0"
 
 "@remix-run/node@1.3.5":
   version "1.3.5"
@@ -782,6 +782,23 @@
   integrity sha512-4KYxavFXTh8wJFU1BmcfGyKI2uVxUxGAPe+qTKLAmLN2izO7i7c9/2/TZjkpIXX2wUd2h/1kM3fyFOk5lt9PuA==
   dependencies:
     "@remix-run/server-runtime" "1.3.5"
+    "@types/busboy" "^0.3.1"
+    "@types/node-fetch" "^2.5.12"
+    "@web-std/file" "^3.0.0"
+    abort-controller "^3.0.0"
+    blob-stream "^0.1.3"
+    busboy "^0.3.1"
+    cookie-signature "^1.1.0"
+    form-data "^4.0.0"
+    node-fetch "^2.6.1"
+    source-map-support "^0.5.21"
+
+"@remix-run/node@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@remix-run/node/-/node-1.4.0.tgz#b1c16e2ccc251fbf5136c2a57fa31ecd7043cc21"
+  integrity sha512-wH6KATIbpcS59axyBhVi02mzN9G0dAh9PRMYI8mKLxEpyFc0sEM6J5LzX5zZBCod/QOLk+uvCh1zF8PGJRNthg==
+  dependencies:
+    "@remix-run/server-runtime" "1.4.0"
     "@types/busboy" "^0.3.1"
     "@types/node-fetch" "^2.5.12"
     "@web-std/file" "^3.0.0"
@@ -801,12 +818,12 @@
     history "^5.3.0"
     react-router-dom "^6.2.2"
 
-"@remix-run/serve@^1.3.5":
-  version "1.3.5"
-  resolved "https://registry.yarnpkg.com/@remix-run/serve/-/serve-1.3.5.tgz#37da8fa8d70f99e1cc221ca98d8047a3220704ed"
-  integrity sha512-JIK1mvZSD6R7euL0mX8h/Sgr09P83A4d8puBUOkaHeYscmSO19BntKGVCdq0z54sn4+ZO7AxUvD6K5jNXJ81Aw==
+"@remix-run/serve@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@remix-run/serve/-/serve-1.4.0.tgz#64a986787854ccfa667f2769431b10cdc75197ad"
+  integrity sha512-77rZHRb3uvHmdnx4LuAGxb+H39i/TyvtRUoeoMHCelQ7tvrFeEXIBkDX8W7mpktaT5s8wReMaiiQv462tO1zMQ==
   dependencies:
-    "@remix-run/express" "1.3.5"
+    "@remix-run/express" "1.4.0"
     compression "^1.7.4"
     express "^4.17.1"
     morgan "^1.10.0"
@@ -827,6 +844,18 @@
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/@remix-run/server-runtime/-/server-runtime-1.3.5.tgz#4dffa884884a4261aae6232065d603dac8259b72"
   integrity sha512-/J5MlhgNMDwSTWKYQfcgBJmD9sreH5WZMSH+FrTScpNRps956PGOW02/iFhbWGY0eCxLp0FCqTEM9lXcGdwTYg==
+  dependencies:
+    "@types/cookie" "^0.4.0"
+    cookie "^0.4.1"
+    jsesc "^3.0.1"
+    react-router-dom "^6.2.2"
+    set-cookie-parser "^2.4.8"
+    source-map "^0.7.3"
+
+"@remix-run/server-runtime@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@remix-run/server-runtime/-/server-runtime-1.4.0.tgz#9265017c6baec04b02e1b24d4ebbf3ae69493878"
+  integrity sha512-c+42zeOhIHJAWusR+EyfK8xxBJHatrfDOQ1v4dl51JC7DlXpYP5E8ho9z16Hm/3LWNgY/I+cgk2IrG+8KRI6lg==
   dependencies:
     "@types/cookie" "^0.4.0"
     cookie "^0.4.1"
@@ -1049,10 +1078,10 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.4.tgz#fcf7205c25dff795ee79af1e30da2c9790808f11"
   integrity sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==
 
-"@types/react-dom@^18.0.0":
-  version "18.0.0"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.0.0.tgz#b13f8d098e4b0c45df4f1ed123833143b0c71141"
-  integrity sha512-49897Y0UiCGmxZqpC8Blrf6meL8QUla6eb+BBhn69dTXlmuOlzkfr7HHY/O8J25e1lTUMs+YYxSlVDAaGHCOLg==
+"@types/react-dom@^18.0.1":
+  version "18.0.1"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.0.1.tgz#cb3cc10ea91141b12c71001fede1017acfbce4db"
+  integrity sha512-jCwTXvHtRLiyVvKm9aEdHXs8rflVOGd5Sl913JZrPshfXjn8NYsTNZOz70bCsA31IR0TOqwi3ad+X4tSCBoMTw==
   dependencies:
     "@types/react" "*"
 
@@ -2091,10 +2120,10 @@ currently-unhandled@^0.4.1:
   dependencies:
     array-find-index "^1.0.1"
 
-daisyui@^2.13.6:
-  version "2.13.6"
-  resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-2.13.6.tgz#91f938671d60ee6cc9ac8f720c7f7676affd47d4"
-  integrity sha512-Z3DOqNwIKxp4og9qd64i8/eS4i3TccmmfcaKKXM/Y619FmRjKXRmKAm/GTu9qH+4W7GcVdL8IRxuw0z5GQSqvQ==
+daisyui@^2.14.0:
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-2.14.0.tgz#9fe50095b2e410bcff09ef60181715e367482590"
+  integrity sha512-M8Pb3iJ1qf0nrIFyBB3SSDlcq+zytsMx5QpVsUx8KerV+ruLOMqyiYY01zmrjjCG5wSKr6Rt8ObO3VXQyArNBA==
   dependencies:
     color "^4.2"
     css-selector-tokenizer "^0.8.0"
@@ -5245,10 +5274,10 @@ pixelmatch@5.2.1:
   dependencies:
     pngjs "^4.0.1"
 
-playwright-core@1.21.0:
-  version "1.21.0"
-  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.21.0.tgz#1b68e87f4fd2fc5653def1e61ccdef6845c604a6"
-  integrity sha512-yDGVs9qaaW6WiefgR7wH1CGt9D6D/X4U3jNpIzH0FjjrrWLCOYQo78Tu3SkW8X+/kWlBpj49iWf3QNSxhYc12Q==
+playwright-core@1.21.1:
+  version "1.21.1"
+  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.21.1.tgz#2757be7921576f047c0a622194dc45f4e1962e17"
+  integrity sha512-SbK5dEsai9ZUKlxcinqegorBq4GnftXd4/GfW+pLsdQIQWrLCM/JNh6YQ2Rf2enVykXCejtoXW8L5vJXBBVSJQ==
   dependencies:
     colors "1.4.0"
     commander "8.3.0"
@@ -5739,10 +5768,10 @@ remark-rehype@^9.0.0:
     mdast-util-to-hast "^11.0.0"
     unified "^10.0.0"
 
-remix@^1.3.5:
-  version "1.3.5"
-  resolved "https://registry.yarnpkg.com/remix/-/remix-1.3.5.tgz#f0858194dc5e73f53b7962f34fb910c0b72552cc"
-  integrity sha512-NfQXH+CYu/XkWaUAznpkk+bSfSLDqLBG1xQZWkZPccQKIbf7Pucws95GNajUFsVz+Epd1B9WBP8y3/5J2+bokQ==
+remix@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/remix/-/remix-1.4.0.tgz#fa47a09bac6c4ed1772ee8964f5bdafc3d868b38"
+  integrity sha512-yCSh9L+voOFGaFKCEw/379F0YNQLxDU3mDveEdxHUsJkqVyJI4qbSY27H5+2aVtcEW6h0qEefCZcXZyBa5A6ww==
 
 require-directory@^2.1.1:
   version "2.1.1"
