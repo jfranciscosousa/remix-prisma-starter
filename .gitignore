@@ -14,3 +14,4 @@ api/*
 !.envrc.*.sample
 test-results/
 playwright-report/
+.eslintcache

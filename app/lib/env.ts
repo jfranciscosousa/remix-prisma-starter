@@ -11,7 +11,8 @@ import type { CLIENT_ENV_VARS } from "./env.server";
  */
 
 export function getClientEnvVar(key: keyof typeof CLIENT_ENV_VARS): string {
-  if (typeof window !== "undefined") return (window as any).ENV[key];
+  if (typeof window !== "undefined")
+    return (window as unknown as { ENV: Record<string, string> }).ENV[key];
 
   return process.env[key] as string;
 }
