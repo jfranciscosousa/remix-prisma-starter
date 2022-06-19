@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const fs = require("fs");
 const crypto = require("crypto");
+const path = require("path");
 const inquirer = require("inquirer");
 
 function generateSecretKeyBase() {
@@ -19,7 +20,7 @@ function buildDatabaseUrl({
   }/${name || ""}`;
 }
 
-async function main() {
+async function main({ rootDirectory }) {
   const answers = await inquirer.prompt([
     { name: "user", message: "What's your database user?" },
     {
@@ -41,7 +42,7 @@ async function main() {
   ]);
 
   fs.writeFileSync(
-    ".envrc",
+    path.join(rootDirectory, ".envrc"),
     `
 export DATABASE_URL=${buildDatabaseUrl(answers)}
 export SECRET_KEY_BASE=${generateSecretKeyBase()}
@@ -49,12 +50,13 @@ export SECRET_KEY_BASE=${generateSecretKeyBase()}
   );
 
   fs.writeFileSync(
-    ".envrc.test",
+    path.join(rootDirectory, ".envrc.test"),
     `
 export DATABASE_URL=${buildDatabaseUrl({ ...answers, name: answers.nameTest })}
 export SECRET_KEY_BASE=${generateSecretKeyBase()}
+export PORT=3001
   `
   );
 }
 
-main();
+module.exports = main;
