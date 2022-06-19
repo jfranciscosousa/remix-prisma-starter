@@ -22,7 +22,8 @@
     "jsx-a11y",
     "import",
     "react",
-    "react-hooks"
+    "react-hooks",
+    "lodash"
   ],
   "extends": [
     "eslint:recommended",
@@ -37,6 +38,7 @@
     "plugin:react-hooks/recommended"
   ],
   "rules": {
+    "lodash/import-scope": [2, "method"],
     "prettier/prettier": "error",
     "import/no-unresolved": "off",
     "@typescript-eslint/no-unused-vars": [
