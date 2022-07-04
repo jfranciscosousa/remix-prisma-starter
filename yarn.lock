@@ -1143,9 +1143,9 @@
   integrity sha512-NHlojO1DFTsSi3FtEleL9QWXeSF/UjhCW0fgpi7bumnNZ4wj/eQ+BJJ5n2pgoOliTOGv9nX2qXvmHap7rJMNmg==
 
 "@remix-run/dev@*":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@remix-run/dev/-/dev-1.6.0.tgz#82c73bff2e80d6c278e00f2cad3f3f2097c8fb60"
-  integrity sha512-HkyLzALaxOvOAzdG79U1PqU3rE3RUka2XYSus/qHNcHxujjkeiCbhjx2aIkxRFStTpC8pa2gWZGyNPr+IoJCpg==
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/@remix-run/dev/-/dev-1.6.3.tgz#1e405954119f6540449d29930cb9890503800823"
+  integrity sha512-thGNy9usFUEBwrTKp8SzFe6IaoEplb0bZIXqylJw6y2HbS5CCsFoR7s937XIh4Er3tuPHCV09uzy/b1AEpzIaw==
   dependencies:
     "@babel/core" "^7.18.2"
     "@babel/plugin-syntax-jsx" "^7.17.12"
@@ -1153,7 +1153,8 @@
     "@babel/preset-typescript" "^7.17.12"
     "@esbuild-plugins/node-modules-polyfill" "^0.1.4"
     "@npmcli/package-json" "^2.0.0"
-    "@remix-run/server-runtime" "1.6.0"
+    "@remix-run/server-runtime" "1.6.3"
+    "@yarnpkg/esbuild-plugin-pnp" "^2.0.0"
     cacache "^15.0.5"
     chalk "^4.1.2"
     chokidar "^3.5.1"
@@ -1230,6 +1231,19 @@
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/@remix-run/server-runtime/-/server-runtime-1.6.0.tgz#ff7617324721941eabd2f3e32e284f9df4e618a7"
   integrity sha512-23qG0+c1yUuvKOB4R70nWW+I5m+u1jQzwwP+pEn0y9uygO6PcOvA4Y6wE1ojpSmqMANri5gLZFrM3vuRZNl6rA==
+  dependencies:
+    "@types/cookie" "^0.4.0"
+    "@web3-storage/multipart-parser" "^1.0.0"
+    cookie "^0.4.1"
+    jsesc "^3.0.1"
+    react-router-dom "^6.2.2"
+    set-cookie-parser "^2.4.8"
+    source-map "^0.7.3"
+
+"@remix-run/server-runtime@1.6.3":
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/@remix-run/server-runtime/-/server-runtime-1.6.3.tgz#c3b2af52a5e3c6c3cee2c4885f6649ff7ce46eec"
+  integrity sha512-B4M0msXmWWceP73Iw5EPJxPo9pT/oHwUqksX8sCmwQ+WftH5Y5eVXREp1IaaY72nEStdKSuBTfFMJETX/zUBvw==
   dependencies:
     "@types/cookie" "^0.4.0"
     "@web3-storage/multipart-parser" "^1.0.0"
@@ -1569,6 +1583,13 @@
   version "1.9.5"
   resolved "https://registry.yarnpkg.com/@xobotyi/scrollbar-width/-/scrollbar-width-1.9.5.tgz#80224a6919272f405b87913ca13b92929bdf3c4d"
   integrity sha512-N8tkAACJx2ww8vFMneJmaAgmjAG1tnVBZJRLRcx061tmsLRZHSEZSLuGWnwPtunsSLvSqXQ2wfp7Mgqg1I+2dQ==
+
+"@yarnpkg/esbuild-plugin-pnp@^2.0.0":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@yarnpkg/esbuild-plugin-pnp/-/esbuild-plugin-pnp-2.0.2.tgz#e9fcb3b6f6a2cb26b4ea43ffa6403c987aecd643"
+  integrity sha512-ymEcviLTzy+Qt4xJu47BQ8zpGnfVvkRL8MhfNtvAE1Dwf7cRtctLvtBkTx3h3thE8xyL/rVk2Uxng5CzlFVr6w==
+  dependencies:
+    tslib "^1.13.0"
 
 "@zxing/text-encoding@0.9.0":
   version "0.9.0"
@@ -7471,7 +7492,7 @@ tsconfig-paths@^4.0.0:
     minimist "^1.2.6"
     strip-bom "^3.0.0"
 
-tslib@^1.8.1:
+tslib@^1.13.0, tslib@^1.8.1:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
