@@ -6526,9 +6526,9 @@ remark-rehype@^9.0.0:
     unified "^10.0.0"
 
 remix@*:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/remix/-/remix-1.6.0.tgz#0ccc5ac0fd79ab28a7973d583daa46214c71b7b7"
-  integrity sha512-9Nc15t/mUPGgGIPfmBNUgXgfzcUc/EjaJ/vJAV5eEoEmuR8fymPRjhIIBsCmGKdL0wrkXYnlvKdhHX2Fqu0JgA==
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/remix/-/remix-1.6.3.tgz#fb0d97654e9705fb1caffb6785b35c09298c4c31"
+  integrity sha512-9p0Rge/6URPVb5lJdwJBJivhbcfa/AdTs9d2V/hdOaoJPqHSrAWC6n/1wT0CjR4tkC7xvF38oS5n44UuHLtyiw==
 
 repeat-element@^1.1.2:
   version "1.1.4"
