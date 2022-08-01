@@ -38,7 +38,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "@playwright/test": "^1.24.0",
+    "@playwright/test": "^1.24.2",
     "@remix-run/dev": "1.6.5",
     "@types/accept-language-parser": "^1.5.3",
     "@types/react": "^18.0.15",
