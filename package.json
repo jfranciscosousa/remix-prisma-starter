@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.25.0",
-    "@remix-run/dev": "1.6.8",
+    "@remix-run/dev": "1.7.0",
     "@types/accept-language-parser": "^1.5.3",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
