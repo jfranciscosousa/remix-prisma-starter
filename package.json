@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@prisma/client": "4.2.1",
-    "@remix-run/react": "1.6.8",
+    "@remix-run/react": "1.7.0",
     "@remix-run/serve": "1.6.8",
     "@remix-run/vercel": "1.6.8",
     "accept-language-parser": "^1.5.0",
