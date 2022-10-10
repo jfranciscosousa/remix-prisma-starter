@@ -1,38 +1,40 @@
-import { test } from "@playwright/test";
+import { test } from "./utils";
 
 const BUILD_URL = (url = "/") => `http://localhost:3001${url}`;
 const EMAIL = "test@mail.com";
 const NAME = "Test name";
 const PASSWORD = "foobar";
 
-test("signs up", async ({ page }) => {
+test("signs up", async ({ page, screen }) => {
   await page.goto(BUILD_URL("/signup"));
 
-  await page.fill('input[name="email"]', EMAIL);
-  await page.fill('input[name="name"]', NAME);
-  await page.fill('input[name="password"]', PASSWORD);
-  await page.fill('input[name="passwordConfirmation"]', PASSWORD);
-  await page.locator('button:has-text("Sign Up")').click();
+  await screen.getByLabelText("Email").fill(EMAIL);
+  await screen.getByLabelText("Name").fill(NAME);
+  await screen.getByLabelText("Password").fill(PASSWORD);
+  await screen.getByLabelText("Confirm password").fill(PASSWORD);
+  await screen.getByText("Sign up").click();
 
   await page.waitForURL(BUILD_URL("/app/notes"), { timeout: 2000 });
 });
 
-test("logins", async ({ page }) => {
+test("logins", async ({ page, screen }) => {
   await page.goto(BUILD_URL());
-
-  await page.fill('input[name="email"]', EMAIL);
-  await page.fill('input[name="password"]', PASSWORD);
-  await page.locator('button:has-text("Login")').click();
+  await screen.getByLabelText("Email").fill(EMAIL);
+  await screen.getByLabelText("Password").fill(PASSWORD);
+  await screen.getByText("Login").click();
 
   await page.waitForURL(BUILD_URL("/app/notes"), { timeout: 2000 });
 });
 
-test("shows login and then redirects to original page", async ({ page }) => {
+test("shows login and then redirects to original page", async ({
+  page,
+  screen,
+}) => {
   await page.goto(BUILD_URL("/app/profile"));
 
-  await page.fill('input[name="email"]', EMAIL);
-  await page.fill('input[name="password"]', PASSWORD);
-  await page.locator('button:has-text("Login")').click();
+  await screen.getByLabelText("Email").fill(EMAIL);
+  await screen.getByLabelText("Password").fill(PASSWORD);
+  await screen.getByText("Login").click();
 
   await page.waitForURL(BUILD_URL("/app/profile"), { timeout: 2000 });
 });
