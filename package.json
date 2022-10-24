@@ -23,7 +23,7 @@
   "dependencies": {
     "@prisma/client": "4.5.0",
     "@remix-run/react": "1.7.2",
-    "@remix-run/serve": "1.7.2",
+    "@remix-run/serve": "1.7.3",
     "@remix-run/vercel": "1.7.2",
     "accept-language-parser": "^1.5.0",
     "argon2": "^0.29.1",
