@@ -40,7 +40,7 @@
   "devDependencies": {
     "@playwright-testing-library/test": "^4.5.0",
     "@playwright/test": "^1.27.1",
-    "@remix-run/dev": "1.7.2",
+    "@remix-run/dev": "1.7.3",
     "@types/accept-language-parser": "^1.5.3",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
