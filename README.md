@@ -9,6 +9,14 @@
 - Authorizing resource access
 - Locale handling with SSR
 
+## Quickstart
+
+Just create a new `remix` project using this template with the following command:
+
+```
+npx create-remix@latest --template jfranciscosousa/remix-prisma-starter
+```
+
 ## Deployment
 
 After having run the `create-remix` command and selected "Vercel" as a deployment target, you only need to [import your Git repository](https://vercel.com/new) into Vercel, and it will be deployed.

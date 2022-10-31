@@ -1,12 +1,12 @@
-import { Note } from "@prisma/client";
 import classNames from "classnames";
 import { useEffect, useRef } from "react";
 import { usePrevious } from "react-use";
 import { Form } from "remix";
 import { useRootLoaderData } from "~/root";
+import { NotesRouteData } from "~/routes/app/notes";
 
 interface NoteProps {
-  notes: Note[];
+  notes: NotesRouteData["notes"];
   isLoading: boolean;
 }
 

@@ -11,7 +11,7 @@ export default function Profile() {
     (state === "submitting" || state === "loading") && !!submission;
 
   return (
-    <div className="max-w-lg mx-auto h-full flex items-center justify-center">
+    <div className="max-w-lg mx-auto flex items-center justify-center">
       <Form
         method="post"
         className="p-10 card bg-base-200 w-full flex flex-col space-y-4"

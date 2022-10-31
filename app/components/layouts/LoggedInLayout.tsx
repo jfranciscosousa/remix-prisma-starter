@@ -1,13 +1,13 @@
-import { User } from "@prisma/client";
 import { ReactNode } from "react";
 import { Form, NavLink } from "remix";
 import { UserProvider } from "~/hooks/useUser";
+import { AppRouteData } from "~/routes/app";
 
 export default function LoggedInLayout({
   user,
   children,
 }: {
-  user: User;
+  user: AppRouteData["user"];
   children: ReactNode;
 }) {
   return (

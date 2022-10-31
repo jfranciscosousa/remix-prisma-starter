@@ -1,10 +1,13 @@
 import { MetaFunction, ActionFunction, redirect } from "remix";
-import type { DataFunctionArgs } from "@remix-run/server-runtime";
+import type {
+  DataFunctionArgs,
+  SerializeFrom,
+} from "@remix-run/server-runtime";
 import { createNote, deleteNote, listNotes } from "~/data/notes.server";
 import Notes from "~/modules/Notes";
 import { userIdFromRequest } from "~/web/auth.server";
 
-export type NotesRouteData = Awaited<ReturnType<typeof loader>>;
+export type NotesRouteData = SerializeFrom<typeof loader>;
 
 export const loader = async ({ request }: DataFunctionArgs) => {
   const userId = await userIdFromRequest(request);
