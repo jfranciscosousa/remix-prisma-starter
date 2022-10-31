@@ -42,7 +42,7 @@
     "@playwright/test": "^1.27.1",
     "@remix-run/dev": "1.7.3",
     "@types/accept-language-parser": "^1.5.3",
-    "@types/react": "^18.0.23",
+    "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.7",
     "@typescript-eslint/eslint-plugin": "^5.41.0",
     "@typescript-eslint/parser": "^5.41.0",
