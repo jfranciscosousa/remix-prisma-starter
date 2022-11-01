@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === "production") {
   prisma = new PrismaClient({
     datasources: {
       db: {
-        url: `${process.env.DATABASE_URL}?connection_limit=20`,
+        url: process.env.DATABASE_URL,
       },
     },
   });
