@@ -1,0 +1,39 @@
+import { faker } from "@faker-js/faker";
+import { waitFor } from "@playwright-testing-library/test";
+import { Screen } from "@playwright-testing-library/test/dist/fixture/types";
+import { expect } from "@playwright/test";
+import { createUserAndLogin, test } from "./utils";
+
+async function createNote(screen: Screen) {
+  const note = faker.git.commitSha();
+
+  screen.getByLabelText("New todo").fill(note);
+  screen.getByText("Submit").click();
+  await screen.findByText(note);
+
+  return note;
+}
+
+test("creates notes", async ({ page, screen }) => {
+  await createUserAndLogin(page, screen);
+
+  const note = await createNote(screen);
+
+  expect(screen.getByText(note)).toBeTruthy();
+});
+
+test("deletes notes", async ({ page, screen }) => {
+  async function getNotesLength() {
+    return (await screen.queryAllByLabelText("Delete note").allTextContents())
+      .length;
+  }
+  await createUserAndLogin(page, screen);
+  await createNote(screen);
+
+  const notesCountBefore = await getNotesLength();
+  screen.getAllByLabelText("Delete note").first().click();
+
+  await waitFor(async () =>
+    expect(await getNotesLength()).toBe(notesCountBefore - 1)
+  );
+});

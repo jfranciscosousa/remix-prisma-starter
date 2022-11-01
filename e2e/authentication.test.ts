@@ -1,6 +1,5 @@
-import { test } from "./utils";
+import { BUILD_URL, test } from "./utils";
 
-const BUILD_URL = (url = "/") => `http://localhost:3001${url}`;
 const EMAIL = "test@mail.com";
 const NAME = "Test name";
 const PASSWORD = "foobar";

@@ -54,6 +54,7 @@ export default function NotesList({ notes, isLoading }: NoteProps) {
               disabled={isLoading}
               name="_action"
               value="delete"
+              aria-label="Delete note"
             >
               X
             </button>

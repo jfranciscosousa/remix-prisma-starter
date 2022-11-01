@@ -38,6 +38,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
     "@playwright-testing-library/test": "^4.5.0",
     "@playwright/test": "^1.27.1",
     "@remix-run/dev": "1.7.4",
