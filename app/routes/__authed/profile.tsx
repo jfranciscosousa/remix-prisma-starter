@@ -12,7 +12,7 @@ export const action: ActionFunction = async ({ request }) => {
 
   if (errors) return errors;
 
-  return redirect("/app/profile");
+  return redirect("/profile");
 };
 
 export const meta: MetaFunction = () => ({

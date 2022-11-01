@@ -65,6 +65,7 @@ export default function App() {
 }
 
 export function ErrorBoundary({ error }: { error: Error }) {
+  // This is where you would log server side errors to your error handling tool
   console.error("Error", error);
 
   return (
@@ -140,7 +141,7 @@ function Document({
           {children}
           <ScrollRestoration />
           <Scripts />
-          {process.env.NODE_ENV === "development" && <LiveReload />}
+          <LiveReload />
         </body>
       </html>
     </React.StrictMode>

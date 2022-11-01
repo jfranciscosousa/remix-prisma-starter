@@ -17,11 +17,15 @@ export default function LoggedInLayout({
 
         <ul className="flex flex-row space-x-4 items-center">
           <li>
-            <NavLink to="/app/notes">Notes</NavLink>
+            <NavLink to="/notes" prefetch="intent">
+              Notes
+            </NavLink>
           </li>
 
           <li>
-            <NavLink to="/app/profile">Profile</NavLink>
+            <NavLink to="/profile" prefetch="intent">
+              Profile
+            </NavLink>
           </li>
 
           <li>

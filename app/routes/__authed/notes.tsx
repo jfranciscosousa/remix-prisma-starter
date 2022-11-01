@@ -32,7 +32,7 @@ export const action: ActionFunction = async ({ request }) => {
       break;
   }
 
-  return redirect("/app/notes");
+  return redirect("/notes");
 };
 
 export const meta: MetaFunction = () => ({

@@ -1,5 +1,5 @@
 import { useActionData, useLoaderData, useTransition } from "remix";
-import { NotesRouteData } from "~/routes/app/notes";
+import { NotesRouteData } from "~/routes/__authed/notes";
 import NotesForm from "./NotesForm";
 import NotesList from "./NotesList";
 
