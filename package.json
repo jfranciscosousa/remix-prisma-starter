@@ -18,7 +18,8 @@
     "test": ". ./.envrc.test && yarn db:reset --force && yarn db:migrate && yarn build && playwright test",
     "test:ci": "yarn db:migrate && playwright test",
     "ts-check": "tsc --project tsconfig.json --noEmit --skipLibCheck",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "deploy": "prisma generate --data-proxy && DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma migrate deploy && yarn build"
   },
   "dependencies": {
     "@prisma/client": "4.5.0",
