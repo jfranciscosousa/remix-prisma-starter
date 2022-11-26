@@ -13,7 +13,7 @@ import { devices } from "@playwright/test";
 const config: PlaywrightTestConfig = {
   testDir: "./e2e",
   webServer: {
-    command: "PORT=3001 yarn start",
+    command: "yarn start",
     port: 3001,
   },
   /* Maximum time one test can run for. */
@@ -83,12 +83,6 @@ const config: PlaywrightTestConfig = {
 
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
   // outputDir: 'test-results/',
-
-  /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   port: 3000,
-  // },
 };
 
 export default config;

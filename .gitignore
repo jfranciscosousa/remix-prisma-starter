@@ -1,5 +1,4 @@
 node_modules
-
 .cache
 .vercel
 .output
@@ -8,10 +7,11 @@ public/build
 api/*
 /app/tailwind.css
 /app/styles
-.envrc
-.envrc.*
-!.envrc.sample
-!.envrc.*.sample
+.env
+.env.*
 test-results/
 playwright-report/
 .eslintcache
+
+!.env.sample
+!.env.*.sample

@@ -42,7 +42,7 @@ async function main({ rootDirectory }) {
   ]);
 
   fs.writeFileSync(
-    path.join(rootDirectory, ".envrc"),
+    path.join(rootDirectory, ".env"),
     `
 export DATABASE_URL=${buildDatabaseUrl(answers)}
 export SECRET_KEY_BASE=${generateSecretKeyBase()}
@@ -50,7 +50,7 @@ export SECRET_KEY_BASE=${generateSecretKeyBase()}
   );
 
   fs.writeFileSync(
-    path.join(rootDirectory, ".envrc.test"),
+    path.join(rootDirectory, ".env.test"),
     `
 export DATABASE_URL=${buildDatabaseUrl({ ...answers, name: answers.nameTest })}
 export SECRET_KEY_BASE=${generateSecretKeyBase()}
