@@ -1,22 +1,23 @@
 import classNames from "classnames";
+import { useEffect } from "react";
 import { Form, useActionData, useTransition } from "remix";
 import FullInput from "~/components/FullInput";
-import useAfterSubmit from "~/hooks/useAfterSubmit";
 import useToast from "~/hooks/useToast";
 import useUser from "~/hooks/useUser";
+import { ProfileRouteAction } from "~/routes/__authed/profile";
 
 export default function Profile() {
   const user = useUser();
-  const errors = useActionData();
+  const actionData = useActionData<ProfileRouteAction>();
   const { state, submission } = useTransition();
   const { toast } = useToast();
   const isLoading =
     (state === "submitting" || state === "loading") && !!submission;
 
-  useAfterSubmit(() => {
-    if (errors) toast("Failed to update profile!", "error");
-    else toast("Updated profile!", "success");
-  });
+  useEffect(() => {
+    if (actionData?.errors) toast("Failed to update profile!", "error");
+    else if (actionData?.success) toast("Updated profile!", "success");
+  }, [actionData, toast]);
 
   return (
     <div className="max-w-lg mx-auto flex items-center justify-center">
@@ -33,7 +34,7 @@ export default function Profile() {
           required
           placeholder="hello@email.com"
           defaultValue={user.email}
-          errors={errors}
+          errors={actionData?.errors}
         />
 
         <FullInput
@@ -43,7 +44,7 @@ export default function Profile() {
           required
           placeholder="How you would like to be called"
           defaultValue={user.name}
-          errors={errors}
+          errors={actionData?.errors}
         />
 
         <FullInput
@@ -52,7 +53,7 @@ export default function Profile() {
           type="password"
           placeholder="**************"
           required
-          errors={errors}
+          errors={actionData?.errors}
         />
 
         <FullInput
@@ -60,7 +61,7 @@ export default function Profile() {
           name="newPassword"
           type="password"
           placeholder="**************"
-          errors={errors}
+          errors={actionData?.errors}
         />
 
         <FullInput
@@ -68,7 +69,7 @@ export default function Profile() {
           name="passwordConfirmation"
           type="password"
           placeholder="**************"
-          errors={errors}
+          errors={actionData?.errors}
           className="pb-4"
         />
 

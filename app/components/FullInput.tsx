@@ -5,7 +5,7 @@ import { ComponentPropsWithRef, forwardRef, Ref, useId } from "react";
 export interface FullInputProps extends ComponentPropsWithRef<"input"> {
   label: string;
   name: string;
-  errors?: Record<string, string>;
+  errors?: Record<string, string> | null;
   inputClassName?: string;
 }
 

@@ -1,18 +1,23 @@
-import type { ActionFunction, MetaFunction } from "remix";
-import { redirect } from "remix";
+import type {
+  DataFunctionArgs,
+  SerializeFrom,
+} from "@remix-run/server-runtime";
+import type { MetaFunction } from "remix";
 import { updateUser, UpdateUserParams } from "~/data/users.server";
 import Profile from "~/modules/Profile";
 import { userFromRequest } from "~/web/auth.server";
 
-export const action: ActionFunction = async ({ request }) => {
+export type ProfileRouteAction = SerializeFrom<typeof action>;
+
+export const action = async ({ request }: DataFunctionArgs) => {
   const user = await userFromRequest(request);
   const form = Object.fromEntries(await request.formData());
 
   const { errors } = await updateUser(user, form as UpdateUserParams);
 
-  if (errors) return errors;
+  if (errors) return { errors, success: false };
 
-  return redirect("/profile");
+  return { errors: null, success: true };
 };
 
 export const meta: MetaFunction = () => ({
