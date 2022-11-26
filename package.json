@@ -19,7 +19,7 @@
     "test:ci": "yarn db:migrate && playwright test",
     "ts-check": "tsc --project tsconfig.json --noEmit --skipLibCheck",
     "prepare": "husky install",
-    "deploy": "prisma generate --data-proxy && DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma migrate deploy && yarn build"
+    "deploy": "yarn db:migrate && yarn build"
   },
   "dependencies": {
     "@prisma/client": "4.6.1",
