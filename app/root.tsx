@@ -14,6 +14,7 @@ import styles from "./styles/index.css";
 import { CLIENT_ENV_VARS } from "./lib/env.server";
 import { DataFunctionArgs } from "@remix-run/server-runtime";
 import React from "react";
+import { ToastsRenderer } from "./hooks/useToast";
 
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
@@ -60,6 +61,7 @@ export default function App() {
       <Layout>
         <Outlet />
       </Layout>
+      <ToastsRenderer />
     </Document>
   );
 }

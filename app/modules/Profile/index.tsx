@@ -1,14 +1,22 @@
 import classNames from "classnames";
 import { Form, useActionData, useTransition } from "remix";
 import FullInput from "~/components/FullInput";
+import useAfterSubmit from "~/hooks/useAfterSubmit";
+import useToast from "~/hooks/useToast";
 import useUser from "~/hooks/useUser";
 
 export default function Profile() {
   const user = useUser();
   const errors = useActionData();
   const { state, submission } = useTransition();
+  const { toast } = useToast();
   const isLoading =
     (state === "submitting" || state === "loading") && !!submission;
+
+  useAfterSubmit(() => {
+    if (errors) toast("Failed to update profile!", "error");
+    else toast("Updated profile!", "success");
+  });
 
   return (
     <div className="max-w-lg mx-auto flex items-center justify-center">
