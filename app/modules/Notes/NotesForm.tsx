@@ -36,6 +36,7 @@ export default function NotesForm({ isLoading, errors }: NotesInputProps) {
           ref={inputRef}
           className="w-full"
           inputClassName="input-bordered"
+          disabled={isLoading}
         />
 
         <button
