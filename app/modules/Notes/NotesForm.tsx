@@ -26,7 +26,7 @@ export default function NotesForm({ isLoading, errors }: NotesInputProps) {
   }, [isLoading, hasErrors, previousIsLoading]);
 
   return (
-    <Form method="post" className="flex flex-col space-y-4 mt-12">
+    <Form method="post" className="flex flex-col space-y-4">
       <div className="flex flex-row items-end space-x-4 w-full">
         <FullInput
           label="New todo"

@@ -10,8 +10,8 @@ export default function Notes() {
   const isLoading = state === "submitting" || state === "loading";
 
   return (
-    <main className="max-w-xl mx-auto">
-      <div className="h-[500px]">
+    <>
+      <main className="max-w-xl w-full mx-auto flex-grow overflow-auto">
         {notes.length === 0 && (
           <div className="flex flex-col justify-center items-center h-full">
             <p className="text-center">You have no notes! Please write some.</p>
@@ -19,9 +19,11 @@ export default function Notes() {
         )}
 
         {notes.length > 0 && <NotesList notes={notes} isLoading={isLoading} />}
-      </div>
+      </main>
 
-      <NotesForm isLoading={isLoading} errors={errors} />
-    </main>
+      <div className="shrink-0 max-w-xl w-full mx-auto py-8">
+        <NotesForm isLoading={isLoading} errors={errors} />
+      </div>
+    </>
   );
 }

@@ -10,7 +10,7 @@ export default function Login() {
   const location = useLocation();
 
   return (
-    <div className="max-w-lg mx-auto h-full flex items-center justify-center">
+    <div className="max-w-lg w-full mx-auto h-full flex items-center justify-center">
       <Form
         method="post"
         action="/login"

@@ -4,6 +4,7 @@
   "description": "A Remix starter with Prisma and Vercel",
   "license": "MIT",
   "scripts": {
+    "clean": "rm -rf .eslintcache playwright-report build public/build .cache",
     "start": "remix-serve build",
     "build": "yarn build:css && remix build",
     "build:css": "postcss styles --base styles --dir app/styles --env production",
