@@ -12,7 +12,7 @@ const authCookie = createCookie("auth", {
   maxAge: 604_800, // one week,
 });
 
-export async function authenticate(user: User, redirectUrl = "/") {
+export async function authenticate(user: { id: string }, redirectUrl = "/") {
   return new Response(null, {
     status: 302,
     headers: {

@@ -5,9 +5,9 @@
   "license": "MIT",
   "scripts": {
     "start": "remix-serve build",
-    "build": "NODE_ENV=production yarn build:css && remix build",
+    "build": "yarn build:css && remix build",
     "build:css": "postcss styles --base styles --dir app/styles --env production",
-    "dev": "NODE_ENV=development concurrently \"yarn dev:css\" \"remix dev\"",
+    "dev": "concurrently \"yarn dev:css\" \"remix dev\"",
     "dev:css": "postcss styles --base styles --dir app/styles -w",
     "postinstall": "remix setup node",
     "db:generate": "prisma generate",
@@ -15,8 +15,8 @@
     "db:gen:migration": "prisma migrate dev",
     "db:reset": "prisma migrate reset",
     "lint": "yarn eslint \"**/*.{js,jsx,ts,tsx}\" --cache",
-    "test": "dotenv -e .env.test -- bash -c 'yarn db:reset --force && yarn db:migrate && yarn build && playwright test'",
-    "test:ci": "yarn db:migrate && playwright test",
+    "test": "dotenv -e .env.test -- bash -c 'yarn build && playwright test'",
+    "test:ci": "yarn db:migrate && yarn build && playwright test",
     "ts-check": "tsc --project tsconfig.json --noEmit --skipLibCheck",
     "prepare": "husky install",
     "deploy": "yarn db:migrate && yarn build"
@@ -68,6 +68,7 @@
     "postcss-cli": "^10.0.0",
     "prettier": "^2.8.0",
     "prisma": "4.6.1",
+    "prisma-database-cleaner": "^0.0.2",
     "typescript": "^4.9.3"
   },
   "engines": {

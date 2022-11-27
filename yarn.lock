@@ -1510,7 +1510,7 @@
     "@types/node" "*"
     playwright-core "1.28.1"
 
-"@prisma/client@4.6.1":
+"@prisma/client@4.6.1", "@prisma/client@4.x":
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/@prisma/client/-/client-4.6.1.tgz#e8e1d347ecbff44158d21b6591bb99650c8503a8"
   integrity sha512-M1+NNrMzqaOIxT7PBGcTs3IZo7d1EW/+gVQd4C4gUgWBDGgD9AcIeZnUSidgWClmpMSgVUdnVORjsWWGUameYA==
@@ -6855,6 +6855,13 @@ pretty-ms@^7.0.1:
   integrity sha512-973driJZvxiGOQ5ONsFhOF/DtzPMOMtgC11kCpUrPGMTgqp2q/1gwzCquocrN33is0VZ5GFHXZYMM9l6h67v2Q==
   dependencies:
     parse-ms "^2.1.0"
+
+prisma-database-cleaner@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/prisma-database-cleaner/-/prisma-database-cleaner-0.0.2.tgz#040f8d5b86b543bdc7351b4599969ebf7fe8c4d8"
+  integrity sha512-hyi15HALcbEpKp121mvVUw4WrZn66rWCz/P+rZAUnXw1eq/EkFZMGIoJz8v0i2mM5NJKkHnKBQkN82A83/f97Q==
+  dependencies:
+    "@prisma/client" "4.x"
 
 prisma@4.6.1:
   version "4.6.1"

@@ -11,9 +11,9 @@ import { devices } from "@playwright/test";
  * See https://playwright.dev/docs/test-configuration.
  */
 const config: PlaywrightTestConfig = {
-  testDir: "./e2e",
+  testDir: "./test/e2e",
   webServer: {
-    command: "yarn start",
+    command: "yarn remix-serve build",
     port: 3001,
   },
   /* Maximum time one test can run for. */

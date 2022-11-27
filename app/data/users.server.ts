@@ -14,7 +14,9 @@ const createUserParams = object({
 
 export type CreateUserParams = InferType<typeof createUserParams>;
 
-export async function findUserByEmail(email: string): Promise<User | null> {
+export async function findUserByEmail(
+  email: string
+): Promise<Omit<User, "password"> | null> {
   const user = await prisma.user.findUnique({ where: { email } });
 
   if (user) user.password = "";
@@ -27,7 +29,7 @@ export async function createUser({
   name,
   password,
   passwordConfirmation,
-}: CreateUserParams): Promise<DataResult<User>> {
+}: CreateUserParams): Promise<DataResult<Omit<User, "password">>> {
   const errors = errorsFromSchema(createUserParams, {
     email,
     name,
@@ -78,9 +80,9 @@ export async function updateUser(
     newPassword,
     passwordConfirmation,
   }: UpdateUserParams
-): Promise<DataResult<User>> {
+): Promise<DataResult<Omit<User, "password">>> {
   if (newPassword !== passwordConfirmation) {
-    return { errors: { passwordConfirmation: "Passwords do not match!" } };
+    return { errors: { passwordConfirmation: "Passwords do not match" } };
   }
 
   const errors = errorsFromSchema(updateUserParams, {
@@ -109,7 +111,7 @@ export async function updateUser(
   return { data: updatedUser };
 }
 
-export async function deleteUser(user: User): Promise<User> {
+export async function deleteUser(user: User): Promise<Omit<User, "password">> {
   const [_, deletedUser] = await prisma.$transaction([
     prisma.note.deleteMany({ where: { userId: user.id } }),
     prisma.user.delete({ where: { id: user.id } }),

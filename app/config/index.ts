@@ -7,11 +7,11 @@ export interface ConfigType {
 }
 
 function buildConfig() {
-  if (process.env.NODE_ENV === "development") return developmentConfig();
+  if (process.env.NODE_ENV === "production") return productionConfig();
 
   if (process.env.NODE_ENV === "test") return testConfig();
 
-  return productionConfig();
+  return developmentConfig();
 }
 
 const CONFIG = buildConfig();
