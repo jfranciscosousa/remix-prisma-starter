@@ -8,13 +8,13 @@ import {
   useCatch,
   useLoaderData,
   useMatches,
-} from "remix";
-import acceptLanguage from "accept-language-parser";
-import styles from "./styles/index.css";
-import { CLIENT_ENV_VARS } from "./lib/env.server";
+} from "@remix-run/react";
 import { DataFunctionArgs } from "@remix-run/server-runtime";
+import acceptLanguage from "accept-language-parser";
 import React from "react";
 import { ToastsRenderer } from "./hooks/useToast";
+import { CLIENT_ENV_VARS } from "./lib/env.server";
+import styles from "./styles/index.css";
 
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
@@ -151,5 +151,5 @@ function Document({
 }
 
 function Layout({ children }: { children: React.ReactNode }) {
-  return children;
+  return <>{children}</>;
 }

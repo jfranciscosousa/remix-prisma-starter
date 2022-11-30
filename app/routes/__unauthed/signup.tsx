@@ -1,5 +1,9 @@
-import type { ActionFunction, LoaderFunction, MetaFunction } from "remix";
-import { redirect } from "remix";
+import type {
+  ActionFunction,
+  LoaderFunction,
+  MetaFunction,
+} from "@remix-run/server-runtime";
+import { redirect } from "@remix-run/server-runtime";
 import { createUser } from "~/data/users.server";
 import SignUp from "~/modules/SignUp";
 import { authenticate, userFromRequest } from "~/web/auth.server";

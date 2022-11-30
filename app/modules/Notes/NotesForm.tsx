@@ -1,8 +1,7 @@
+import { Form } from "@remix-run/react";
 import classNames from "classnames";
 import { useEffect, useRef } from "react";
 import { usePrevious } from "react-use";
-
-import { Form } from "remix";
 import FullInput from "~/components/FullInput";
 
 interface NotesInputProps {
@@ -22,6 +21,7 @@ export default function NotesForm({ isLoading, errors }: NotesInputProps) {
 
     if (previousIsLoading && !isLoading) {
       inputRef.current.value = "";
+      inputRef.current.focus();
     }
   }, [isLoading, hasErrors, previousIsLoading]);
 

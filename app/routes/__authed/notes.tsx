@@ -1,6 +1,8 @@
-import { MetaFunction, ActionFunction, redirect } from "remix";
-import type {
+import {
+  ActionFunction,
   DataFunctionArgs,
+  MetaFunction,
+  redirect,
   SerializeFrom,
 } from "@remix-run/server-runtime";
 import { createNote, deleteNote, listNotes } from "~/data/notes.server";

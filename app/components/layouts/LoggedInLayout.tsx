@@ -1,13 +1,13 @@
 import { ReactNode } from "react";
-import { Form, NavLink } from "remix";
+import { Form, NavLink } from "@remix-run/react";
 import { UserProvider } from "~/hooks/useUser";
-import { AppRouteData } from "~/routes/app";
+import { AuthedRouteData } from "~/routes/__authed";
 
 export default function LoggedInLayout({
   user,
   children,
 }: {
-  user: AppRouteData["user"];
+  user: AuthedRouteData["user"];
   children: ReactNode;
 }) {
   return (

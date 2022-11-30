@@ -1,7 +1,7 @@
+import { Form } from "@remix-run/react";
 import classNames from "classnames";
 import { useEffect, useRef } from "react";
 import { usePrevious } from "react-use";
-import { Form } from "remix";
 import { useRootLoaderData } from "~/root";
 import { NotesRouteData } from "~/routes/__authed/notes";
 

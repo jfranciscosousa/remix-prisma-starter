@@ -1,4 +1,5 @@
-import { LoaderFunction, Outlet, redirect } from "remix";
+import { Outlet } from "@remix-run/react";
+import { LoaderFunction, redirect } from "@remix-run/server-runtime";
 import LoggedOutLayout from "~/components/layouts/LoggedOutLayout";
 import { userFromRequest } from "~/web/auth.server";
 

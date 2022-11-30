@@ -1,5 +1,5 @@
 import { User } from "@prisma/client";
-import { createCookie } from "remix";
+import { createCookie } from "@remix-run/node";
 import CONFIG from "~/config";
 import prisma from "~/data/utils/prisma.server";
 import { getServerEnvVar } from "~/lib/env.server";

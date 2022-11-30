@@ -1,6 +1,6 @@
+import { RemixServer } from "@remix-run/react";
+import type { EntryContext } from "@remix-run/server-runtime";
 import { renderToString } from "react-dom/server";
-import { RemixServer } from "remix";
-import type { EntryContext } from "remix";
 import { getServerEnvVar } from "./lib/env.server";
 
 if (!getServerEnvVar("SECRET_KEY_BASE")) {

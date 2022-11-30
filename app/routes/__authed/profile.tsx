@@ -1,8 +1,8 @@
 import type {
   DataFunctionArgs,
   SerializeFrom,
+  MetaFunction,
 } from "@remix-run/server-runtime";
-import type { MetaFunction } from "remix";
 import { updateUser, UpdateUserParams } from "~/data/users.server";
 import Profile from "~/modules/Profile";
 import { userFromRequest } from "~/web/auth.server";

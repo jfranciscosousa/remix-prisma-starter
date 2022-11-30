@@ -1,4 +1,4 @@
-import { useActionData, useLoaderData, useTransition } from "remix";
+import { useActionData, useLoaderData, useTransition } from "@remix-run/react";
 import { NotesRouteData } from "~/routes/__authed/notes";
 import NotesForm from "./NotesForm";
 import NotesList from "./NotesList";

@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { Form, Link, useActionData, useTransition } from "remix";
+import { Form, Link, useActionData, useTransition } from "@remix-run/react";
 import FullInput from "~/components/FullInput";
 
 export default function SignUp() {

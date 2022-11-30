@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { useEffect } from "react";
-import { Form, useActionData, useTransition } from "remix";
+import { Form, useActionData, useTransition } from "@remix-run/react";
 import FullInput from "~/components/FullInput";
 import useToast from "~/hooks/useToast";
 import useUser from "~/hooks/useUser";
