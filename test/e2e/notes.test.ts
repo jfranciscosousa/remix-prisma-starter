@@ -19,7 +19,7 @@ test("creates notes", async ({ page, screen }) => {
 
   const note = await createNote(screen);
 
-  expect(screen.getByText(note)).toBeTruthy();
+  expect(await screen.getByText(note).count()).toBe(1);
 });
 
 test("deletes notes", async ({ page, screen }) => {

@@ -1,4 +1,4 @@
-import { BUILD_URL, test } from "./utils";
+import { BUILD_URL, createUserAndLogin, expect, test } from "./utils";
 
 const EMAIL = "test@mail.com";
 const NAME = "Test name";
@@ -36,4 +36,13 @@ test("shows login and then redirects to original page", async ({
   await screen.getByText("Login").click();
 
   await page.waitForURL(BUILD_URL("/profile"), { timeout: 2000 });
+});
+
+test("logs out and drops user on login page", async ({ page, screen }) => {
+  const user = await createUserAndLogin(page, screen);
+
+  await screen.getByText("Logout").click();
+
+  expect(await (await screen.findByText("Login")).count()).toBe(1);
+  expect(await screen.queryByText(user.name).count()).toBe(0);
 });

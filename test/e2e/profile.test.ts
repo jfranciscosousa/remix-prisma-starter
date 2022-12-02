@@ -34,12 +34,12 @@ test("updates profile", async ({ page, screen }) => {
   await page.getByText("Update profile").click();
 
   await waitFor(async () => {
-    expect(page.getByText(user.name)).toBeTruthy();
+    expect(await page.getByText(user.name).count()).toBe(0);
 
     const updatedUser = await prisma.user.findFirstOrThrow({
       where: { id: user.id },
     });
-
+    expect(await page.getByText(updatedUser.name).count()).toBe(1);
     expect(updatedUser.name).toEqual(newName);
     expect(updatedUser.email).toEqual(newEmail);
     // Check that the new password is applied
@@ -63,7 +63,7 @@ test("does not update profile if password confirmation does not match", async ({
   await page.getByText("Update profile").click();
 
   await waitFor(async () => {
-    expect(page.getByText("Passwords do not match")).toBeTruthy();
+    expect(await page.getByText("Passwords do not match").count()).toBe(1);
 
     const updatedUser = await prisma.user.findFirstOrThrow({
       where: { email: user.email },
@@ -86,11 +86,11 @@ test("does not update profile if password is bad", async ({ page, screen }) => {
 
   await page.goto(BUILD_URL("/profile"));
   await page.getByLabel("Name").fill(newName);
-  await page.getByLabel("Current password").fill(USER_TEST_PASSWORD);
+  await page.getByLabel("Current password").fill("bad_password");
   await page.getByText("Update profile").click();
 
   await waitFor(async () => {
-    expect(page.getByText("Wrong password")).toBeTruthy();
+    expect(await page.getByText("Wrong password").count()).toBe(1);
 
     const updatedUser = await prisma.user.findFirstOrThrow({
       where: { email: user.email },
