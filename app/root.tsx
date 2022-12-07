@@ -12,6 +12,7 @@ import {
 import { DataFunctionArgs } from "@remix-run/server-runtime";
 import acceptLanguage from "accept-language-parser";
 import React from "react";
+import GlobalLayout from "./components/layouts/GlobalLayout";
 import { ToastsRenderer } from "./hooks/useToast";
 import { CLIENT_ENV_VARS } from "./lib/env.server";
 import styles from "./styles/index.css";
@@ -58,9 +59,9 @@ export default function App() {
         }}
       />
 
-      <Layout>
+      <GlobalLayout>
         <Outlet />
-      </Layout>
+      </GlobalLayout>
       <ToastsRenderer />
     </Document>
   );
@@ -72,7 +73,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
 
   return (
     <Document title="Error!">
-      <Layout>
+      <GlobalLayout>
         <div>
           <h1>There was an error</h1>
           <p>{error.message}</p>
@@ -82,7 +83,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
             users to see.
           </p>
         </div>
-      </Layout>
+      </GlobalLayout>
     </Document>
   );
 }
@@ -112,12 +113,12 @@ export function CatchBoundary() {
 
   return (
     <Document title={`${caught.status} ${caught.statusText}`}>
-      <Layout>
+      <GlobalLayout>
         <h1>
           {caught.status}: {caught.statusText}
         </h1>
         {message}
-      </Layout>
+      </GlobalLayout>
     </Document>
   );
 }
@@ -148,8 +149,4 @@ function Document({
       </html>
     </React.StrictMode>
   );
-}
-
-function Layout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
 }

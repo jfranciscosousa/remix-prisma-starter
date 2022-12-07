@@ -1,3 +1,4 @@
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { Form } from "@remix-run/react";
 import classNames from "classnames";
 import { useEffect, useRef } from "react";
@@ -11,6 +12,7 @@ interface NoteProps {
 }
 
 export default function NotesList({ notes, isLoading }: NoteProps) {
+  const [animationParent] = useAutoAnimate<HTMLUListElement>();
   const { locale } = useRootLoaderData();
   const previousNotesLength = usePrevious<number>(notes.length);
   const notesContainerRef = useRef<HTMLUListElement>(null);
@@ -27,7 +29,16 @@ export default function NotesList({ notes, isLoading }: NoteProps) {
   }, [notes.length, previousNotesLength]);
 
   return (
-    <ul className="space-y-6 max-h-full overflow-auto" ref={notesContainerRef}>
+    <ul
+      className="space-y-6 max-h-full h-full overflow-auto flex flex-col"
+      ref={animationParent}
+    >
+      {notes.length === 0 && (
+        <div className="flex-grow flex flex-col justify-center items-center">
+          <p className="text-center">You have no notes! Please write some.</p>
+        </div>
+      )}
+
       {notes.map((note) => (
         <li
           key={note.id}

@@ -1,3 +1,4 @@
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import uniqueId from "lodash/uniqueId";
 import { ReactNode } from "react";
 import create from "zustand";
@@ -44,15 +45,24 @@ const useToastStore = create<ToastState>((set, get) => ({
 }));
 
 export function ToastsRenderer() {
+  const [animationParent] = useAutoAnimate<HTMLUListElement>();
   const toasts = useToastStore((state) => state.toasts);
 
   return (
-    <div className="toast">
-      {toasts.map((toast) => (
-        <div key={toast.id} className={`alert alert-${toast.type || "info"}`}>
-          {toast.children}
-        </div>
-      ))}
+    <div className="fixed bottom-0 right-0 h-screen w-screen pointer-events-none">
+      <ul
+        className="flex flex-col justify-end h-full gap-2 p-2"
+        ref={animationParent}
+      >
+        {toasts.map((toast) => (
+          <li
+            key={toast.id}
+            className={`alert alert-${toast.type || "info"} w-max ml-auto`}
+          >
+            {toast.children}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -62,5 +72,8 @@ function useToast() {
 
   return { toast };
 }
+
+if (typeof window !== "undefined")
+  window.__toast = useToastStore.getState().toast;
 
 export default useToast;
