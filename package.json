@@ -67,7 +67,7 @@
     "eslint-plugin-testing-library": "^5.9.1",
     "husky": ">=8.0.2",
     "lint-staged": ">=13.1.0",
-    "postcss": "^8.4.19",
+    "postcss": "^8.4.20",
     "postcss-cli": "^10.1.0",
     "prettier": "^2.8.0",
     "prisma": "4.7.1",
