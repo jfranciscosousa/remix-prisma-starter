@@ -26,7 +26,7 @@ After having run the `create-remix` command and selected "Vercel" as a deploymen
 If you'd like to avoid using a Git repository, you can also deploy the directory by running [Vercel CLI](https://vercel.com/cli):
 
 ```sh
-yarn global add vercel
+npm install --global vercel
 vercel
 ```
 
@@ -37,13 +37,13 @@ It is generally recommended to use a Git repository, because future commits will
 To run your Remix app locally, make sure your project's local dependencies are installed:
 
 ```sh
-yarn
+npm i
 ```
 
 Afterwards, start the Remix development server like so:
 
 ```sh
-yarn dev
+npm run dev
 ```
 
 Open up [http://localhost:3000](http://localhost:3000) and you should be ready to go!
@@ -58,6 +58,6 @@ It loads up `.env.test` file config, so it uses a different database and a diffe
 
 Each testing run drops and resets the database so we can ensure non-flaky tests every time.
 
-Before running `yarn test` for the first time, make sure to run these commands:
+Before running `npm run dev test` for the first time, make sure to run these commands:
 - `npx playwright install`
 - `npx playwright install-deps`

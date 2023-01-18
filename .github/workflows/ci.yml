@@ -17,35 +17,42 @@ jobs:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
-    strategy:
-      matrix:
-        node-version: [18.12.1]
-
     steps:
       - uses: actions/checkout@v2
 
-      - uses: nanasess/setup-chromedriver@v1
+      - uses: marocchino/tool-versions-action@v1
+        id: versions
 
-      - name: Node CI
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ steps.versions.outputs.nodejs }}
 
-      - name: Cache node modules
-        uses: actions/cache@v2
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
         with:
-          path: node_modules
-          key: ${{ runner.os }}-build-node_modules-${{ hashFiles('**/yarn.lock') }}
+          version: 7
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-build-node_modules-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+            ${{ runner.os }}-pnpm-store-
 
       - name: Cache playwright deps
         uses: actions/cache@v2
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-build-playwright-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-build-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-build-playwright-
             ${{ runner.os }}-build-
@@ -53,18 +60,18 @@ jobs:
 
       - name: Install dependencies
         run: |
-          yarn
+          pnpm i
           npx playwright install
 
       - name: Lint
         run: |
-          yarn lint
+          pnpm run lint
 
       - name: E2E
         run: |
-          yarn db:migrate
-          yarn build
-          yarn test:ci
+          pnpm run db:migrate
+          pnpm run build
+          pnpm run test:ci
         env:
           SECRET_KEY_BASE: supersecret42069keypleaseitsjokenoangryslavaukraini
           DATABASE_URL: "postgres://postgres:postgres@localhost:5432/remix-prisma-starter-test"
