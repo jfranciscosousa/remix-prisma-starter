@@ -46,7 +46,7 @@
     "@faker-js/faker": "^7.6.0",
     "@playwright-testing-library/test": "^4.5.0",
     "@playwright/test": "^1.29.1",
-    "@remix-run/dev": "1.11.1",
+    "@remix-run/dev": "1.12.0",
     "@types/accept-language-parser": "^1.5.3",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
