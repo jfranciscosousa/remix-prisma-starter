@@ -44,7 +44,7 @@ export const loader = async ({ request }: DataFunctionArgs) => {
 export type RootLoaderType = Awaited<ReturnType<typeof loader>>;
 
 export function useRootLoaderData(): RootLoaderType {
-  return useMatches()[0].data as RootLoaderType;
+  return useMatches()[0].data;
 }
 
 export default function App() {

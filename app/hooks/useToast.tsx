@@ -1,7 +1,7 @@
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import uniqueId from "lodash/uniqueId";
 import { ReactNode } from "react";
-import create from "zustand";
+import { create } from "zustand";
 
 type ToastType = "info" | "success" | "warning" | "error";
 
@@ -72,8 +72,5 @@ function useToast() {
 
   return { toast };
 }
-
-if (typeof window !== "undefined")
-  window.__toast = useToastStore.getState().toast;
 
 export default useToast;
