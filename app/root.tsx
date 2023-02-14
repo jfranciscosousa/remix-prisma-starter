@@ -12,7 +12,6 @@ import {
 import { DataFunctionArgs } from "@remix-run/server-runtime";
 import acceptLanguage from "accept-language-parser";
 import React from "react";
-import GlobalLayout from "./components/layouts/GlobalLayout";
 import { ToastsRenderer } from "./hooks/useToast";
 import { CLIENT_ENV_VARS } from "./lib/env.server";
 import styles from "./styles/index.css";
@@ -59,9 +58,8 @@ export default function App() {
         }}
       />
 
-      <GlobalLayout>
-        <Outlet />
-      </GlobalLayout>
+      <Outlet />
+
       <ToastsRenderer />
     </Document>
   );
@@ -73,17 +71,15 @@ export function ErrorBoundary({ error }: { error: Error }) {
 
   return (
     <Document title="Error!">
-      <GlobalLayout>
-        <div>
-          <h1>There was an error</h1>
-          <p>{error.message}</p>
-          <hr />
-          <p>
-            Hey, developer, you should replace this with what you want your
-            users to see.
-          </p>
-        </div>
-      </GlobalLayout>
+      <div>
+        <h1>There was an error</h1>
+        <p>{error.message}</p>
+        <hr />
+        <p>
+          Hey, developer, you should replace this with what you want your users
+          to see.
+        </p>
+      </div>
     </Document>
   );
 }
@@ -113,12 +109,10 @@ export function CatchBoundary() {
 
   return (
     <Document title={`${caught.status} ${caught.statusText}`}>
-      <GlobalLayout>
-        <h1>
-          {caught.status}: {caught.statusText}
-        </h1>
-        {message}
-      </GlobalLayout>
+      <h1>
+        {caught.status}: {caught.statusText}
+      </h1>
+      {message}
     </Document>
   );
 }

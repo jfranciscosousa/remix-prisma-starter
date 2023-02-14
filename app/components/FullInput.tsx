@@ -1,4 +1,3 @@
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 import classNames from "classnames";
 import get from "lodash/get";
 import { ComponentPropsWithRef, forwardRef, Ref, useId } from "react";
@@ -22,16 +21,12 @@ const FullInput = forwardRef(
     }: FullInputProps,
     ref: Ref<HTMLInputElement>
   ) => {
-    const [animationParent] = useAutoAnimate<HTMLDivElement>();
     const reactId = useId();
     const id = props.id || reactId;
     const errorMessage = get(errors, name);
 
     return (
-      <div
-        className={classNames("form-control block", className)}
-        ref={animationParent}
-      >
+      <div className={classNames("form-control block", className)}>
         <label className="label" htmlFor={id}>
           <span className="label-text">{label}</span>
         </label>

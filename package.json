@@ -23,7 +23,6 @@
     "deploy": "npm run db:migrate && npm run build"
   },
   "dependencies": {
-    "@formkit/auto-animate": "1.0.0-beta.6",
     "@prisma/client": "4.10.1",
     "@remix-run/node": "^1.12.0",
     "@remix-run/react": "1.12.0",

@@ -1,4 +1,3 @@
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { Form, NavLink } from "@remix-run/react";
 import { ReactNode } from "react";
 import { UserProvider } from "~/hooks/useUser";
@@ -11,8 +10,6 @@ export default function LoggedInLayout({
   user: AuthedRouteData["user"];
   children: ReactNode;
 }) {
-  const [animationParent] = useAutoAnimate<HTMLDivElement>();
-
   return (
     <UserProvider user={user}>
       <div className="flex flex-col h-screen w-full">
@@ -42,9 +39,7 @@ export default function LoggedInLayout({
           </ul>
         </nav>
 
-        <div className="contents" ref={animationParent}>
-          {children}
-        </div>
+        <div className="contents">{children}</div>
       </div>
     </UserProvider>
   );

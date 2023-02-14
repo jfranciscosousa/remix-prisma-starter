@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgres"
-  url      = env("DATABASE_URL")
+  provider   = "postgres"
+  url        = env("DATABASE_URL")
+  directUrl  = env("MIGRATE_DATABASE_URL")
 }
 
 model Note {
