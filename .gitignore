@@ -5,8 +5,6 @@ node_modules
 build
 public/build
 api/*
-/app/tailwind.css
-/app/styles
 .env
 .env.*
 test-results/

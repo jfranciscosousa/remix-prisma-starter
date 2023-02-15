@@ -14,7 +14,7 @@ import acceptLanguage from "accept-language-parser";
 import React from "react";
 import { ToastsRenderer } from "./hooks/useToast";
 import { CLIENT_ENV_VARS } from "./lib/env.server";
-import styles from "./styles/index.css";
+import styles from "./root.css";
 
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
