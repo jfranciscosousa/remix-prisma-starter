@@ -13,8 +13,8 @@ import { DataFunctionArgs } from "@remix-run/server-runtime";
 import acceptLanguage from "accept-language-parser";
 import React from "react";
 import { ToastsRenderer } from "./hooks/useToast";
-import { CLIENT_ENV_VARS } from "./lib/env.server";
 import styles from "./root.css";
+import { CLIENT_ENV } from "./env";
 
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
@@ -37,7 +37,7 @@ function localeFromRequest(request: Request): string {
 }
 
 export const loader = async ({ request }: DataFunctionArgs) => {
-  return { locale: localeFromRequest(request), ENV: CLIENT_ENV_VARS };
+  return { locale: localeFromRequest(request), ENV: CLIENT_ENV };
 };
 
 export type RootLoaderType = Awaited<ReturnType<typeof loader>>;

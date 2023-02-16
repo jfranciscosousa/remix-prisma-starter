@@ -17,9 +17,11 @@
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\" --cache",
     "test": "dotenv -e .env.test -- bash -c 'npm run build && playwright test'",
     "test:ci": "npm run db:migrate && npm run build && playwright test",
-    "ts-check": "tsc --project tsconfig.json --noEmit --skipLibCheck",
     "prepare": "husky install",
-    "deploy": "npm run db:migrate && npm run build"
+    "deploy": "npm run db:migrate && npm run build",
+    "ts-check": "npm run validate-env && tsc --project tsconfig.json --noEmit --skipLibCheck",
+    "ts-run": "dotenv ts-node",
+    "validate-env": "npm run ts-run tasks/validateConfig.ts"
   },
   "dependencies": {
     "@prisma/client": "4.10.1",
@@ -38,7 +40,7 @@
     "react-dom": "^18.2.0",
     "react-use": "^17.4.0",
     "remix": "1.13.0",
-    "yup": "^1.0.0",
+    "zod": "^3.20.6",
     "zustand": "^4.3.3"
   },
   "devDependencies": {
@@ -48,6 +50,7 @@
     "@remix-run/dev": "1.13.0",
     "@types/accept-language-parser": "^1.5.3",
     "@types/lodash": "^4.14.191",
+    "@types/node": "^18.13.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
@@ -70,7 +73,9 @@
     "prettier": "^2.8.4",
     "prisma": "4.10.1",
     "prisma-database-cleaner": "^0.0.2",
-    "typescript": "^4.9.5"
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5",
+    "zod-error": "^1.1.1"
   },
   "engines": {
     "node": ">=14"

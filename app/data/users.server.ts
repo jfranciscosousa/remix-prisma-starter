@@ -1,18 +1,18 @@
 import { User } from "@prisma/client";
-import { InferType, object, string } from "yup";
+import z from "zod";
 import { encryptPassword, verifyPassword } from "./passwordUtils.server";
 import prisma from "./utils/prisma.server";
 import { DataResult } from "./utils/types";
 import errorsFromSchema from "./validate.server";
 
-const createUserParams = object({
-  email: string().email().required(),
-  name: string().required(),
-  password: string().required(),
-  passwordConfirmation: string().required(),
+const createUserParams = z.object({
+  email: z.string().email(),
+  name: z.string(),
+  password: z.string(),
+  passwordConfirmation: z.string(),
 });
 
-export type CreateUserParams = InferType<typeof createUserParams>;
+export type CreateUserParams = z.infer<typeof createUserParams>;
 
 export async function findUserByEmail(
   email: string
@@ -61,15 +61,15 @@ export async function createUser({
   return { data: user };
 }
 
-const updateUserParams = object({
-  email: string().email(),
-  name: string(),
-  currentPassword: string().required(),
-  newPassword: string(),
-  passwordConfirmation: string(),
+const updateUserParams = z.object({
+  email: z.string().email().optional(),
+  name: z.string().optional(),
+  currentPassword: z.string(),
+  newPassword: z.string().optional(),
+  passwordConfirmation: z.string().optional(),
 });
 
-export type UpdateUserParams = InferType<typeof updateUserParams>;
+export type UpdateUserParams = z.infer<typeof updateUserParams>;
 
 export async function updateUser(
   user: User,

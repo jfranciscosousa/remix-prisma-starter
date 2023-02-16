@@ -3,14 +3,14 @@ import prisma from "./utils/prisma.server";
 import { verifyPassword } from "./passwordUtils.server";
 import { DataResult } from "./utils/types";
 import errorsFromSchema from "./validate.server";
-import { InferType, object, string } from "yup";
+import z from "zod";
 
-const loginParams = object({
-  email: string().email().required(),
-  password: string().required(),
+const loginParams = z.object({
+  email: z.string().email(),
+  password: z.string(),
 });
 
-export type LoginParams = InferType<typeof loginParams>;
+export type LoginParams = z.infer<typeof loginParams>;
 
 // eslint-disable-next-line import/prefer-default-export
 export async function login(params: LoginParams): Promise<DataResult<User>> {

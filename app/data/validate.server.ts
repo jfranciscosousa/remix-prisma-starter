@@ -1,4 +1,4 @@
-import { ValidationError, ObjectSchema, AnyObject } from "yup";
+import z from "zod";
 
 function capitalize(string: string) {
   const lower = string.toLowerCase();
@@ -6,15 +6,15 @@ function capitalize(string: string) {
   return string.charAt(0).toUpperCase() + lower.slice(1);
 }
 
-export default function errorsFromSchema<T extends AnyObject>(
-  schema: ObjectSchema<T>,
+export default function errorsFromSchema<T extends z.ZodRawShape>(
+  schema: z.ZodObject<T>,
   value: unknown
 ): undefined | Record<string, string> {
   try {
-    schema.validateSync(value, { abortEarly: false });
+    schema.parse(value);
   } catch (error) {
     return Object.fromEntries(
-      (error as ValidationError).inner.map((errorObj) => [
+      (error as z.ZodError).issues.map((errorObj) => [
         errorObj.path,
         capitalize(errorObj.message),
       ])

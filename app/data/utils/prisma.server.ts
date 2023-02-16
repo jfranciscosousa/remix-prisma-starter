@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { PrismaClient } from "@prisma/client";
+import { SERVER_ENV } from "~/env.server";
 
 let prisma: PrismaClient;
 
@@ -10,7 +11,7 @@ declare global {
 // This is needed because in development we don't want to restart
 // the server with every change, but we want to make sure we don't
 // create a new connection to the DB with every change either.
-if (process.env.NODE_ENV === "production") {
+if (SERVER_ENV.NODE_ENV === "production") {
   prisma = new PrismaClient({
     datasources: {
       db: {
