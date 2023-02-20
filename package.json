@@ -18,8 +18,8 @@
     "test": "dotenv -e .env.test -- bash -c 'npm run build && playwright test'",
     "test:ci": "npm run db:migrate && npm run build && playwright test",
     "prepare": "husky install",
-    "deploy": "npm run db:migrate && npm run build",
-    "ts-check": "npm run validate-env && tsc --project tsconfig.json --noEmit --skipLibCheck",
+    "deploy": "npm run ts-run tasks/validateConfig.ts && npm run db:migrate && npm run build",
+    "ts-check": "tsc --project tsconfig.json --noEmit --skipLibCheck",
     "ts-run": "dotenv ts-node",
     "validate-env": "npm run ts-run tasks/validateConfig.ts"
   },
