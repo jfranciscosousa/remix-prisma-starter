@@ -2,7 +2,7 @@ import z from "zod";
 import { generateErrorMessage } from "zod-error";
 
 export const clientEnvSchema = z.object({
-  PUBLIC_EXAMPLE: z.string(),
+  PUBLIC_EXAMPLE: z.string().optional(),
 });
 
 type ConfigSchema = z.infer<typeof clientEnvSchema>;
