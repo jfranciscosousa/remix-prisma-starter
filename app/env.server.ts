@@ -4,10 +4,7 @@ import { generateErrorMessage } from "zod-error";
 export const serverEnvSchema = z.object({
   DATABASE_URL: z.string(),
   MIGRATE_DATABASE_URL: z.string().optional(),
-  SECURE_AUTH_COOKIE: z.preprocess(
-    (v) => (v === "true" ? true : false),
-    z.boolean()
-  ),
+  SECURE_AUTH_COOKIE: z.enum(["true", "false"]).transform(Boolean),
   NODE_ENV: z.enum(["development", "test", "production"]),
   SECRET_KEY_BASE: z.string(),
 });
