@@ -66,6 +66,7 @@ jobs:
       - name: Lint
         run: |
           pnpm run lint
+          pnpm run ts-check
 
       - name: E2E
         run: |
@@ -73,6 +74,8 @@ jobs:
           pnpm run build
           pnpm run test:ci
         env:
-          SECRET_KEY_BASE: supersecret42069keypleaseitsjokenoangryslavaukraini
+          SECRET_KEY_BASE: supersecret42069
           DATABASE_URL: "postgres://postgres:postgres@localhost:5432/remix-prisma-starter-test"
+          SECURE_AUTH_COOKIE: false
+          NODE_ENV: production
           PORT: 3001

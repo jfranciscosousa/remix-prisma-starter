@@ -21,7 +21,8 @@
     "deploy": "npm run ts-run tasks/validateConfig.ts && npm run db:migrate && npm run build",
     "ts-check": "tsc --project tsconfig.json --noEmit --skipLibCheck",
     "ts-run": "dotenv ts-node",
-    "validate-env": "npm run ts-run tasks/validateConfig.ts"
+    "validate-env": "npm run ts-run tasks/validateConfig.ts",
+    "ci": "npm run lint && npm run ts-check && npm run test"
   },
   "dependencies": {
     "@prisma/client": "4.10.1",
