@@ -5,7 +5,7 @@
 ## Custom things to this repo
 
 - Authentication with cookies
-- Backed by Prisma and Postgres
+- Backed by Prisma and MySQL (Planetscale)
 - Authorizing resource access
 - Locale handling with SSR
 
@@ -17,7 +17,7 @@ Just create a new `remix` project using this template with the following command
 npx create-remix@latest --template jfranciscosousa/remix-prisma-starter
 ```
 
-This will prompt you to add your Postgres database details. Make sure to use different databases for development and for testing.
+This will prompt you to add your Planetscale database details. Make sure to use different databases for development and for testing.
 
 ## Deployment
 
