@@ -23,6 +23,7 @@ specifiers:
   autoprefixer: ^10.4.13
   classnames: ^2.3.2
   daisyui: ^2.51.3
+  date-fns: ^2.29.3
   dotenv: ^16.0.3
   dotenv-cli: ^7.0.0
   eslint: ^8.35.0
@@ -63,6 +64,7 @@ dependencies:
   argon2: 0.30.3
   classnames: 2.3.2
   daisyui: 2.51.3_by5iqycgvtroytm54ytclj4zzi
+  date-fns: 2.29.3
   lodash: 4.17.21
   postcss: 8.4.21
   react: 18.2.0
@@ -3227,6 +3229,11 @@ packages:
   /data-uri-to-buffer/3.0.1:
     resolution: {integrity: sha512-WboRycPNsVw3B3TL559F7kuBUM4d8CgMEvk6xEJlOp7OBPjt6G7z8WMWlD2rOFZLk6OYfFIUGsCOWzcQH9K2og==}
     engines: {node: '>= 6'}
+
+  /date-fns/2.29.3:
+    resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
+    engines: {node: '>=0.11'}
+    dev: false
 
   /deasync/0.1.28:
     resolution: {integrity: sha512-QqLF6inIDwiATrfROIyQtwOQxjZuek13WRYZ7donU5wJPLoP67MnYxA6QtqdvdBy2mMqv5m3UefBVdJjvevOYg==}

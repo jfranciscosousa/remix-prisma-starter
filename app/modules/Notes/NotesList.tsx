@@ -2,7 +2,7 @@ import { Form } from "@remix-run/react";
 import classNames from "classnames";
 import { useEffect, useRef } from "react";
 import { usePrevious } from "react-use";
-import { useRootLoaderData } from "~/root";
+import useDates from "~/hooks/useDates";
 import { NotesRouteData } from "~/routes/__authed/notes";
 
 interface NoteProps {
@@ -11,7 +11,7 @@ interface NoteProps {
 }
 
 export default function NotesList({ notes, isLoading }: NoteProps) {
-  const { locale } = useRootLoaderData();
+  const { formatRelativeTime } = useDates();
   const previousNotesLength = usePrevious<number>(notes.length);
   const notesContainerRef = useRef<HTMLUListElement>(null);
 
@@ -43,7 +43,7 @@ export default function NotesList({ notes, isLoading }: NoteProps) {
             <p>{note.content}</p>
 
             <p className="text-xs opacity-75">
-              Created at: {new Date(note.createdAt).toLocaleString(locale)}
+              Created {formatRelativeTime(note.createdAt)} ago
             </p>
           </div>
 

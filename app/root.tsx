@@ -37,7 +37,11 @@ function localeFromRequest(request: Request): string {
 }
 
 export const loader = async ({ request }: DataFunctionArgs) => {
-  return { locale: localeFromRequest(request), ENV: CLIENT_ENV };
+  return {
+    locale: localeFromRequest(request),
+    ENV: CLIENT_ENV,
+    rootTime: new Date().toISOString(),
+  };
 };
 
 export type RootLoaderType = Awaited<ReturnType<typeof loader>>;

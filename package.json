@@ -31,6 +31,7 @@
     "argon2": "^0.30.2",
     "classnames": "^2.3.2",
     "daisyui": "^2.51.3",
+    "date-fns": "^2.29.3",
     "lodash": "^4.17.21",
     "postcss": "^8.4.21",
     "react": "^18.2.0",
