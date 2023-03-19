@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useContext } from "react";
 import { AuthedRouteData } from "~/routes/__authed";
 
-const UserContext = createContext<AuthedRouteData["user"] | null>(null);
+export const UserContext = createContext<AuthedRouteData["user"] | null>(null);
 
 export function UserProvider({
   children,

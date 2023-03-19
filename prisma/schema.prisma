@@ -18,11 +18,12 @@ model Note {
 }
 
 model User {
-  id         String        @id @default(uuid())
-  email      String        @unique
-  name       String
-  password   String
-  createdAt  DateTime      @default(now())
-  updatedAt  DateTime      @updatedAt
-  Note       Note[]
+  id            String        @id @default(uuid())
+  email         String        @unique
+  name          String
+  password      String
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  Note          Note[]
+  featureFlags  Json?
 }

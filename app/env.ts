@@ -3,6 +3,10 @@ import { generateErrorMessage } from "zod-error";
 
 export const clientEnvSchema = z.object({
   PUBLIC_EXAMPLE: z.string().optional(),
+  EXAMPLE_GLOBAL_FEATURE_FLAG: z
+    .enum(["true", "false"])
+    .optional()
+    .transform(Boolean),
 });
 
 type ConfigSchema = z.infer<typeof clientEnvSchema>;
@@ -22,6 +26,15 @@ function buildEnv(): ConfigSchema {
     return {} as ConfigSchema;
   }
 }
+
+/**
+ * If we are on a browser environment, we get the vars from the `window` object.
+ * We set this on the root.tsx file on around line 58.
+ *
+ * If we are on a server environment, we just read it from process.env.
+ *
+ * Remember that CLIENT_ENV vars can be accessed from any context.
+ */
 export const CLIENT_ENV =
   typeof window === "undefined"
     ? buildEnv()
