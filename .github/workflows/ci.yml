@@ -65,6 +65,7 @@ jobs:
 
       - name: Lint
         run: |
+          pnpm prisma generate
           pnpm lint
           pnpm ts-check
 
