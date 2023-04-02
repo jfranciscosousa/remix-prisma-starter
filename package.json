@@ -47,7 +47,7 @@
     "@playwright/test": "^1.31.2",
     "@remix-run/dev": "1.15.0",
     "@types/accept-language-parser": "^1.5.3",
-    "@types/lodash": "^4.14.191",
+    "@types/lodash": "^4.14.192",
     "@types/node": "^18.15.3",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
