@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { useEffect, useRef } from "react";
 import { usePrevious } from "react-use";
 import useDates from "~/hooks/useDates";
-import { NotesRouteData } from "~/routes/__authed/notes";
+import { NotesRouteData } from "~/routes/__authed.notes";
 
 interface NoteProps {
   notes: NotesRouteData["notes"];

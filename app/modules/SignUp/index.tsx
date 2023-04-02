@@ -1,12 +1,12 @@
 import classNames from "classnames";
-import { Form, Link, useActionData, useTransition } from "@remix-run/react";
+import { Form, Link, useActionData, useNavigation } from "@remix-run/react";
 import FullInput from "~/components/FullInput";
 
 export default function SignUp() {
   const errors = useActionData() || {};
-  const { state, submission } = useTransition();
+  const { state, formData } = useNavigation();
   const isLoading =
-    (state === "submitting" || state === "loading") && !!submission;
+    (state === "submitting" || state === "loading") && !!formData;
 
   return (
     <div className="max-w-lg w-full mx-auto h-full flex items-center justify-center">

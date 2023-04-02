@@ -1,7 +1,7 @@
 import type {
   DataFunctionArgs,
   SerializeFrom,
-  MetaFunction,
+  V2_ServerRuntimeMetaFunction,
 } from "@remix-run/server-runtime";
 import { updateUser, UpdateUserParams } from "~/data/users.server";
 import Profile from "~/modules/Profile";
@@ -20,10 +20,14 @@ export const action = async ({ request }: DataFunctionArgs) => {
   return { errors: null, success: true };
 };
 
-export const meta: MetaFunction = () => ({
-  title: "Remix Prisma Starter",
-  description: "Welcome to remix!",
-});
+export const meta: V2_ServerRuntimeMetaFunction = () => [
+  {
+    title: "Remix Prisma Starter",
+  },
+  {
+    description: "Welcome to remix!",
+  },
+];
 
 export default function ProfilePage() {
   return <Profile />;

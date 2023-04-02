@@ -3,16 +3,16 @@ import {
   Link,
   useActionData,
   useLocation,
-  useTransition,
+  useNavigation,
 } from "@remix-run/react";
 import classNames from "classnames";
 import FullInput from "~/components/FullInput";
 
 export default function Login() {
   const { errors, original } = useActionData() || {};
-  const { state, submission } = useTransition();
+  const { state, formData } = useNavigation();
   const isLoading =
-    (state === "submitting" || state === "loading") && !!submission;
+    (state === "submitting" || state === "loading") && !!formData;
   const location = useLocation();
 
   return (

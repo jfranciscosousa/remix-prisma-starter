@@ -1,7 +1,7 @@
 import type {
   ActionFunction,
   LoaderFunction,
-  MetaFunction,
+  V2_ServerRuntimeMetaFunction,
 } from "@remix-run/server-runtime";
 import { redirect } from "@remix-run/server-runtime";
 import { login, LoginParams } from "~/data/auth.server";
@@ -25,10 +25,14 @@ export const action: ActionFunction = async ({ request }) => {
   return authenticate(result.data, form.redirectUrl as string);
 };
 
-export const meta: MetaFunction = () => ({
-  title: "Remix Prisma Starter",
-  description: "Welcome to remix!",
-});
+export const meta: V2_ServerRuntimeMetaFunction = () => [
+  {
+    title: "Remix Prisma Starter",
+  },
+  {
+    description: "Welcome to remix!",
+  },
+];
 
 export default function LoginPage() {
   return <Login />;

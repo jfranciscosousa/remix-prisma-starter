@@ -1,7 +1,7 @@
 import {
   ActionFunction,
   DataFunctionArgs,
-  MetaFunction,
+  V2_ServerRuntimeMetaFunction,
   redirect,
   SerializeFrom,
 } from "@remix-run/server-runtime";
@@ -37,10 +37,14 @@ export const action: ActionFunction = async ({ request }) => {
   return redirect("/notes");
 };
 
-export const meta: MetaFunction = () => ({
-  title: "Remix Prisma Starter",
-  description: "Welcome to remix!",
-});
+export const meta: V2_ServerRuntimeMetaFunction = () => [
+  {
+    title: "Remix Prisma Starter",
+  },
+  {
+    description: "Welcome to remix!",
+  },
+];
 
 export default function NotesPage() {
   return <Notes />;

@@ -5,9 +5,10 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useCatch,
+  isRouteErrorResponse,
   useLoaderData,
   useMatches,
+  useRouteError,
 } from "@remix-run/react";
 import { DataFunctionArgs } from "@remix-run/server-runtime";
 import acceptLanguage from "accept-language-parser";
@@ -69,51 +70,25 @@ export default function App() {
   );
 }
 
-export function ErrorBoundary({ error }: { error: Error }) {
-  // This is where you would log server side errors to your error handling tool
-  console.error("Error", error);
+export function ErrorBoundary() {
+  const error = useRouteError();
 
-  return (
-    <Document title="Error!">
-      <div>
-        <h1>There was an error</h1>
-
-        <hr />
-        <p>Everything is on fire please send help</p>
-      </div>
-    </Document>
-  );
-}
-
-export function CatchBoundary() {
-  const caught = useCatch();
-
-  let message;
-  switch (caught.status) {
-    case 401:
-      message = (
-        <p>
-          Oops! Looks like you tried to visit a page that you do not have access
-          to.
-        </p>
-      );
-      break;
-    case 404:
-      message = (
-        <p>Oops! Looks like you tried to visit a page that does not exist.</p>
-      );
-      break;
-
-    default:
-      throw new Error(caught.data || caught.statusText);
+  if (isRouteErrorResponse(error)) {
+    return (
+      <Document>
+        <h1>Oops</h1>
+        <p>Status: {error.status}</p>
+        <p>{error.data.message}</p>
+      </Document>
+    );
   }
 
+  console.error(error);
+
   return (
-    <Document title={`${caught.status} ${caught.statusText}`}>
-      <h1>
-        {caught.status}: {caught.statusText}
-      </h1>
-      {message}
+    <Document>
+      <h1>Uh oh ...</h1>
+      <p>Something went wrong.</p>
     </Document>
   );
 }
