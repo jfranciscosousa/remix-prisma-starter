@@ -76,7 +76,7 @@
     "zod-error": "^1.5.0"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=v14.21.3"
   },
   "sideEffects": false,
   "lint-staged": {
