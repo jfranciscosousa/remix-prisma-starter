@@ -9,7 +9,7 @@ jobs:
 
     services:
       mysql:
-        image: mysql:8.0.32
+        image: mysql:8.0.33
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_DATABASE: remix-prisma-starter-test"
