@@ -32,6 +32,8 @@ vercel
 
 It is generally recommended to use a Git repository, because future commits will then automatically be deployed by Vercel, through its [Git Integration](https://vercel.com/docs/concepts/git).
 
+You can also deploy this to [Fly](https://fly.io). You just have to run `fly deploy --remote-only`. You can either set up a MySQL database through Fly or use something like PlanetscaleDB.
+
 ## Development
 
 To run your Remix app locally, make sure your project's local dependencies are installed:

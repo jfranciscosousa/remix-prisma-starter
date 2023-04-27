@@ -55,6 +55,9 @@ dependencies:
   zod:
     specifier: ^3.21.4
     version: 3.21.4
+  zod-error:
+    specifier: ^1.5.0
+    version: 1.5.0
   zustand:
     specifier: ^4.3.7
     version: 4.3.7(react@18.2.0)
@@ -153,9 +156,6 @@ devDependencies:
   typescript:
     specifier: ^5.0.4
     version: 5.0.4
-  zod-error:
-    specifier: ^1.5.0
-    version: 1.5.0
 
 packages:
 
@@ -8963,10 +8963,11 @@ packages:
     resolution: {integrity: sha512-zzopKZ/skI9iXpqCEPj+iLCKl9b88E43ehcU+sbRoHuwGd9F1IDVGQ70TyO6kmfiRL1g4IXkjsXK+g1gLYl4WQ==}
     dependencies:
       zod: 3.21.4
-    dev: true
+    dev: false
 
   /zod@3.21.4:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
+    dev: false
 
   /zustand@4.3.7(react@18.2.0):
     resolution: {integrity: sha512-dY8ERwB9Nd21ellgkBZFhudER8KVlelZm8388B5nDAXhO/+FZDhYMuRnqDgu5SYyRgz/iaf8RKnbUs/cHfOGlQ==}
