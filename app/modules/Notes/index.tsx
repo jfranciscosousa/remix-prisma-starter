@@ -1,4 +1,5 @@
-import { useActionData, useLoaderData, useNavigation } from "@remix-run/react";
+import { useActionData, useLoaderData } from "@remix-run/react";
+import useIsLoading from "~/hooks/useIsLoading";
 import { NotesRouteData } from "~/routes/__authed.notes";
 import NotesForm from "./NotesForm";
 import NotesList from "./NotesList";
@@ -6,9 +7,7 @@ import NotesList from "./NotesList";
 export default function Notes() {
   const { notes } = useLoaderData<NotesRouteData>();
   const errors = useActionData();
-  const navigation = useNavigation();
-  const isLoading =
-    navigation.state === "submitting" || navigation.state === "loading";
+  const isLoading = useIsLoading();
 
   return (
     <>

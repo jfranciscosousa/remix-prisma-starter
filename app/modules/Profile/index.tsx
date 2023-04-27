@@ -1,7 +1,8 @@
+import { Form, useActionData } from "@remix-run/react";
 import classNames from "classnames";
 import { useEffect } from "react";
-import { Form, useActionData, useNavigation } from "@remix-run/react";
 import FullInput from "~/components/FullInput";
+import useIsLoading from "~/hooks/useIsLoading";
 import useToast from "~/hooks/useToast";
 import useUser from "~/hooks/useUser";
 import { ProfileRouteAction } from "~/routes/__authed.profile";
@@ -9,10 +10,8 @@ import { ProfileRouteAction } from "~/routes/__authed.profile";
 export default function Profile() {
   const user = useUser();
   const actionData = useActionData<ProfileRouteAction>();
-  const { state, formData } = useNavigation();
   const { toast } = useToast();
-  const isLoading =
-    (state === "submitting" || state === "loading") && !!formData;
+  const isLoading = useIsLoading();
 
   useEffect(() => {
     if (actionData?.errors) toast("Failed to update profile!", "error");

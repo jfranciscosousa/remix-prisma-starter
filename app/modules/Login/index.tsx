@@ -1,18 +1,11 @@
-import {
-  Form,
-  Link,
-  useActionData,
-  useLocation,
-  useNavigation,
-} from "@remix-run/react";
+import { Form, Link, useActionData, useLocation } from "@remix-run/react";
 import classNames from "classnames";
 import FullInput from "~/components/FullInput";
+import useIsLoading from "~/hooks/useIsLoading";
 
 export default function Login() {
   const { errors, original } = useActionData() || {};
-  const { state, formData } = useNavigation();
-  const isLoading =
-    (state === "submitting" || state === "loading") && !!formData;
+  const isLoading = useIsLoading();
   const location = useLocation();
 
   return (
