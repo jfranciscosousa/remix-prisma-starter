@@ -5,7 +5,7 @@
 ## Custom things to this repo
 
 - Authentication with cookies
-- Backed by Prisma and MySQL (Planetscale)
+- Backed by Prisma and postgres
 - Authorizing resource access
 - Locale handling with SSR
 
@@ -17,7 +17,7 @@ Just create a new `remix` project using this template with the following command
 npx create-remix@latest --template jfranciscosousa/remix-prisma-starter
 ```
 
-This will prompt you to add your Planetscale database details. Make sure to use different databases for development and for testing.
+This will prompt you to add your postgres database details. Make sure to use different databases for development and for testing.
 
 ## Deployment
 
@@ -32,7 +32,7 @@ vercel
 
 It is generally recommended to use a Git repository, because future commits will then automatically be deployed by Vercel, through its [Git Integration](https://vercel.com/docs/concepts/git).
 
-You can also deploy this to [Fly](https://fly.io). You just have to run `fly deploy --remote-only`. You can either set up a MySQL database through Fly or use something like PlanetscaleDB.
+You can also deploy this to [Fly](https://fly.io). You just have to run `fly deploy --remote-only`.
 
 ## Development
 

@@ -1,6 +1,6 @@
 import { Prisma, PrismaClient } from "@prisma/client";
 
-// This only works for MySQL!
+// This only works for postgres!
 export async function truncateAll() {
   const client = new PrismaClient();
   const tables = getTables();
@@ -12,7 +12,9 @@ export async function truncateAll() {
 }
 
 export function truncateTable(client: PrismaClient, table: string) {
-  return client.$executeRawUnsafe(`TRUNCATE TABLE ${table};`);
+  return client.$executeRawUnsafe(
+    `TRUNCATE TABLE "${table}" RESTART IDENTITY CASCADE`
+  );
 }
 
 function getTables() {

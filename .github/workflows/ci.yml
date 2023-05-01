@@ -8,14 +8,14 @@ jobs:
     timeout-minutes: 15
 
     services:
-      mysql:
-        image: mysql:8.0.33
+      postgres:
+        image: postgres:14-alpine
         env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_DATABASE: remix-prisma-starter-test"
+          POSTGRES_DB: remix-prisma-starter-test
+          POSTGRES_PASSWORD: postgres
         ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
       - uses: actions/checkout@v3
@@ -76,7 +76,7 @@ jobs:
           pnpm test:ci
         env:
           SECRET_KEY_BASE: supersecret42069
-          DATABASE_URL: "mysql://root:@localhost:3306/remix-prisma-starter-test"
+          DATABASE_URL: "postgres://postgres:postgres@localhost:5432/remix-prisma-starter-test"
           SECURE_AUTH_COOKIE: false
           NODE_ENV: production
           PORT: 3001

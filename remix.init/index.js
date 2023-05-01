@@ -10,7 +10,7 @@ function generateSecretKeyBase() {
 
 async function main({ rootDirectory }) {
   const answers = await inquirer.prompt([
-    { name: "databaseUrl", message: "What's your planetscale database url?" },
+    { name: "databaseUrl", message: "What's your postgres database url?" },
     { name: "testDatabaseUrl", message: "What's your test database url?" },
   ]);
 
