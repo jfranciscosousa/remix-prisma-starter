@@ -17,7 +17,7 @@ async function main({ rootDirectory }) {
   fs.writeFileSync(
     path.join(rootDirectory, ".env"),
     `
-export DATABASE_URL=${answers.databaseUrl}
+export DATABASE_PRISMA_URL=${answers.databaseUrl}
 export SECRET_KEY_BASE=${generateSecretKeyBase()}
   `
   );
@@ -25,7 +25,7 @@ export SECRET_KEY_BASE=${generateSecretKeyBase()}
   fs.writeFileSync(
     path.join(rootDirectory, ".env.test"),
     `
-export DATABASE_URL=${answers.testDatabaseUrl}
+export DATABASE_PRISMA_URL=${answers.testDatabaseUrl}
 export SECRET_KEY_BASE=${generateSecretKeyBase()}
 export PORT=3001
   `
