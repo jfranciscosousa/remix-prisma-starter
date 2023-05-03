@@ -1,5 +1,5 @@
 import { Outlet } from "@remix-run/react";
-import { LoaderFunction, redirect } from "@remix-run/node";
+import { LoaderFunction, redirect } from "@vercel/remix";
 import LoggedOutLayout from "~/components/layouts/LoggedOutLayout";
 import { userFromRequest } from "~/web/auth.server";
 

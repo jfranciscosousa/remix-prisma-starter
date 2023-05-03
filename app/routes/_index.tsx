@@ -1,5 +1,3 @@
-import { LoaderFunction, redirect } from "@remix-run/node";
-
-export const config = { runtime: "edge" };
+import { LoaderFunction, redirect } from "@vercel/remix";
 
 export const loader: LoaderFunction = async () => redirect("/notes");

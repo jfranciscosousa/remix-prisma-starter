@@ -35,7 +35,8 @@
     "plugin:import/typescript",
     "plugin:react/jsx-runtime",
     "plugin:react/recommended",
-    "plugin:react-hooks/recommended"
+    "plugin:react-hooks/recommended",
+    "@remix-run/eslint-config/node"
   ],
   "rules": {
     "lodash/import-scope": [2, "method"],

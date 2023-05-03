@@ -2,7 +2,7 @@ import type {
   DataFunctionArgs,
   SerializeFrom,
   V2_MetaFunction,
-} from "@remix-run/node";
+} from "@vercel/remix";
 import { updateUser, UpdateUserParams } from "~/data/users.server";
 import Profile from "~/modules/Profile";
 import { userFromRequest } from "~/web/auth.server";

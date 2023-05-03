@@ -1,5 +1,5 @@
 import { User } from "@prisma/client";
-import { createCookie } from "@remix-run/node";
+import { createCookie } from "@vercel/remix";
 import prisma from "~/data/utils/prisma.server";
 import { SERVER_ENV } from "~/env.server";
 

@@ -2,8 +2,8 @@ import type {
   ActionFunction,
   LoaderFunction,
   V2_MetaFunction,
-} from "@remix-run/node";
-import { redirect } from "@remix-run/node";
+} from "@vercel/remix";
+import { redirect } from "@vercel/remix";
 import { login, LoginParams } from "~/data/auth.server";
 import Login from "~/modules/Login";
 import { authenticate, userFromRequest } from "~/web/auth.server";

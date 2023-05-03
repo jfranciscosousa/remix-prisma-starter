@@ -4,12 +4,10 @@ import {
   redirect,
   SerializeFrom,
   V2_MetaFunction,
-} from "@remix-run/node";
+} from "@vercel/remix";
 import { createNote, deleteNote, listNotes } from "~/data/notes.server";
 import Notes from "~/modules/Notes";
 import { userIdFromRequest } from "~/web/auth.server";
-
-export const config = { runtime: "edge" };
 
 export type NotesRouteData = SerializeFrom<typeof loader>;
 
