@@ -1,5 +1,5 @@
 import { Outlet, useLoaderData } from "@remix-run/react";
-import { DataFunctionArgs, SerializeFrom } from "@remix-run/server-runtime";
+import { DataFunctionArgs, SerializeFrom } from "@remix-run/node";
 import LoggedInLayout from "~/components/layouts/LoggedInLayout";
 import LoggedOutLayout from "~/components/layouts/LoggedOutLayout";
 import Login from "~/modules/Login";

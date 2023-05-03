@@ -1,13 +1,15 @@
 import {
   ActionFunction,
   DataFunctionArgs,
-  V2_ServerRuntimeMetaFunction,
   redirect,
   SerializeFrom,
-} from "@remix-run/server-runtime";
+  V2_MetaFunction,
+} from "@remix-run/node";
 import { createNote, deleteNote, listNotes } from "~/data/notes.server";
 import Notes from "~/modules/Notes";
 import { userIdFromRequest } from "~/web/auth.server";
+
+export const config = { runtime: "edge" };
 
 export type NotesRouteData = SerializeFrom<typeof loader>;
 
@@ -37,7 +39,7 @@ export const action: ActionFunction = async ({ request }) => {
   return redirect("/notes");
 };
 
-export const meta: V2_ServerRuntimeMetaFunction = () => [
+export const meta: V2_MetaFunction = () => [
   {
     title: "Remix Prisma Starter",
   },

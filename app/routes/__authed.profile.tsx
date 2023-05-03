@@ -1,8 +1,8 @@
 import type {
   DataFunctionArgs,
   SerializeFrom,
-  V2_ServerRuntimeMetaFunction,
-} from "@remix-run/server-runtime";
+  V2_MetaFunction,
+} from "@remix-run/node";
 import { updateUser, UpdateUserParams } from "~/data/users.server";
 import Profile from "~/modules/Profile";
 import { userFromRequest } from "~/web/auth.server";
@@ -20,7 +20,7 @@ export const action = async ({ request }: DataFunctionArgs) => {
   return { errors: null, success: true };
 };
 
-export const meta: V2_ServerRuntimeMetaFunction = () => [
+export const meta: V2_MetaFunction = () => [
   {
     title: "Remix Prisma Starter",
   },

@@ -10,7 +10,7 @@ import {
   useMatches,
   useRouteError,
 } from "@remix-run/react";
-import { DataFunctionArgs } from "@remix-run/server-runtime";
+import { DataFunctionArgs } from "@remix-run/node";
 import acceptLanguage from "accept-language-parser";
 import React from "react";
 import { ToastsRenderer } from "./hooks/useToast";
