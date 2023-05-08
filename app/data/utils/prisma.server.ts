@@ -13,6 +13,7 @@ declare global {
 // create a new connection to the DB with every change either.
 if (SERVER_ENV.NODE_ENV === "production") {
   prisma = new PrismaClient({
+    log: ["query", "info", "warn", "error"],
     datasources: {
       db: {
         url: process.env.DATABASE_PRISMA_URL,

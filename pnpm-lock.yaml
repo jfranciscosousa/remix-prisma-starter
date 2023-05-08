@@ -12,7 +12,7 @@ dependencies:
     version: 1.16.0(react-dom@18.2.0)(react@18.2.0)
   '@remix-run/vercel':
     specifier: 1.16.0
-    version: 1.16.0(@vercel/node@2.14.0)
+    version: 1.16.0(@vercel/node@2.14.1)
   '@vercel/remix':
     specifier: ^1.16.0
     version: 1.16.0(react-dom@18.2.0)(react@18.2.0)
@@ -2139,14 +2139,14 @@ packages:
       set-cookie-parser: 2.6.0
       source-map: 0.7.4
 
-  /@remix-run/vercel@1.16.0(@vercel/node@2.14.0):
+  /@remix-run/vercel@1.16.0(@vercel/node@2.14.1):
     resolution: {integrity: sha512-JkYGmASVoyykWVjui4jQS1Wv6N9koRUQR+F+A/kvo0PBj4hlHMvO1Tqq8nsp46oXn8qP3CAasu1yyjfv7ZE3DA==}
     engines: {node: '>=14'}
     peerDependencies:
       '@vercel/node': ^1.8.3 || ^2.4.0
     dependencies:
       '@remix-run/node': 1.16.0
-      '@vercel/node': 2.14.0
+      '@vercel/node': 2.14.1
     dev: false
 
   /@remix-run/web-blob@3.0.4:
@@ -2622,7 +2622,7 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
       '@typescript-eslint/types': 5.58.0
-      eslint-visitor-keys: 3.4.0
+      eslint-visitor-keys: 3.4.1
     dev: true
 
   /@typescript-eslint/visitor-keys@5.59.2:
@@ -2695,8 +2695,8 @@ packages:
     resolution: {integrity: sha512-s+f7jP2oH1koICbQ8e3K9hOpOeUct7rbCnF9qsNwXemq850wAh2e90tp9R6oYBM0BNpiLRRm+oG5zD2sCIm3HQ==}
     dev: false
 
-  /@vercel/node@2.14.0:
-    resolution: {integrity: sha512-oLahDnrotT4IzJ9dGiFt4shL6ME7rhNVQ0E4yeVH1drmwCA5aC9G+kiHaFXUFELlSqP7/mgxLqcQ5MkidOO7xA==}
+  /@vercel/node@2.14.1:
+    resolution: {integrity: sha512-9wtWyrsPNAy+UkLJvdUIFzpqAybkAmdap4nwfrgcNDQ4YsLHr+Wd11BWlHVeKL6Oqjny9N4YikEHdOEPjoIRtA==}
     dependencies:
       '@edge-runtime/vm': 2.0.0
       '@types/node': 14.18.33
@@ -2713,7 +2713,6 @@ packages:
       ts-morph: 12.0.0
       ts-node: 10.9.1(@types/node@14.18.33)(typescript@4.9.5)
       typescript: 4.9.5
-      undici: 5.22.0
       ws: 8.13.0
     transitivePeerDependencies:
       - '@swc/core'
@@ -3214,13 +3213,6 @@ packages:
     dependencies:
       run-applescript: 5.0.0
     dev: true
-
-  /busboy@1.6.0:
-    resolution: {integrity: sha512-8SFQbg/0hQ9xy3UNTB0YEnsNBbWfhf7RtnzpL7TkBiTBRfrQ9Fxcnz7VJsleJpyp6rVLvXiuORqjlHi5q+PYuA==}
-    engines: {node: '>=10.16.0'}
-    dependencies:
-      streamsearch: 1.1.0
-    dev: false
 
   /bytes@3.0.0:
     resolution: {integrity: sha512-pMhOfFDPiv9t5jjIXkHosWmkSyQbvsgEVNkz0ERHbuLh2T/7j4Mqqpz523Fe8MVY89KC6Sh/QfS2sM+SjgFDcw==}
@@ -8256,11 +8248,6 @@ packages:
   /stream-slice@0.1.2:
     resolution: {integrity: sha512-QzQxpoacatkreL6jsxnVb7X5R/pGw9OUv2qWTYWnmLpg4NdN31snPy/f3TdQE1ZUXaThRvj1Zw4/OGg0ZkaLMA==}
 
-  /streamsearch@1.1.0:
-    resolution: {integrity: sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg==}
-    engines: {node: '>=10.0.0'}
-    dev: false
-
   /string-argv@0.3.1:
     resolution: {integrity: sha512-a1uQGz7IyVy9YwhqjZIZu1c8JO8dNIe20xBmSS6qu9kv++k3JGzCVmprbNN5Kn+BgzD5E7YYwg1CcjuJMRNsvg==}
     engines: {node: '>=0.6.19'}
@@ -8759,13 +8746,6 @@ packages:
       has-symbols: 1.0.3
       which-boxed-primitive: 1.0.2
     dev: true
-
-  /undici@5.22.0:
-    resolution: {integrity: sha512-fR9RXCc+6Dxav4P9VV/sp5w3eFiSdOjJYsbtWfd4s5L5C4ogyuVpdKIVHeW0vV1MloM65/f7W45nR9ZxwVdyiA==}
-    engines: {node: '>=14.0'}
-    dependencies:
-      busboy: 1.6.0
-    dev: false
 
   /unicode-canonical-property-names-ecmascript@2.0.0:
     resolution: {integrity: sha512-yY5PpDlfVIU5+y/BSCxAJRBIS1Zc2dDG3Ujq+sR0U+JjUevW2JhocOF+soROYDSaAezOzOKuyyixhD6mBknSmQ==}
