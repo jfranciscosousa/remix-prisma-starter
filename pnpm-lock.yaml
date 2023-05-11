@@ -34,6 +34,9 @@ dependencies:
   date-fns:
     specifier: ^2.30.0
     version: 2.30.0
+  isbot:
+    specifier: latest
+    version: 3.6.10
   lodash:
     specifier: ^4.17.21
     version: 4.17.21

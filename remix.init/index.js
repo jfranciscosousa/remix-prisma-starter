@@ -17,17 +17,21 @@ async function main({ rootDirectory }) {
   fs.writeFileSync(
     path.join(rootDirectory, ".env"),
     `
-export DATABASE_PRISMA_URL=${answers.databaseUrl}
-export SECRET_KEY_BASE=${generateSecretKeyBase()}
+NODE_ENV=development
+DATABASE_PRISMA_URL=${answers.databaseUrl}
+SECRET_KEY_BASE=${generateSecretKeyBase()}
+SECURE_AUTH_COOKIE=false
   `
   );
 
   fs.writeFileSync(
     path.join(rootDirectory, ".env.test"),
     `
-export DATABASE_PRISMA_URL=${answers.testDatabaseUrl}
-export SECRET_KEY_BASE=${generateSecretKeyBase()}
-export PORT=3001
+NODE_ENV=production
+DATABASE_PRISMA_URL=${answers.testDatabaseUrl}
+SECRET_KEY_BASE=${generateSecretKeyBase()}
+SECURE_AUTH_COOKIE=false
+PORT=3001
   `
   );
 }
