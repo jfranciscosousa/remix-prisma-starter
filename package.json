@@ -48,7 +48,7 @@
     "@remix-run/dev": "^1.16.1",
     "@remix-run/eslint-config": "^1.16.1",
     "@types/accept-language-parser": "^1.5.3",
-    "@types/lodash": "^4.14.194",
+    "@types/lodash": "^4.14.195",
     "@types/node": "^18.16.3",
     "@types/react": "^18.2.7",
     "@types/react-dom": "^18.2.4",
