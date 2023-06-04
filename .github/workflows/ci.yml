@@ -60,7 +60,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pnpm i
+          pnpm i --no-frozen-lockfile
           npx playwright install
 
       - name: Lint
