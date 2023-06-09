@@ -72,7 +72,7 @@ const updateUserParams = z.object({
 export type UpdateUserParams = z.infer<typeof updateUserParams>;
 
 export async function updateUser(
-  user: User,
+  userId: string,
   {
     email,
     name,
@@ -84,6 +84,10 @@ export async function updateUser(
   if (newPassword !== passwordConfirmation) {
     return { errors: { passwordConfirmation: "Passwords do not match" } };
   }
+
+  const user = await prisma.user.findUnique({ where: { id: userId } });
+
+  if (!user) return { errors: { userid: "User not found!" } };
 
   const errors = errorsFromSchema(updateUserParams, {
     email,

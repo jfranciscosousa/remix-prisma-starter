@@ -5,15 +5,15 @@ import type {
 } from "@vercel/remix";
 import { updateUser, UpdateUserParams } from "~/data/users.server";
 import Profile from "~/modules/Profile";
-import { userFromRequest } from "~/web/auth.server";
+import { userIdFromRequest } from "~/web/auth.server";
 
 export type ProfileRouteAction = SerializeFrom<typeof action>;
 
 export const action = async ({ request }: DataFunctionArgs) => {
-  const user = await userFromRequest(request);
+  const userId = await userIdFromRequest(request);
   const form = Object.fromEntries(await request.formData());
 
-  const { errors } = await updateUser(user, form as UpdateUserParams);
+  const { errors } = await updateUser(userId, form as UpdateUserParams);
 
   if (errors) return { errors, success: false };
 

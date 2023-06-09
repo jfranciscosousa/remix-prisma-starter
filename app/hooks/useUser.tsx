@@ -8,12 +8,12 @@ export function UserProvider({
   user,
 }: {
   children: ReactNode;
-  user: AuthedRouteData["user"];
+  user: NonNullable<AuthedRouteData["user"]>;
 }) {
   return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
 }
 
-export default function useUser(): AuthedRouteData["user"] {
+export default function useUser(): NonNullable<AuthedRouteData["user"]> {
   const userContext = useContext(UserContext);
 
   if (!userContext) {

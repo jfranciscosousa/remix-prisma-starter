@@ -1,4 +1,3 @@
-import { User } from "@prisma/client";
 import { createCookie } from "@vercel/remix";
 import prisma from "~/data/utils/prisma.server";
 import { SERVER_ENV } from "~/env.server";
@@ -33,24 +32,41 @@ export async function logout() {
   });
 }
 
-export async function userFromRequest(request: Request): Promise<User> {
+export async function userIdFromRequest(request: Request) {
   const cookieHeader = request.headers.get("Cookie");
   const { userId } = (await authCookie.parse(cookieHeader)) || {};
-
-  // We can assume this as we only expect a nil value as a edge case on /app parent route
-  if (!userId) return null as unknown as User;
-
-  const user = await prisma.user.findUnique({ where: { id: userId } });
-
-  return user as User;
-}
-
-export async function userIdFromRequest(request: Request): Promise<string> {
-  const cookieHeader = request.headers.get("Cookie");
-  const { userId } = (await authCookie.parse(cookieHeader)) || {};
-
-  // We can assume this as we only expect a nil value as a edge case on /app parent route
-  if (!userId) return undefined as unknown as string;
 
   return userId;
+}
+
+type SimpleUser = {
+  id: string;
+  name: string;
+  email: string;
+  createdAt: Date;
+  updatedAt: Date;
+  featureFlags: Record<string, string>;
+};
+
+export async function userFromRequest(
+  request: Request
+): Promise<SimpleUser | null> {
+  const userId = await userIdFromRequest(request);
+
+  if (!userId) return null;
+
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      createdAt: true,
+      updatedAt: true,
+      featureFlags: true,
+    },
+  });
+
+  // Force cast the simple type of SimpleUser due to the feature flags structure
+  return user as SimpleUser;
 }

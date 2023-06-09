@@ -8,7 +8,7 @@ function InnerLoggedInLayout({
   user,
   children,
 }: {
-  user: AuthedRouteData["user"];
+  user: NonNullable<AuthedRouteData["user"]>;
   children: ReactNode;
 }) {
   const { hasFeatureFlag } = useFeatureFlags();
@@ -54,7 +54,7 @@ export default function LoggedInLayout({
   user,
   children,
 }: {
-  user: AuthedRouteData["user"];
+  user: NonNullable<AuthedRouteData["user"]>;
   children: ReactNode;
 }) {
   return (
