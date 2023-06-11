@@ -29,7 +29,7 @@
     "accept-language-parser": "^1.5.0",
     "argon2": "^0.30.3",
     "classnames": "^2.3.2",
-    "daisyui": "^3.0.20",
+    "daisyui": "^3.0.29",
     "date-fns": "^2.30.0",
     "isbot": "latest",
     "lodash": "^4.17.21",
