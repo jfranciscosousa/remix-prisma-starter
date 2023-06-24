@@ -75,7 +75,7 @@
     "typescript": "^5.1.3"
   },
   "engines": {
-    "node": ">=v18.x"
+    "node": ">=v18.16.1"
   },
   "sideEffects": false,
   "lint-staged": {
