@@ -39,18 +39,7 @@ export async function userIdFromRequest(request: Request) {
   return userId;
 }
 
-type SimpleUser = {
-  id: string;
-  name: string;
-  email: string;
-  createdAt: Date;
-  updatedAt: Date;
-  featureFlags: Record<string, string>;
-};
-
-export async function userFromRequest(
-  request: Request
-): Promise<SimpleUser | null> {
+export async function userFromRequest(request: Request) {
   const userId = await userIdFromRequest(request);
 
   if (!userId) return null;
@@ -67,6 +56,5 @@ export async function userFromRequest(
     },
   });
 
-  // Force cast the simple type of SimpleUser due to the feature flags structure
-  return user as SimpleUser;
+  return user;
 }

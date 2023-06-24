@@ -10,6 +10,20 @@ import {
   USER_TEST_PASSWORD,
 } from "./utils";
 
+function assertUserSame(user1: object, user2: object) {
+  return expect(
+    JSON.parse(JSON.stringify({ ...user1, password: null, updatedAt: null }))
+  ).toEqual(
+    JSON.parse(
+      JSON.stringify({
+        ...user2,
+        password: null,
+        updatedAt: null,
+      })
+    )
+  );
+}
+
 test("renders profile", async ({ page, screen }) => {
   const user = await createUserAndLogin(page, screen);
 
@@ -68,11 +82,7 @@ test("does not update profile if password confirmation does not match", async ({
     const updatedUser = await prisma.user.findFirstOrThrow({
       where: { email: user.email },
     });
-    expect({ ...updatedUser, password: null, updatedAt: null }).toEqual({
-      ...user,
-      password: null,
-      updatedAt: null,
-    });
+    assertUserSame(updatedUser, user);
     // Check that the old password is still valid
     expect(
       await verifyPassword(updatedUser.password, USER_TEST_PASSWORD)
@@ -95,10 +105,6 @@ test("does not update profile if password is bad", async ({ page, screen }) => {
     const updatedUser = await prisma.user.findFirstOrThrow({
       where: { email: user.email },
     });
-    expect({ ...updatedUser, password: null, updatedAt: null }).toEqual({
-      ...user,
-      password: null,
-      updatedAt: null,
-    });
+    assertUserSame(updatedUser, user);
   });
 });

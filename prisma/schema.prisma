@@ -1,11 +1,11 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["jsonProtocol"]
 }
 
 datasource db {
-  provider     = "postgres"
-  url          = env("DATABASE_PRISMA_URL")
+  provider = "postgres"
+  url      = env("DATABASE_PRISMA_URL")
 }
 
 model Note {
@@ -24,6 +24,6 @@ model User {
   password     String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
-  featureFlags Json?
+  featureFlags Json     @default("{}")
   Note         Note[]
 }

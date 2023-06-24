@@ -9,10 +9,10 @@ export const clientEnvSchema = z.object({
     .transform(Boolean),
 });
 
-type ConfigSchema = z.infer<typeof clientEnvSchema>;
+export type ClientEnv = z.infer<typeof clientEnvSchema>;
 
 /** Zod will filter all the keys not specified on the schema */
-function buildEnv(): ConfigSchema {
+function buildEnv(): ClientEnv {
   try {
     return clientEnvSchema.parse(process.env);
   } catch (error: unknown) {
@@ -23,7 +23,7 @@ function buildEnv(): ConfigSchema {
       })
     );
 
-    return {} as ConfigSchema;
+    return {} as ClientEnv;
   }
 }
 
@@ -38,4 +38,4 @@ function buildEnv(): ConfigSchema {
 export const CLIENT_ENV =
   typeof window === "undefined"
     ? buildEnv()
-    : (window as unknown as { ENV: ConfigSchema }).ENV;
+    : (window as unknown as { ENV: ClientEnv }).ENV;

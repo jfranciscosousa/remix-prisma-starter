@@ -8,10 +8,10 @@ export const serverEnvSchema = z.object({
   SECRET_KEY_BASE: z.string(),
 });
 
-type ConfigSchema = z.infer<typeof serverEnvSchema>;
+export type ServerEnv = z.infer<typeof serverEnvSchema>;
 
 /** Zod will filter all the keys not specified on the schema */
-function buildEnv(): ConfigSchema {
+function buildEnv(): ServerEnv {
   try {
     return serverEnvSchema.parse(process.env);
   } catch (error: unknown) {
@@ -22,7 +22,7 @@ function buildEnv(): ConfigSchema {
       })
     );
 
-    return {} as ConfigSchema;
+    return {} as ServerEnv;
   }
 }
 
