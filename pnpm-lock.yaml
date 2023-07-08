@@ -33,8 +33,8 @@ dependencies:
     specifier: ^2.3.2
     version: 2.3.2
   daisyui:
-    specifier: ^3.1.7
-    version: 3.1.7(ts-node@10.9.1)
+    specifier: ^3.2.1
+    version: 3.2.1(ts-node@10.9.1)
   date-fns:
     specifier: ^2.30.0
     version: 2.30.0
@@ -3632,14 +3632,13 @@ packages:
   /csstype@3.1.2:
     resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
 
-  /daisyui@3.1.7(ts-node@10.9.1):
-    resolution: {integrity: sha512-VQhaunQlB7Buo+AbE+S3i6H/eYknKEuKVHG67y7sbG58uEjeLK6n2rojG3YE7fwoOss6ldbUL8Oy0MyoJi0CHw==}
+  /daisyui@3.2.1(ts-node@10.9.1):
+    resolution: {integrity: sha512-gIqE6wiqoJt9G8+n3R/SwLeUnpNCE2eDhT73rP0yZYVaM7o6zVcakBH3aEW5RGpx3UkonPiLuvcgxRcb2lE8TA==}
     engines: {node: '>=16.9.0'}
-    peerDependencies:
-      postcss: ^8
     dependencies:
       colord: 2.9.3
       css-selector-tokenizer: 0.8.0
+      postcss: 8.4.24
       postcss-js: 4.0.1(postcss@8.4.24)
       tailwindcss: 3.3.2(ts-node@10.9.1)
     transitivePeerDependencies:
@@ -4124,7 +4123,7 @@ packages:
     resolution: {integrity: sha512-gozW2blMLJCeFpBwugLTGyvVjNoeo1knonXAcatC6bjPBZitotxdWf7Gimr25N4c0AAOo4eOUfaG82IJPDpqCA==}
     dependencies:
       debug: 3.2.7
-      is-core-module: 2.11.0
+      is-core-module: 2.12.1
       resolve: 1.22.2
     transitivePeerDependencies:
       - supports-color
