@@ -29,7 +29,7 @@
     "accept-language-parser": "^1.5.0",
     "argon2": "^0.30.3",
     "classnames": "^2.3.2",
-    "daisyui": "^3.1.7",
+    "daisyui": "^3.2.1",
     "date-fns": "^2.30.0",
     "isbot": "^3.6.12",
     "lodash": "^4.17.21",
@@ -39,7 +39,7 @@
     "remix": "1.18.1",
     "zod": "^3.21.4",
     "zod-error": "^1.5.0",
-    "zustand": "^4.3.8"
+    "zustand": "^4.3.9"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.0.2",
@@ -49,7 +49,7 @@
     "@remix-run/eslint-config": "^1.18.1",
     "@types/accept-language-parser": "^1.5.3",
     "@types/lodash": "^4.14.195",
-    "@types/node": "^20.3.3",
+    "@types/node": "^20.4.1",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
