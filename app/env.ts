@@ -20,7 +20,7 @@ function buildEnv(): ClientEnv {
     console.error(
       generateErrorMessage((error as z.ZodError).issues, {
         delimiter: { error: "\n" },
-      })
+      }),
     );
 
     return {} as ClientEnv;

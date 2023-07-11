@@ -13,7 +13,7 @@ export async function truncateAll() {
 
 export function truncateTable(client: PrismaClient, table: string) {
   return client.$executeRawUnsafe(
-    `TRUNCATE TABLE "${table}" RESTART IDENTITY CASCADE`
+    `TRUNCATE TABLE "${table}" RESTART IDENTITY CASCADE`,
   );
 }
 

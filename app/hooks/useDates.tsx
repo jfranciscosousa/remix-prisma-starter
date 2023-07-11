@@ -20,6 +20,6 @@ export default function useDates() {
       formatRelativeTime: (timestamp: string) =>
         formatRelativeTime(timestamp, rootTime),
     }),
-    [locale, rootTime]
+    [locale, rootTime],
   );
 }

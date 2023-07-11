@@ -34,6 +34,6 @@ test("deletes notes", async ({ page, screen }) => {
   screen.getAllByLabelText("Delete note").first().click();
 
   await waitFor(async () =>
-    expect(await getNotesLength()).toBe(notesCountBefore - 1)
+    expect(await getNotesLength()).toBe(notesCountBefore - 1),
   );
 });

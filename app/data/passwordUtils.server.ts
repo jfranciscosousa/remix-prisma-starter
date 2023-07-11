@@ -6,7 +6,7 @@ export async function encryptPassword(password: string): Promise<string> {
 
 export async function verifyPassword(
   hash: string,
-  password: string
+  password: string,
 ): Promise<boolean> {
   return argon.verify(hash, password);
 }

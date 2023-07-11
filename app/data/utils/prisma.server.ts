@@ -22,7 +22,7 @@ function buildClient() {
       user: {
         create({ args, query }) {
           args.data.featureFlags = UserFeatureFlagsSchema.parse(
-            args.data.featureFlags
+            args.data.featureFlags,
           );
           return query(args);
         },
@@ -36,7 +36,7 @@ function buildClient() {
         update({ args, query }) {
           if (args.data.featureFlags !== undefined) {
             args.data.featureFlags = UserFeatureFlagsSchema.parse(
-              args.data.featureFlags
+              args.data.featureFlags,
             );
           }
           return query(args);
@@ -44,18 +44,18 @@ function buildClient() {
         updateMany({ args, query }) {
           if (args.data.featureFlags !== undefined) {
             args.data.featureFlags = UserFeatureFlagsSchema.parse(
-              args.data.featureFlags
+              args.data.featureFlags,
             );
           }
           return query(args);
         },
         upsert({ args, query }) {
           args.create.featureFlags = UserFeatureFlagsSchema.parse(
-            args.create.featureFlags
+            args.create.featureFlags,
           );
           if (args.update.featureFlags !== undefined) {
             args.update.featureFlags = UserFeatureFlagsSchema.parse(
-              args.update.featureFlags
+              args.update.featureFlags,
             );
           }
           return query(args);

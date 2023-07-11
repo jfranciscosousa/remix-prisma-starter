@@ -12,15 +12,15 @@ import {
 
 function assertUserSame(user1: object, user2: object) {
   return expect(
-    JSON.parse(JSON.stringify({ ...user1, password: null, updatedAt: null }))
+    JSON.parse(JSON.stringify({ ...user1, password: null, updatedAt: null })),
   ).toEqual(
     JSON.parse(
       JSON.stringify({
         ...user2,
         password: null,
         updatedAt: null,
-      })
-    )
+      }),
+    ),
   );
 }
 
@@ -58,7 +58,7 @@ test("updates profile", async ({ page, screen }) => {
     expect(updatedUser.email).toEqual(newEmail);
     // Check that the new password is applied
     expect(
-      await verifyPassword(updatedUser.password, newPassword)
+      await verifyPassword(updatedUser.password, newPassword),
     ).toBeTruthy();
   });
 });
@@ -85,7 +85,7 @@ test("does not update profile if password confirmation does not match", async ({
     assertUserSame(updatedUser, user);
     // Check that the old password is still valid
     expect(
-      await verifyPassword(updatedUser.password, USER_TEST_PASSWORD)
+      await verifyPassword(updatedUser.password, USER_TEST_PASSWORD),
     ).toBeTruthy();
   });
 });

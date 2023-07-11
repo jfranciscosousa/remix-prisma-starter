@@ -18,7 +18,7 @@ export async function deleteNote(userId: string, id: string): Promise<boolean> {
 
 export async function createNote(
   userId: string,
-  noteParams: { content: string }
+  noteParams: { content: string },
 ) {
   return prisma.note.create({
     data: { ...noteParams, user: { connect: { id: userId } } },

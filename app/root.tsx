@@ -25,7 +25,7 @@ export function links() {
 // inject it on the app's context
 function localeFromRequest(request: Request): string {
   const languages = acceptLanguage.parse(
-    request.headers.get("Accept-Language") as string
+    request.headers.get("Accept-Language") as string,
   );
 
   // If somehow the header is empty, return a default locale

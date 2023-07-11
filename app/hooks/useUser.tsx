@@ -18,7 +18,7 @@ export default function useUser(): NonNullable<AuthedRouteData["user"]> {
 
   if (!userContext) {
     throw new Error(
-      "useCurrentUser has to be used within <CurrentUserContext.Provider>"
+      "useCurrentUser has to be used within <CurrentUserContext.Provider>",
     );
   }
 

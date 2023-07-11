@@ -19,7 +19,7 @@ function buildEnv(): ServerEnv {
     console.error(
       generateErrorMessage((error as z.ZodError).issues, {
         delimiter: { error: "\n" },
-      })
+      }),
     );
 
     return {} as ServerEnv;

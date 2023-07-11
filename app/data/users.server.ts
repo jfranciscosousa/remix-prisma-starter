@@ -15,7 +15,7 @@ const createUserParams = z.object({
 export type CreateUserParams = z.infer<typeof createUserParams>;
 
 export async function findUserByEmail(
-  email: string
+  email: string,
 ): Promise<Omit<User, "password"> | null> {
   const user = await prisma.user.findUnique({ where: { email } });
 
@@ -79,7 +79,7 @@ export async function updateUser(
     currentPassword,
     newPassword,
     passwordConfirmation,
-  }: UpdateUserParams
+  }: UpdateUserParams,
 ): Promise<DataResult<Omit<User, "password">>> {
   if (newPassword !== passwordConfirmation) {
     return { errors: { passwordConfirmation: "Passwords do not match" } };

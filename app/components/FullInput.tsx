@@ -19,7 +19,7 @@ const FullInput = forwardRef(
       inputClassName,
       ...props
     }: FullInputProps,
-    ref: Ref<HTMLInputElement>
+    ref: Ref<HTMLInputElement>,
   ) => {
     const reactId = useId();
     const id = props.id || reactId;
@@ -42,7 +42,7 @@ const FullInput = forwardRef(
         {errorMessage && <p className="pt-4 text-red-500">{errorMessage}</p>}
       </div>
     );
-  }
+  },
 );
 
 FullInput.displayName = "FullInput";

@@ -8,7 +8,7 @@ function capitalize(string: string) {
 
 export default function errorsFromSchema<T extends z.ZodRawShape>(
   schema: z.ZodObject<T>,
-  value: unknown
+  value: unknown,
 ): undefined | Record<string, string> {
   try {
     schema.parse(value);
@@ -17,7 +17,7 @@ export default function errorsFromSchema<T extends z.ZodRawShape>(
       (error as z.ZodError).issues.map((errorObj) => [
         errorObj.path,
         capitalize(errorObj.message),
-      ])
+      ]),
     );
   }
 }

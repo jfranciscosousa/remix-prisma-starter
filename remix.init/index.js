@@ -21,7 +21,7 @@ NODE_ENV=development
 DATABASE_PRISMA_URL=${answers.databaseUrl}
 SECRET_KEY_BASE=${generateSecretKeyBase()}
 SECURE_AUTH_COOKIE=false
-  `
+  `,
   );
 
   fs.writeFileSync(
@@ -32,7 +32,7 @@ DATABASE_PRISMA_URL=${answers.testDatabaseUrl}
 SECRET_KEY_BASE=${generateSecretKeyBase()}
 SECURE_AUTH_COOKIE=false
 PORT=3001
-  `
+  `,
   );
 }
 

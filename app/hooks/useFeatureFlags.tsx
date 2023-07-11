@@ -15,6 +15,6 @@ export default function useFeatureFlags() {
       hasFeatureFlag: (flag: keyof UserFeatureFlags): boolean =>
         !!userContext?.featureFlags?.[flag],
     }),
-    [userContext?.featureFlags]
+    [userContext?.featureFlags],
   );
 }
