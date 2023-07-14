@@ -1,7 +1,7 @@
 import { Form } from "@remix-run/react";
-import classNames from "classnames";
 import { useEffect, useRef } from "react";
 import { usePrevious } from "react-use";
+import Button from "~/components/Button";
 import FullInput from "~/components/FullInput";
 
 interface NotesInputProps {
@@ -39,17 +39,15 @@ export default function NotesForm({ isLoading, errors }: NotesInputProps) {
           disabled={isLoading}
         />
 
-        <button
+        <Button
           type="submit"
-          className={classNames("btn btn-primary w-[120px]", {
-            loading: isLoading,
-          })}
-          disabled={isLoading}
+          isLoading={isLoading}
           name="_action"
           value="create"
+          className="w-[120px]"
         >
-          {!isLoading && "Submit"}
-        </button>
+          Submit
+        </Button>
       </div>
     </Form>
   );

@@ -1,13 +1,13 @@
+import { Form, useActionData } from "@remix-run/react";
 import type {
   DataFunctionArgs,
   SerializeFrom,
   V2_MetaFunction,
 } from "@vercel/remix";
-import { UpdateUserParams, updateUser } from "~/data/users/users.server";
-import { Form, useActionData } from "@remix-run/react";
-import classNames from "classnames";
 import { useEffect } from "react";
+import Button from "~/components/Button";
 import FullInput from "~/components/FullInput";
+import { UpdateUserParams, updateUser } from "~/data/users/users.server";
 import useIsLoading from "~/hooks/useIsLoading";
 import useToast from "~/hooks/useToast";
 import useUser from "~/hooks/useUser";
@@ -100,15 +100,9 @@ export default function Profile() {
           className="pb-4"
         />
 
-        <button
-          type="submit"
-          className={classNames("btn btn-primary", {
-            loading: isLoading,
-          })}
-          disabled={isLoading}
-        >
-          {!isLoading && "Update profile"}
-        </button>
+        <Button type="submit" isLoading={isLoading}>
+          Update profile
+        </Button>
       </Form>
     </div>
   );

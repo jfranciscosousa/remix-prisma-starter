@@ -1,6 +1,6 @@
 import { Form, useActionData } from "@remix-run/react";
-import classNames from "classnames";
 import { useEffect } from "react";
+import Button from "~/components/Button";
 import FullInput from "~/components/FullInput";
 import useIsLoading from "~/hooks/useIsLoading";
 import useToast from "~/hooks/useToast";
@@ -72,15 +72,9 @@ export default function Profile() {
           className="pb-4"
         />
 
-        <button
-          type="submit"
-          className={classNames("btn btn-primary", {
-            loading: isLoading,
-          })}
-          disabled={isLoading}
-        >
-          {!isLoading && "Update profile"}
-        </button>
+        <Button type="submit" isLoading={isLoading}>
+          Update profile
+        </Button>
       </Form>
     </div>
   );

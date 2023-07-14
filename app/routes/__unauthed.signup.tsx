@@ -1,7 +1,7 @@
 import { Form, Link, useActionData } from "@remix-run/react";
 import type { DataFunctionArgs, V2_MetaFunction } from "@vercel/remix";
 import { redirect } from "@vercel/remix";
-import classNames from "classnames";
+import Button from "~/components/Button";
 import FullInput from "~/components/FullInput";
 import { createUser } from "~/data/users/users.server";
 import { GenericDataError } from "~/data/utils/types";
@@ -89,15 +89,9 @@ export default function SignUp() {
           className="pb-4"
         />
 
-        <button
-          type="submit"
-          className={classNames("btn btn-primary mt-8", {
-            loading: isLoading,
-          })}
-          disabled={isLoading}
-        >
-          {!isLoading && "Sign up"}
-        </button>
+        <Button type="submit" className="mt-8" isLoading={isLoading}>
+          Sign up
+        </Button>
 
         <Link to="/login" className="link text-center">
           Or login instead

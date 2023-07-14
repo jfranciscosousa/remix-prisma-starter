@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import useFeatureFlags from "~/hooks/useFeatureFlags";
 import { UserProvider } from "~/hooks/useUser";
 import { AuthedRouteData } from "~/routes/__authed";
+import Button from "../Button";
 
 function InnerLoggedInLayout({
   user,
@@ -37,9 +38,9 @@ function InnerLoggedInLayout({
 
           <li>
             <Form method="post" action="/logout">
-              <button type="submit" className="btn btn-secondary">
+              <Button type="submit" variant="secondary">
                 Logout
-              </button>
+              </Button>
             </Form>
           </li>
         </ul>

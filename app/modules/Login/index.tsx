@@ -1,5 +1,5 @@
 import { Form, Link, useActionData, useLocation } from "@remix-run/react";
-import classNames from "classnames";
+import Button from "~/components/Button";
 import FullInput from "~/components/FullInput";
 import useIsLoading from "~/hooks/useIsLoading";
 
@@ -44,15 +44,9 @@ export default function Login() {
           defaultValue={location.pathname + location.search}
         />
 
-        <button
-          type="submit"
-          className={classNames("btn btn-primary", {
-            loading: isLoading,
-          })}
-          disabled={isLoading}
-        >
-          {!isLoading && "Login"}
-        </button>
+        <Button type="submit" isLoading={isLoading}>
+          Login
+        </Button>
 
         <Link to="/signup" className="link text-center">
           Or sign up instead
