@@ -1,12 +1,15 @@
+import { useActionData, useLoaderData } from "@remix-run/react";
 import {
   ActionFunction,
   DataFunctionArgs,
-  redirect,
   SerializeFrom,
   V2_MetaFunction,
+  redirect,
 } from "@vercel/remix";
 import { createNote, deleteNote, listNotes } from "~/data/notes.server";
-import Notes from "~/modules/Notes";
+import useIsLoading from "~/hooks/useIsLoading";
+import NotesForm from "~/modules/Notes/NotesForm";
+import NotesList from "~/modules/Notes/NotesList";
 import { userIdFromRequest } from "~/web/auth.server";
 
 export type NotesRouteData = SerializeFrom<typeof loader>;
@@ -47,5 +50,19 @@ export const meta: V2_MetaFunction = () => [
 ];
 
 export default function NotesPage() {
-  return <Notes />;
+  const { notes } = useLoaderData<NotesRouteData>();
+  const errors = useActionData();
+  const isLoading = useIsLoading();
+
+  return (
+    <>
+      <main className="max-w-xl w-full mx-auto flex-grow overflow-hidden">
+        <NotesList notes={notes} isLoading={isLoading} />
+      </main>
+
+      <div className="shrink-0 max-w-xl w-full mx-auto py-8">
+        <NotesForm isLoading={isLoading} errors={errors} />
+      </div>
+    </>
+  );
 }

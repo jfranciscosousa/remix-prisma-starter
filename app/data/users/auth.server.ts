@@ -1,8 +1,8 @@
 import { User } from "@prisma/client";
-import prisma from "./utils/prisma.server";
+import prisma from "../utils/prisma.server";
 import { verifyPassword } from "./passwordUtils.server";
-import { DataResult } from "./utils/types";
-import errorsFromSchema from "./validate.server";
+import { DataResult } from "../utils/types";
+import errorsFromSchema from "../utils/errorsFromSchema.server";
 import z from "zod";
 
 const loginParams = z.object({

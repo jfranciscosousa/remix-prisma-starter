@@ -1,9 +1,9 @@
 import { User } from "@prisma/client";
 import z from "zod";
 import { encryptPassword, verifyPassword } from "./passwordUtils.server";
-import prisma from "./utils/prisma.server";
-import { DataResult } from "./utils/types";
-import errorsFromSchema from "./validate.server";
+import prisma from "../utils/prisma.server";
+import { DataResult } from "../utils/types";
+import errorsFromSchema from "../utils/errorsFromSchema.server";
 
 const createUserParams = z.object({
   email: z.string().email(),

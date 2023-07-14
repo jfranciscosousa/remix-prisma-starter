@@ -4,7 +4,7 @@ import type {
   V2_MetaFunction,
 } from "@vercel/remix";
 import { redirect } from "@vercel/remix";
-import { login, LoginParams } from "~/data/auth.server";
+import { login, LoginParams } from "~/data/users/auth.server";
 import Login from "~/modules/Login";
 import { authenticate, userFromRequest } from "~/web/auth.server";
 
