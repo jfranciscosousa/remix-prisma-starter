@@ -44,7 +44,7 @@
   "devDependencies": {
     "@faker-js/faker": "^8.0.2",
     "@playwright-testing-library/test": "^4.5.0",
-    "@playwright/test": "^1.36.0",
+    "@playwright/test": "^1.36.1",
     "@remix-run/dev": "^1.18.1",
     "@remix-run/eslint-config": "^1.18.1",
     "@types/accept-language-parser": "^1.5.3",
