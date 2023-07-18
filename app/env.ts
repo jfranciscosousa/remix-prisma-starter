@@ -6,7 +6,7 @@ export const clientEnvSchema = z.object({
   EXAMPLE_GLOBAL_FEATURE_FLAG: z
     .enum(["true", "false"])
     .optional()
-    .transform(Boolean),
+    .transform((v) => v === "true"),
 });
 
 export type ClientEnv = z.infer<typeof clientEnvSchema>;
