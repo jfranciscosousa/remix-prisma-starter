@@ -14,6 +14,11 @@ async function createNote(screen: Screen) {
   return note;
 }
 
+async function getNotesLength(screen: Screen) {
+  return (await screen.queryAllByLabelText("Delete note").allTextContents())
+    .length;
+}
+
 test("creates notes", async ({ page, screen }) => {
   await createUserAndLogin(page, screen);
 
@@ -23,17 +28,24 @@ test("creates notes", async ({ page, screen }) => {
 });
 
 test("deletes notes", async ({ page, screen }) => {
-  async function getNotesLength() {
-    return (await screen.queryAllByLabelText("Delete note").allTextContents())
-      .length;
-  }
   await createUserAndLogin(page, screen);
   await createNote(screen);
 
-  const notesCountBefore = await getNotesLength();
+  const notesCountBefore = await getNotesLength(screen);
   screen.getAllByLabelText("Delete note").first().click();
 
   await waitFor(async () =>
-    expect(await getNotesLength()).toBe(notesCountBefore - 1),
+    expect(await getNotesLength(screen)).toBe(notesCountBefore - 1),
   );
+});
+
+test("deletes all notes", async ({ page, screen }) => {
+  await createUserAndLogin(page, screen);
+  await createNote(screen);
+  await createNote(screen);
+  await createNote(screen);
+
+  screen.getAllByLabelText("Delete all notes").first().click();
+
+  await waitFor(async () => expect(await getNotesLength(screen)).toBe(0));
 });

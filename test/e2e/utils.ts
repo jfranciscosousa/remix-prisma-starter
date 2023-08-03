@@ -11,12 +11,16 @@ import { truncateAll } from "../truncateAll";
 export const USER_TEST_PASSWORD = "foobar";
 
 export const test = base.extend<TestingLibraryFixtures>(fixtures);
-// Clear database before running tests
-test.beforeAll(truncateAll);
+
+/**
+ * Let's truncate the database before all tests, for a fresh run.
+ *
+ * We can't do it beforeEach because playwright runs tests in parallel.
+ * We could change it, but it would make testing very slow.
+ */
+test.beforeEach(truncateAll);
 
 export const expect = test.expect;
-
-export const BUILD_URL = (url = "/") => `http://localhost:3001${url}`;
 
 export async function createUserAndLogin(page: Page, screen: Screen) {
   const password = USER_TEST_PASSWORD;
@@ -29,7 +33,7 @@ export async function createUserAndLogin(page: Page, screen: Screen) {
 
   if (!data) throw errors;
 
-  await page.goto(BUILD_URL());
+  await page.goto("/");
 
   await screen.getByLabelText("Email").fill(data.email);
   await screen.getByLabelText("Password").fill(password);
