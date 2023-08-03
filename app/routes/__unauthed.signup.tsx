@@ -3,7 +3,7 @@ import type { DataFunctionArgs, V2_MetaFunction } from "@vercel/remix";
 import { redirect } from "@vercel/remix";
 import Button from "~/components/Button";
 import FullInput from "~/components/FullInput";
-import { createUser } from "~/data/users/users.server";
+import { createUser } from "~/data/users.server";
 import { GenericDataError } from "~/data/utils/types";
 import useIsLoading from "~/hooks/useIsLoading";
 import { authenticate, userFromRequest } from "~/web/auth.server";

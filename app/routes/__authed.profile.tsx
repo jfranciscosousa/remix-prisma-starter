@@ -7,7 +7,7 @@ import type {
 import { useEffect } from "react";
 import Button from "~/components/Button";
 import FullInput from "~/components/FullInput";
-import { UpdateUserParams, updateUser } from "~/data/users/users.server";
+import { UpdateUserParams, updateUser } from "~/data/users.server";
 import useIsLoading from "~/hooks/useIsLoading";
 import useToast from "~/hooks/useToast";
 import useUser from "~/hooks/useUser";
