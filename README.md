@@ -1,6 +1,8 @@
 # Welcome to Remix!
 
 - [Remix Docs](https://remix.run/docs)
+- [Fly deployment](https://remix-prisma-starter.fly.dev/)
+- [Vercel deployment](https://remix-prisma-starter.vercel.app/)
 
 ## Custom things to this repo
 
@@ -32,7 +34,7 @@ vercel
 
 It is generally recommended to use a Git repository, because future commits will then automatically be deployed by Vercel, through its [Git Integration](https://vercel.com/docs/concepts/git).
 
-You can also deploy this to [Fly](https://fly.io). You just have to run `fly deploy --remote-only`.
+You can also deploy this to [Fly](https://fly.io). You just have to run `fly deploy --remote-only`. This template already has a Github action that does that for you, you just need to setup a `FLY_API_TOKEN` for your Github repo.
 
 ## Development
 
@@ -42,7 +44,7 @@ To run your Remix app locally, make sure your project's local dependencies are i
 npm i
 ```
 
-Afterwards, start the Remix development server like so:
+Afterward, start the Remix development server like so:
 
 ```sh
 npm run dev
@@ -50,7 +52,6 @@ npm run dev
 
 Open up [http://localhost:3000](http://localhost:3000) and you should be ready to go!
 
-If you're used to using the `vercel dev` command provided by [Vercel CLI](https://vercel.com/cli) instead, you can also use that, but it's not needed.
 
 ## Testing
 
@@ -58,7 +59,7 @@ This template repo has `playwright` setup with `react-testing-library` utilities
 
 It loads up `.env.test` file config, so it uses a different database and a different dev server port for the E2E tests.
 
-Each testing run drops and resets the database so we can ensure non-flaky tests every time.
+All tests are run in sync by a single worker so we can safely reset the database before each test starts.
 
 Before running `npm run dev test` for the first time, make sure to run these commands:
 - `npx playwright install`
