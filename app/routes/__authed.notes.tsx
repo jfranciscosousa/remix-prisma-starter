@@ -6,8 +6,14 @@ import {
   V2_MetaFunction,
   redirect,
 } from "@vercel/remix";
-import { createNote, deleteNote, listNotes } from "~/data/notes.server";
+import {
+  createNote,
+  deleteAllNotes,
+  deleteNote,
+  listNotes,
+} from "~/data/notes.server";
 import useIsLoading from "~/hooks/useIsLoading";
+import NotesDeleteAll from "~/modules/Notes/NotesDeleteAll";
 import NotesForm from "~/modules/Notes/NotesForm";
 import NotesList from "~/modules/Notes/NotesList";
 import { userIdFromRequest } from "~/web/auth.server";
@@ -35,6 +41,10 @@ export const action: ActionFunction = async ({ request }) => {
     case "delete":
       await deleteNote(userId, form.id as string);
       break;
+
+    case "delete-all":
+      await deleteAllNotes(userId);
+      break;
   }
 
   return redirect("/notes");
@@ -61,6 +71,8 @@ export default function NotesPage() {
       </main>
 
       <div className="shrink-0 max-w-xl w-full mx-auto py-8">
+        <NotesDeleteAll />
+
         <NotesForm isLoading={isLoading} errors={errors} />
       </div>
     </>

@@ -10,10 +10,12 @@ export async function listNotes(userId: string): Promise<Note[]> {
   });
 }
 
-export async function deleteNote(userId: string, id: string): Promise<boolean> {
-  return (
-    (await prisma.note.deleteMany({ where: { id, userId: userId } })).count > 1
-  );
+export async function deleteNote(userId: string, id: string): Promise<void> {
+  await prisma.note.deleteMany({ where: { id, userId: userId } });
+}
+
+export async function deleteAllNotes(userId: string): Promise<void> {
+  await prisma.note.deleteMany({ where: { userId: userId } });
 }
 
 export async function createNote(
