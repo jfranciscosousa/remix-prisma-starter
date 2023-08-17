@@ -60,8 +60,8 @@ dependencies:
     specifier: ^17.4.0
     version: 17.4.0(react-dom@18.2.0)(react@18.2.0)
   remix:
-    specifier: 1.19.1
-    version: 1.19.1
+    specifier: 1.19.3
+    version: 1.19.3
   zod:
     specifier: ^3.21.4
     version: 3.21.4
@@ -8339,8 +8339,8 @@ packages:
       unified: 10.1.2
     dev: true
 
-  /remix@1.19.1:
-    resolution: {integrity: sha512-KEKO2UTM7kpkB809pSp5mp9ADfE5RXPtzmTZXwRLQYgguIYAc11JSV01xAZabI4AsMVE6hMT1NBLqZ9GxCJcmA==}
+  /remix@1.19.3:
+    resolution: {integrity: sha512-r6zA1NFWgzKof2XZPyKr5C6MINrSEhehcA8+M9vaAGwIAB3FTm4dd37PM8ojPDPhZ2QCVN0ZvsipP+0Vkw3wdQ==}
     engines: {node: '>=14.0.0'}
     dev: false
 
