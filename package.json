@@ -41,7 +41,7 @@
     "remix": "1.19.3",
     "zod": "^3.21.4",
     "zod-error": "^1.5.0",
-    "zustand": "^4.4.0"
+    "zustand": "^4.4.1"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.0.2",
