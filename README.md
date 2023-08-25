@@ -10,6 +10,7 @@
 - Backed by Prisma and postgres
 - Authorizing resource access
 - Locale handling with SSR
+- UI components via [shadcnui](https://ui.shadcn.com/)
 
 ## Quickstart
 

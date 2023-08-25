@@ -3,7 +3,7 @@ import { DataFunctionArgs, SerializeFrom } from "@vercel/remix";
 import LoggedInLayout from "~/components/layouts/LoggedInLayout";
 import LoggedOutLayout from "~/components/layouts/LoggedOutLayout";
 import Login from "~/modules/Login";
-import { userFromRequest } from "~/web/auth.server";
+import { userFromRequest } from "~/server/auth.server";
 
 export type AuthedRouteData = SerializeFrom<typeof loader>;
 

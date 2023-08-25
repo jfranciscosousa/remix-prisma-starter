@@ -1,6 +1,8 @@
-import classNames from "classnames";
 import get from "lodash/get";
 import { ComponentPropsWithRef, forwardRef, Ref, useId } from "react";
+import { Input } from "./input";
+import { Label } from "./label";
+import { cn } from "~/utils";
 
 export interface FullInputProps extends ComponentPropsWithRef<"input"> {
   label: string;
@@ -26,16 +28,14 @@ const FullInput = forwardRef(
     const errorMessage = get(errors, name);
 
     return (
-      <div className={classNames("form-control block", className)}>
-        <label className="label" htmlFor={id}>
-          <span className="label-text">{label}</span>
-        </label>
+      <div className={cn("flex flex-col gap-2", className)}>
+        <Label htmlFor={id}>{label}</Label>
 
-        <input
+        <Input
           ref={ref}
           id={id}
           name={name}
-          className={classNames("input w-full", inputClassName)}
+          className={cn("input w-full", inputClassName)}
           {...props}
         />
 
@@ -47,4 +47,4 @@ const FullInput = forwardRef(
 
 FullInput.displayName = "FullInput";
 
-export default FullInput;
+export { FullInput };

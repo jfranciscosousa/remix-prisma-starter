@@ -1,6 +1,6 @@
 // learn more: https://fly.io/docs/reference/configuration/#services-http_checks
 import type { LoaderArgs } from "@vercel/remix";
-import prisma from "~/data/utils/prisma.server";
+import prisma from "~/server/utils/prisma.server";
 
 export const loader = async ({ request }: LoaderArgs) => {
   const host =

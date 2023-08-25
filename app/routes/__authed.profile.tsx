@@ -5,13 +5,14 @@ import type {
   V2_MetaFunction,
 } from "@vercel/remix";
 import { useEffect } from "react";
-import Button from "~/components/Button";
-import FullInput from "~/components/FullInput";
-import { UpdateUserParams, updateUser } from "~/data/users.server";
+import { Button } from "~/components/ui/button";
+import { FullInput } from "~/components/ui/full-input";
+import { UpdateUserParams, updateUser } from "~/server/users.server";
 import useIsLoading from "~/hooks/useIsLoading";
 import useToast from "~/hooks/useToast";
 import useUser from "~/hooks/useUser";
-import { userIdFromRequest } from "~/web/auth.server";
+import { userIdFromRequest } from "~/server/auth.server";
+import { Card, CardTitle } from "~/components/ui/card";
 
 export type ProfileRouteAction = SerializeFrom<typeof action>;
 
@@ -47,12 +48,9 @@ export default function Profile() {
   }, [actionData, toast]);
 
   return (
-    <div className="max-w-lg w-full mx-auto flex items-center justify-center">
-      <Form
-        method="post"
-        className="p-10 card bg-base-200 w-full flex flex-col space-y-4"
-      >
-        <h1 className="text-xl text-center">Edit your profile</h1>
+    <Card className="max-w-lg w-full mx-auto flex items-center justify-center">
+      <Form method="post" className="p-10 w-full flex flex-col space-y-4">
+        <CardTitle className="mb-8">Edit your profile</CardTitle>
 
         <FullInput
           label="Email"
@@ -104,6 +102,6 @@ export default function Profile() {
           Update profile
         </Button>
       </Form>
-    </div>
+    </Card>
   );
 }

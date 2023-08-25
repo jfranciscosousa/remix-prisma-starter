@@ -1,5 +1,5 @@
 import { createCookie, redirect } from "@vercel/remix";
-import prisma from "~/data/utils/prisma.server";
+import prisma from "~/server/utils/prisma.server";
 import { SERVER_ENV } from "~/env.server";
 
 const authCookie = createCookie("auth", {

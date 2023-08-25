@@ -11,12 +11,12 @@ import {
   deleteAllNotes,
   deleteNote,
   listNotes,
-} from "~/data/notes.server";
+} from "~/server/notes.server";
 import useIsLoading from "~/hooks/useIsLoading";
 import NotesDeleteAll from "~/modules/Notes/NotesDeleteAll";
 import NotesForm from "~/modules/Notes/NotesForm";
 import NotesList from "~/modules/Notes/NotesList";
-import { userIdFromRequest } from "~/web/auth.server";
+import { userIdFromRequest } from "~/server/auth.server";
 
 export type NotesRouteData = SerializeFrom<typeof loader>;
 

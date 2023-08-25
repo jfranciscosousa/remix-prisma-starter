@@ -1,12 +1,13 @@
 import { Form, Link, useActionData } from "@remix-run/react";
 import type { DataFunctionArgs, V2_MetaFunction } from "@vercel/remix";
 import { redirect } from "@vercel/remix";
-import Button from "~/components/Button";
-import FullInput from "~/components/FullInput";
-import { createUser } from "~/data/users.server";
-import { GenericDataError } from "~/data/utils/types";
+import { Button } from "~/components/ui/button";
+import { FullInput } from "~/components/ui/full-input";
+import { createUser } from "~/server/users.server";
+import { GenericDataError } from "~/server/utils/types";
 import useIsLoading from "~/hooks/useIsLoading";
-import { authenticate, userFromRequest } from "~/web/auth.server";
+import { authenticate, userFromRequest } from "~/server/auth.server";
+import { Card, CardTitle } from "~/components/ui/card";
 
 export const loader = async ({ request }: DataFunctionArgs) => {
   const user = await userFromRequest(request);
@@ -44,13 +45,13 @@ export default function SignUp() {
   const isLoading = useIsLoading();
 
   return (
-    <div className="max-w-lg w-full mx-auto h-full flex items-center justify-center">
+    <Card className="max-w-lg w-full mx-auto flex items-center justify-center">
       <Form
         method="post"
         action="/signup"
-        className="p-10 card bg-base-200 w-full flex flex-col space-y-4"
+        className="p-10 w-full flex flex-col space-y-4"
       >
-        <h1 className="text-xl text-center">Please sign up</h1>
+        <CardTitle className="mb-8">Please sign up</CardTitle>
 
         <FullInput
           label="Email"
@@ -97,6 +98,6 @@ export default function SignUp() {
           Or login instead
         </Link>
       </Form>
-    </div>
+    </Card>
   );
 }

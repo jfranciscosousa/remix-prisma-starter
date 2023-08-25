@@ -1,8 +1,8 @@
 import { Form } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 import { usePrevious } from "react-use";
-import Button from "~/components/Button";
-import FullInput from "~/components/FullInput";
+import { Button } from "~/components/ui/button";
+import { FullInput } from "~/components/ui/full-input";
 
 interface NotesInputProps {
   isLoading: boolean;

@@ -1,6 +1,7 @@
 import { Form, Link, useActionData, useLocation } from "@remix-run/react";
-import Button from "~/components/Button";
-import FullInput from "~/components/FullInput";
+import { Button } from "~/components/ui/button";
+import { Card, CardTitle } from "~/components/ui/card";
+import { FullInput } from "~/components/ui/full-input";
 import useIsLoading from "~/hooks/useIsLoading";
 
 export default function Login() {
@@ -9,13 +10,13 @@ export default function Login() {
   const location = useLocation();
 
   return (
-    <div className="max-w-lg w-full mx-auto h-full flex items-center justify-center">
+    <Card className="max-w-lg w-full mx-auto flex items-center justify-center">
       <Form
         method="post"
         action="/login"
-        className="p-10 card bg-base-200 w-full flex flex-col space-y-4"
+        className="p-10 w-full flex flex-col space-y-4"
       >
-        <h1 className="text-xl text-center">Please login</h1>
+        <CardTitle className="mb-8">Please login</CardTitle>
 
         <FullInput
           label="Email"
@@ -52,6 +53,6 @@ export default function Login() {
           Or sign up instead
         </Link>
       </Form>
-    </div>
+    </Card>
   );
 }

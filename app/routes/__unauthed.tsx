@@ -1,7 +1,7 @@
 import { Outlet } from "@remix-run/react";
 import { LoaderFunction, redirect } from "@vercel/remix";
 import LoggedOutLayout from "~/components/layouts/LoggedOutLayout";
-import { userFromRequest } from "~/web/auth.server";
+import { userFromRequest } from "~/server/auth.server";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await userFromRequest(request);

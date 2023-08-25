@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import useFeatureFlags from "~/hooks/useFeatureFlags";
 import { UserProvider } from "~/hooks/useUser";
 import { AuthedRouteData } from "~/routes/__authed";
-import Button from "../Button";
+import { Button } from "../ui/button";
 
 function InnerLoggedInLayout({
   user,
@@ -15,7 +15,7 @@ function InnerLoggedInLayout({
   const { hasFeatureFlag } = useFeatureFlags();
 
   return (
-    <div className="flex flex-col h-screen w-full">
+    <div className="flex flex-col h-screen w-full px-12">
       <nav className="max-w-6xl mx-auto flex w-full justify-between shrink-0 py-8">
         {hasFeatureFlag("EXAMPLE_FEATURE_FLAG") ? (
           <p>Special welcome, {user.name}!</p>
@@ -38,7 +38,7 @@ function InnerLoggedInLayout({
 
           <li>
             <Form method="post" action="/logout">
-              <Button type="submit" variant="secondary">
+              <Button type="submit" variant="destructive">
                 Logout
               </Button>
             </Form>

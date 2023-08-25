@@ -1,4 +1,4 @@
 import { ActionFunction } from "@vercel/remix";
-import { logout } from "~/web/auth.server";
+import { logout } from "~/server/auth.server";
 
 export const action: ActionFunction = async () => logout();
