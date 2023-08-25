@@ -30,7 +30,7 @@
     "accept-language-parser": "^1.5.0",
     "argon2": "^0.31.0",
     "classnames": "^2.3.2",
-    "daisyui": "^3.5.1",
+    "daisyui": "^3.6.1",
     "date-fns": "^2.30.0",
     "isbot": "^3.6.13",
     "lodash": "^4.17.21",
