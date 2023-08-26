@@ -12,10 +12,12 @@ import {
 } from "@remix-run/react";
 import { DataFunctionArgs } from "@vercel/remix";
 import acceptLanguage from "accept-language-parser";
-import React from "react";
+import React, { useEffect } from "react";
 import { ToastsRenderer } from "./hooks/useToast";
 import styles from "./root.css";
 import { CLIENT_ENV } from "./env";
+import { getCurrentTheme } from "./server/theme.server";
+import { cn } from "./utils";
 
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
@@ -42,6 +44,7 @@ export const loader = async ({ request }: DataFunctionArgs) => {
     locale: localeFromRequest(request),
     ENV: CLIENT_ENV,
     rootTime: new Date().toISOString(),
+    currentTheme: await getCurrentTheme(request),
   };
 };
 
@@ -51,15 +54,40 @@ export function useRootLoaderData(): RootLoaderType {
   return useMatches()[0].data;
 }
 
+function applySystemTheme() {
+  const theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+  const cl = document.documentElement.classList;
+
+  cl.add(theme);
+}
+
+const applySystemThemeString = `
+  const theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+  ? "dark"
+  : "light";
+  const cl = document.documentElement.classList;
+
+  cl.add(theme);
+`;
+
 export default function App() {
-  const { ENV } = useLoaderData();
+  const { ENV, currentTheme } = useLoaderData<RootLoaderType>();
+
+  useEffect(() => {
+    if (currentTheme === "system") applySystemTheme();
+  }, [currentTheme]);
 
   return (
-    <Document>
+    <Document className={currentTheme}>
       <script
         // Set the variables for our `envVars` modules
         dangerouslySetInnerHTML={{
-          __html: `window.ENV = ${JSON.stringify(ENV)}`,
+          __html: `window.ENV = ${JSON.stringify(ENV)};
+
+          // Only apply the system theme if there's nothing on the cookie
+          ${currentTheme === "system" ? applySystemThemeString : ""}`,
         }}
       />
 
@@ -96,13 +124,18 @@ export function ErrorBoundary() {
 function Document({
   children,
   title,
+  className,
 }: {
   children: React.ReactNode;
   title?: string;
+  className?: string;
 }) {
   return (
     <React.StrictMode>
-      <html className="bg-background text-foreground" lang="en">
+      <html
+        className={cn(className, "bg-background text-foreground")}
+        lang="en"
+      >
         <head>
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width,initial-scale=1" />

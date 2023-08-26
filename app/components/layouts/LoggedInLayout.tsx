@@ -4,6 +4,7 @@ import useFeatureFlags from "~/hooks/useFeatureFlags";
 import { UserProvider } from "~/hooks/useUser";
 import { AuthedRouteData } from "~/routes/__authed";
 import { Button } from "../ui/button";
+import ThemeChanger from "../ThemeChanger";
 
 function InnerLoggedInLayout({
   user,
@@ -42,6 +43,10 @@ function InnerLoggedInLayout({
                 Logout
               </Button>
             </Form>
+          </li>
+
+          <li>
+            <ThemeChanger />
           </li>
         </ul>
       </nav>
