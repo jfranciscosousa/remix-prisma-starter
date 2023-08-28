@@ -1,29 +1,23 @@
-import { Form } from "@remix-run/react";
+import { Form, useNavigation } from "@remix-run/react";
 import { useEffect, useRef } from "react";
-import { usePrevious } from "react-use";
 import { Button } from "~/components/ui/button";
 import { FullInput } from "~/components/ui/full-input";
+import useIsLoading from "~/hooks/useIsLoading";
 
-interface NotesInputProps {
-  isLoading: boolean;
-  errors?: Record<string, string>;
-}
-
-export default function NotesForm({ isLoading, errors }: NotesInputProps) {
-  const previousIsLoading = usePrevious(isLoading);
+export default function NotesForm() {
+  const navigation = useNavigation();
+  const isLoading = useIsLoading();
   const inputRef = useRef<HTMLInputElement>(null);
-  const hasErrors = errors && Object.keys(errors).length > 1;
+  const isAdding =
+    navigation.state === "submitting" &&
+    navigation.formData?.get("_action") === "create";
 
-  // Clear input when isLoading goes
-  // from true to false if there is no error
   useEffect(() => {
-    if (!inputRef.current || hasErrors) return;
+    if (!isAdding || !inputRef.current) return;
 
-    if (previousIsLoading && !isLoading) {
-      inputRef.current.value = "";
-      inputRef.current.focus();
-    }
-  }, [isLoading, hasErrors, previousIsLoading]);
+    inputRef.current.value = "";
+    inputRef.current.focus();
+  }, [isAdding]);
 
   return (
     <Form method="post" className="flex flex-col space-y-4">
@@ -36,7 +30,6 @@ export default function NotesForm({ isLoading, errors }: NotesInputProps) {
           ref={inputRef}
           className="w-full"
           inputClassName="input-bordered"
-          disabled={isLoading}
         />
 
         <Button
