@@ -1,6 +1,6 @@
 import { Form, Link, useActionData } from "@remix-run/react";
-import type { DataFunctionArgs, V2_MetaFunction } from "@vercel/remix";
-import { redirect } from "@vercel/remix";
+import type { DataFunctionArgs, MetaFunction } from "@remix-run/node";
+import { redirect } from "@remix-run/node";
 import { Button } from "~/components/ui/button";
 import { FullInput } from "~/components/ui/full-input";
 import { createUser } from "~/server/users.server";
@@ -31,7 +31,7 @@ export const action = async ({ request }: DataFunctionArgs) => {
   return authenticate(result.data);
 };
 
-export const meta: V2_MetaFunction = () => [
+export const meta: MetaFunction = () => [
   {
     title: "Remix Prisma Starter",
   },

@@ -2,9 +2,9 @@ import {
   ActionFunction,
   DataFunctionArgs,
   SerializeFrom,
-  V2_MetaFunction,
+  MetaFunction,
   redirect,
-} from "@vercel/remix";
+} from "@remix-run/node";
 import NotesDeleteAll from "~/modules/Notes/NotesDeleteAll";
 import NotesForm from "~/modules/Notes/NotesForm";
 import NotesList from "~/modules/Notes/NotesList";
@@ -48,7 +48,7 @@ export const action: ActionFunction = async ({ request }) => {
   return redirect("/notes");
 };
 
-export const meta: V2_MetaFunction = () => [
+export const meta: MetaFunction = () => [
   {
     title: "Remix Prisma Starter",
   },

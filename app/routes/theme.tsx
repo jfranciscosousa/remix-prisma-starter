@@ -1,4 +1,4 @@
-import { ActionFunction, LoaderFunction, redirect } from "@vercel/remix";
+import { ActionFunction, LoaderFunction, redirect } from "@remix-run/node";
 import { setTheme } from "~/server/theme.server";
 
 export const action: ActionFunction = async ({ request }) => setTheme(request);

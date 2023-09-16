@@ -1,8 +1,9 @@
 // learn more: https://fly.io/docs/reference/configuration/#services-http_checks
-import type { LoaderArgs } from "@vercel/remix";
+
+import { LoaderFunctionArgs } from "@remix-run/node";
 import prisma from "~/server/utils/prisma.server";
 
-export const loader = async ({ request }: LoaderArgs) => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   const host =
     request.headers.get("X-Forwarded-Host") ?? request.headers.get("host");
 

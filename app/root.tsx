@@ -10,7 +10,6 @@ import {
   useMatches,
   useRouteError,
 } from "@remix-run/react";
-import { DataFunctionArgs } from "@vercel/remix";
 import acceptLanguage from "accept-language-parser";
 import React, { useEffect } from "react";
 import { ToastsRenderer } from "./hooks/useToast";
@@ -18,6 +17,7 @@ import styles from "./root.css";
 import { CLIENT_ENV } from "./env";
 import { getCurrentTheme } from "./server/theme.server";
 import { cn } from "./utils";
+import { DataFunctionArgs } from "@remix-run/node";
 
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
@@ -51,7 +51,7 @@ export const loader = async ({ request }: DataFunctionArgs) => {
 export type RootLoaderType = Awaited<ReturnType<typeof loader>>;
 
 export function useRootLoaderData(): RootLoaderType {
-  return useMatches()[0].data;
+  return useMatches()[0].data as RootLoaderType;
 }
 
 function applySystemTheme() {

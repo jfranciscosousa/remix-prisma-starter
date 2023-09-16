@@ -1,4 +1,4 @@
-import { ActionFunction, LoaderFunction, redirect } from "@vercel/remix";
+import { ActionFunction, LoaderFunction, redirect } from "@remix-run/node";
 import { logout } from "~/server/auth.server";
 
 export const action: ActionFunction = async () => logout();
