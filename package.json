@@ -35,7 +35,7 @@
     "date-fns": "^2.30.0",
     "isbot": "^3.6.13",
     "lodash": "^4.17.21",
-    "lucide-react": "^0.277.0",
+    "lucide-react": "^0.279.0",
     "postcss": "^8.4.29",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
