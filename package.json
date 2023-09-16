@@ -20,7 +20,7 @@
     "ci": "npm run lint && npm run ts-check && npx playwright install && npm run test"
   },
   "dependencies": {
-    "@prisma/client": "5.3.0",
+    "@prisma/client": "5.3.1",
     "@radix-ui/react-dropdown-menu": "^2.0.5",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-scroll-area": "^1.0.4",
@@ -78,7 +78,7 @@
     "husky": ">=8.0.3",
     "lint-staged": "^14.0.1",
     "prettier": "^3.0.3",
-    "prisma": "5.3.0",
+    "prisma": "5.3.1",
     "tailwindcss": "^3.3.3",
     "ts-node": "^10.9.1",
     "type-fest": "^4.3.1",
