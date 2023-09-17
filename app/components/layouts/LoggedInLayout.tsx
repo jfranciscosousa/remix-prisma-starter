@@ -26,13 +26,21 @@ function InnerLoggedInLayout({
 
         <ul className="flex flex-row space-x-4 items-center">
           <li>
-            <NavLink to="/notes" prefetch="intent">
+            <NavLink
+              to="/notes"
+              prefetch="intent"
+              className={({ isActive }) => (isActive ? "underline" : "")}
+            >
               Notes
             </NavLink>
           </li>
 
           <li>
-            <NavLink to="/profile" prefetch="intent">
+            <NavLink
+              to="/profile"
+              prefetch="intent"
+              className={({ isActive }) => (isActive ? "underline" : "")}
+            >
               Profile
             </NavLink>
           </li>
