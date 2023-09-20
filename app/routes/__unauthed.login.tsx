@@ -1,7 +1,8 @@
 import type {
-  ActionFunction,
+  ActionFunctionArgs,
   LoaderFunction,
-  V2_MetaFunction,
+  MetaFunction,
+  SerializeFrom,
 } from "@vercel/remix";
 import { redirect } from "@vercel/remix";
 import { login, LoginParams } from "~/server/users/auth.server";
@@ -16,16 +17,21 @@ export const loader: LoaderFunction = async ({ request }) => {
   return null;
 };
 
-export const action: ActionFunction = async ({ request }) => {
-  const form = Object.fromEntries(await request.formData());
+export type LoginActionType = SerializeFrom<typeof action>;
+
+export const action = async ({ request }: ActionFunctionArgs) => {
+  const form = Object.fromEntries(await request.formData()) as Record<
+    string,
+    string
+  >;
   const result = await login(form as LoginParams);
 
   if (result.errors) return { errors: result.errors, original: form };
 
-  return authenticate(result.data, form.redirectUrl as string);
+  return authenticate(result.data, form.redirectUrl as string) as never;
 };
 
-export const meta: V2_MetaFunction = () => [
+export const meta: MetaFunction = () => [
   {
     title: "Remix Prisma Starter",
   },

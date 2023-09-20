@@ -3,9 +3,10 @@ import { Button } from "~/components/ui/button";
 import { Card, CardTitle } from "~/components/ui/card";
 import { FullInput } from "~/components/ui/full-input";
 import useIsLoading from "~/hooks/useIsLoading";
+import { LoginActionType } from "~/routes/__unauthed.login";
 
 export default function Login() {
-  const { errors, original } = useActionData() || {};
+  const actionData = useActionData<LoginActionType>();
   const isLoading = useIsLoading();
   const location = useLocation();
 
@@ -24,8 +25,8 @@ export default function Login() {
           type="text"
           required
           placeholder="hello@email.com"
-          errors={errors}
-          defaultValue={original?.email}
+          errors={actionData?.errors}
+          defaultValue={actionData?.original?.email}
         />
 
         <FullInput
@@ -34,8 +35,8 @@ export default function Login() {
           type="password"
           placeholder="**************"
           required
-          errors={errors}
-          defaultValue={original?.password}
+          errors={actionData?.errors}
+          defaultValue={actionData?.original?.password}
           className="pb-4"
         />
 

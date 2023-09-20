@@ -2,7 +2,7 @@ import { Form, useActionData } from "@remix-run/react";
 import type {
   DataFunctionArgs,
   SerializeFrom,
-  V2_MetaFunction,
+  MetaFunction,
 } from "@vercel/remix";
 import { useEffect } from "react";
 import { Button } from "~/components/ui/button";
@@ -27,7 +27,7 @@ export const action = async ({ request }: DataFunctionArgs) => {
   return { errors: null, success: true };
 };
 
-export const meta: V2_MetaFunction = () => [
+export const meta: MetaFunction = () => [
   {
     title: "Profile",
   },

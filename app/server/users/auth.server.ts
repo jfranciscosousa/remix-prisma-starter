@@ -12,7 +12,6 @@ const loginParams = z.object({
 
 export type LoginParams = z.infer<typeof loginParams>;
 
-// eslint-disable-next-line import/prefer-default-export
 export async function login(params: LoginParams): Promise<DataResult<User>> {
   const errors = errorsFromSchema(loginParams, params);
 
