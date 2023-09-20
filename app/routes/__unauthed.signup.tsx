@@ -19,12 +19,7 @@ export const loader = async ({ request }: DataFunctionArgs) => {
 
 export const action = async ({ request }: DataFunctionArgs) => {
   const form = await request.formData();
-  const result = await createUser({
-    email: form.get("email") as string,
-    name: form.get("name") as string,
-    password: form.get("password") as string,
-    passwordConfirmation: form.get("passwordConfirmation") as string,
-  });
+  const result = await createUser(form);
 
   if (result.errors) return result.errors;
 

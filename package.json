@@ -48,6 +48,7 @@
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.22.2",
     "zod-error": "^1.5.0",
+    "zod-form-data": "^2.0.1",
     "zustand": "^4.4.1"
   },
   "devDependencies": {

@@ -5,9 +5,9 @@ import type {
   SerializeFrom,
 } from "@vercel/remix";
 import { redirect } from "@vercel/remix";
-import { login, LoginParams } from "~/server/users/auth.server";
 import Login from "~/modules/Login";
 import { authenticate, userFromRequest } from "~/server/auth.server";
+import { login } from "~/server/users/auth.server";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await userFromRequest(request);
@@ -20,15 +20,13 @@ export const loader: LoaderFunction = async ({ request }) => {
 export type LoginActionType = SerializeFrom<typeof action>;
 
 export const action = async ({ request }: ActionFunctionArgs) => {
-  const form = Object.fromEntries(await request.formData()) as Record<
-    string,
-    string
-  >;
-  const result = await login(form as LoginParams);
+  const formData = await request.formData();
+  const original = Object.fromEntries(formData) as Record<string, string>;
+  const result = await login(formData);
 
-  if (result.errors) return { errors: result.errors, original: form };
+  if (result.errors) return { errors: result.errors, original };
 
-  return authenticate(result.data, form.redirectUrl as string) as never;
+  return authenticate(result.data, original.redirectUrl as string) as never;
 };
 
 export const meta: MetaFunction = () => [

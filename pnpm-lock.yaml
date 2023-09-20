@@ -89,6 +89,9 @@ dependencies:
   zod-error:
     specifier: ^1.5.0
     version: 1.5.0
+  zod-form-data:
+    specifier: ^2.0.1
+    version: 2.0.1(zod@3.22.2)
   zustand:
     specifier: ^4.4.1
     version: 4.4.1(@types/react@18.2.22)(react@18.2.0)
@@ -9017,6 +9020,14 @@ packages:
 
   /zod-error@1.5.0:
     resolution: {integrity: sha512-zzopKZ/skI9iXpqCEPj+iLCKl9b88E43ehcU+sbRoHuwGd9F1IDVGQ70TyO6kmfiRL1g4IXkjsXK+g1gLYl4WQ==}
+    dependencies:
+      zod: 3.22.2
+    dev: false
+
+  /zod-form-data@2.0.1(zod@3.22.2):
+    resolution: {integrity: sha512-4jcsj3vFyFGINLLHEmehfOPKdcw+HqV65RwsV2IdyLHp9wpvGJRVXWg1yY8sq0ASEbQfTVBRtI7LcDGv3Qpj8g==}
+    peerDependencies:
+      zod: ^3.11.x
     dependencies:
       zod: 3.22.2
     dev: false

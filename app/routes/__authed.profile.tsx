@@ -7,24 +7,20 @@ import type {
 import { useEffect } from "react";
 import { Button } from "~/components/ui/button";
 import { FullInput } from "~/components/ui/full-input";
-import { UpdateUserParams, updateUser } from "~/server/users.server";
+import { updateUser } from "~/server/users.server";
 import useIsLoading from "~/hooks/useIsLoading";
 import useToast from "~/hooks/useToast";
 import useUser from "~/hooks/useUser";
 import { userIdFromRequest } from "~/server/auth.server";
 import { Card, CardTitle } from "~/components/ui/card";
 
-export type ProfileRouteAction = SerializeFrom<typeof action>;
+export type ProfileRouteActionType = SerializeFrom<typeof action>;
 
 export const action = async ({ request }: DataFunctionArgs) => {
   const userId = await userIdFromRequest(request);
-  const form = Object.fromEntries(await request.formData());
+  const form = await request.formData();
 
-  const { errors } = await updateUser(userId, form as UpdateUserParams);
-
-  if (errors) return { errors, success: false };
-
-  return { errors: null, success: true };
+  return await updateUser(userId, form);
 };
 
 export const meta: MetaFunction = () => [
@@ -38,13 +34,13 @@ export const meta: MetaFunction = () => [
 
 export default function Profile() {
   const user = useUser();
-  const actionData = useActionData<ProfileRouteAction>();
+  const actionData = useActionData<ProfileRouteActionType>();
   const { toast } = useToast();
   const isLoading = useIsLoading();
 
   useEffect(() => {
     if (actionData?.errors) toast("Failed to update profile!", "error");
-    else if (actionData?.success) toast("Updated profile!", "success");
+    else if (actionData?.data) toast("Updated profile!", "success");
   }, [actionData, toast]);
 
   return (

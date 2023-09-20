@@ -2,30 +2,36 @@ import { User } from "@prisma/client";
 import prisma from "../utils/prisma.server";
 import { verifyPassword } from "./passwordUtils.server";
 import { DataResult } from "../utils/types";
-import errorsFromSchema from "../utils/errorsFromSchema.server";
 import z from "zod";
+import { zfd } from "zod-form-data";
+import { formatZodErrors } from "../utils/formatZodErrors.server";
 
-const loginParams = z.object({
-  email: z.string().email(),
-  password: z.string(),
+export const loginSchema = zfd.formData({
+  email: zfd.text(z.string().email()),
+  password: zfd.text(),
+  redirectUrl: zfd.text(z.string().optional()),
 });
 
-export type LoginParams = z.infer<typeof loginParams>;
+export type LoginParams = z.infer<typeof loginSchema> | FormData;
 
 export async function login(params: LoginParams): Promise<DataResult<User>> {
-  const errors = errorsFromSchema(loginParams, params);
+  const parsedSchema = loginSchema.safeParse(params);
 
-  if (errors) return { errors };
+  if (!parsedSchema.success)
+    return { data: null, errors: formatZodErrors(parsedSchema.error) };
 
-  const user = await prisma.user.findUnique({ where: { email: params.email } });
+  const { email, password } = parsedSchema.data;
 
-  if (!user) return { errors: { email: "Email/Password combo not found" } };
+  const user = await prisma.user.findUnique({ where: { email } });
 
-  if (await verifyPassword(user.password, params.password)) {
+  if (!user)
+    return { data: null, errors: { email: "Email/Password combo not found" } };
+
+  if (await verifyPassword(user.password, password)) {
     user.password = "";
 
-    return { data: user };
+    return { data: user, errors: null };
   }
 
-  return { errors: { email: "Email/Password combo not found" } };
+  return { data: null, errors: { email: "Email/Password combo not found" } };
 }

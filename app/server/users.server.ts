@@ -1,18 +1,19 @@
 import { User } from "@prisma/client";
-import z from "zod";
+import { zfd } from "zod-form-data";
+import { z } from "zod";
 import { encryptPassword, verifyPassword } from "./users/passwordUtils.server";
 import prisma from "./utils/prisma.server";
 import { DataResult } from "./utils/types";
-import errorsFromSchema from "./utils/errorsFromSchema.server";
+import { formatZodErrors } from "./utils/formatZodErrors.server";
 
-const createUserParams = z.object({
-  email: z.string().email(),
-  name: z.string(),
-  password: z.string(),
-  passwordConfirmation: z.string(),
+export const createUserParams = zfd.formData({
+  email: zfd.text(z.string().email()),
+  name: zfd.text(),
+  password: zfd.text(),
+  passwordConfirmation: zfd.text(),
 });
 
-export type CreateUserParams = z.infer<typeof createUserParams>;
+export type CreateUserParams = z.infer<typeof createUserParams> | FormData;
 
 export async function findUserByEmail(
   email: string,
@@ -24,31 +25,25 @@ export async function findUserByEmail(
   return user;
 }
 
-export async function createUser({
-  email,
-  name,
-  password,
-  passwordConfirmation,
-}: CreateUserParams): Promise<DataResult<Omit<User, "password">>> {
-  const errors = errorsFromSchema(createUserParams, {
-    email,
-    name,
-    password,
-    passwordConfirmation,
-  });
+export async function createUser(
+  params: CreateUserParams,
+): Promise<DataResult<Omit<User, "password">>> {
+  const parsedSchema = createUserParams.safeParse(params);
 
-  if (errors) return { errors };
+  if (!parsedSchema.success)
+    return { data: null, errors: formatZodErrors(parsedSchema.error) };
+
+  const { email, name, password, passwordConfirmation } = parsedSchema.data;
 
   if (password !== passwordConfirmation) {
     return {
+      data: null,
       errors: { passwordConfirmation: "Passwords do not match!" },
     };
   }
 
   if (await findUserByEmail(email)) {
-    return {
-      errors: { email: "User already exists!" },
-    };
+    return { data: null, errors: { email: "User already exists!" } };
   }
 
   const encryptedPassword = await encryptPassword(password);
@@ -58,48 +53,44 @@ export async function createUser({
 
   user.password = "";
 
-  return { data: user };
+  return { data: user, errors: null };
 }
 
-const updateUserParams = z.object({
-  email: z.string().email().optional(),
-  name: z.string().optional(),
-  currentPassword: z.string(),
-  newPassword: z.string().optional(),
-  passwordConfirmation: z.string().optional(),
+const updateUserParams = zfd.formData({
+  email: zfd.text(z.string().email().optional()),
+  name: zfd.text(z.string().optional()),
+  currentPassword: zfd.text(),
+  newPassword: zfd.text(z.string().optional()),
+  passwordConfirmation: zfd.text(z.string().optional()),
 });
 
-export type UpdateUserParams = z.infer<typeof updateUserParams>;
+export type UpdateUserParams = z.infer<typeof updateUserParams> | FormData;
 
 export async function updateUser(
   userId: string,
-  {
-    email,
-    name,
-    currentPassword,
-    newPassword,
-    passwordConfirmation,
-  }: UpdateUserParams,
+  params: UpdateUserParams,
 ): Promise<DataResult<Omit<User, "password">>> {
+  const parsedSchema = updateUserParams.safeParse(params);
+
+  if (!parsedSchema.success)
+    return { data: null, errors: formatZodErrors(parsedSchema.error) };
+
+  const { name, email, newPassword, passwordConfirmation, currentPassword } =
+    parsedSchema.data;
+
   if (newPassword !== passwordConfirmation) {
-    return { errors: { passwordConfirmation: "Passwords do not match" } };
+    return {
+      data: null,
+      errors: { passwordConfirmation: "Passwords do not match" },
+    };
   }
 
   const user = await prisma.user.findUnique({ where: { id: userId } });
 
-  if (!user) return { errors: { userid: "User not found!" } };
-
-  const errors = errorsFromSchema(updateUserParams, {
-    email,
-    name,
-    currentPassword,
-    newPassword,
-  });
-
-  if (errors) return { errors };
+  if (!user) return { data: null, errors: { userid: "User not found!" } };
 
   if (!(await verifyPassword(user.password, currentPassword))) {
-    return { errors: { currentPassword: "Wrong password" } };
+    return { data: null, errors: { currentPassword: "Wrong password" } };
   }
 
   const encryptedPassword = newPassword
@@ -112,7 +103,7 @@ export async function updateUser(
 
   if (updatedUser) updatedUser.password = "";
 
-  return { data: updatedUser };
+  return { data: updatedUser, errors: null };
 }
 
 export async function deleteUser(user: User): Promise<Omit<User, "password">> {
