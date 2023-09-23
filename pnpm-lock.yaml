@@ -113,8 +113,8 @@ devDependencies:
     specifier: ^2.0.0
     version: 2.0.0(eslint@8.49.0)(react@18.2.0)(typescript@5.2.2)
   '@types/accept-language-parser':
-    specifier: ^1.5.3
-    version: 1.5.3
+    specifier: ^1.5.4
+    version: 1.5.4
   '@types/lodash':
     specifier: ^4.14.198
     version: 4.14.198
@@ -2324,8 +2324,8 @@ packages:
   /@tsconfig/node16@1.0.3:
     resolution: {integrity: sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==}
 
-  /@types/accept-language-parser@1.5.3:
-    resolution: {integrity: sha512-S8oM29O6nnRC3/+rwYV7GBYIIgNIZ52PCxqBG7OuItq9oATnYWy8FfeLKwvq5F7pIYjeeBSCI7y+l+Z9UEQpVQ==}
+  /@types/accept-language-parser@1.5.4:
+    resolution: {integrity: sha512-H2I6BbxCuLreKHEZNhi20cYs2IvVr8blDDofxhnpZAWi3rOVhUPzgUC+gU0tYDwijqOqvu1GGOEvQcXi7QrtVQ==}
     dev: true
 
   /@types/acorn@4.0.6:
