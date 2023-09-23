@@ -36,8 +36,8 @@ dependencies:
     specifier: ^2.15.10
     version: 2.15.10
   '@vercel/remix':
-    specifier: ^2.0.0
-    version: 2.0.0(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
+    specifier: ^2.0.1
+    version: 2.0.1(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
   accept-language-parser:
     specifier: ^1.5.0
     version: 1.5.0
@@ -2114,6 +2114,26 @@ packages:
       stream-slice: 0.1.2
       typescript: 5.2.2
 
+  /@remix-run/node@2.0.1(typescript@5.2.2):
+    resolution: {integrity: sha512-pWsbmkNRb7azYomh1IGSKeW68hkwBBp6L2AWvfKSq2r2MJXHCzqgAJEc0uWkEUx6OtFbVNOg27g/cMCyKvrjIA==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      typescript: ^5.1.0
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@remix-run/server-runtime': 2.0.1(typescript@5.2.2)
+      '@remix-run/web-fetch': 4.4.1
+      '@remix-run/web-file': 3.1.0
+      '@remix-run/web-stream': 1.1.0
+      '@web3-storage/multipart-parser': 1.0.0
+      cookie-signature: 1.2.1
+      source-map-support: 0.5.21
+      stream-slice: 0.1.2
+      typescript: 5.2.2
+    dev: false
+
   /@remix-run/react@2.0.0(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2):
     resolution: {integrity: sha512-h/xXrwupxXoWGvEC1JnDeh9D7lfLTQNiKaEXvWKZwlfNuKeI8nIKXpy+JDDHhloUybe4tpMKztyCqdNCYqfKWQ==}
     engines: {node: '>=18.0.0'}
@@ -2188,6 +2208,25 @@ packages:
       source-map: 0.7.4
       type-fest: 4.3.1
       typescript: 5.2.2
+
+  /@remix-run/server-runtime@2.0.1(typescript@5.2.2):
+    resolution: {integrity: sha512-xCW2aw9EILx7F3orEHN2fcpEkNzZTRU8VzP7gS9pmHP45qteFqsY5Qg2/dnF17royWmeeBNhnXaJOgb76W1KEA==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      typescript: ^5.1.0
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@remix-run/router': 1.9.0
+      '@types/cookie': 0.4.1
+      '@web3-storage/multipart-parser': 1.0.0
+      cookie: 0.4.2
+      set-cookie-parser: 2.6.0
+      source-map: 0.7.4
+      type-fest: 4.3.1
+      typescript: 5.2.2
+    dev: false
 
   /@remix-run/vercel@1.19.3(@vercel/node@2.15.10):
     resolution: {integrity: sha512-LoWffUns8u9oqOHSvZtH0LMXWm4NuZ2hUldLx7TAw19lfif1liwa8WrqxRyMItuUp1xEo6shTDCNEUNdQtsEGg==}
@@ -2821,15 +2860,15 @@ packages:
       - encoding
     dev: false
 
-  /@vercel/remix@2.0.0(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2):
-    resolution: {integrity: sha512-nwv1Z0ucVAARp399JOq/+Vf174E457P8BIJuDn63NAudgcKUWPVmqbfg1EP0jIa+FsjNQX1YXyExZ47k3sAfHg==}
-    engines: {node: '>=14'}
+  /@vercel/remix@2.0.1(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2):
+    resolution: {integrity: sha512-mHtbgIRn4naLkKT2ICcd0v9hgGZrGBSYjBQp2kYaA4PDBUKHFqXeB7C+iyyFlQXkc6tiSPwGeqMXgvb7t8D5Ow==}
+    engines: {node: '>=18.0.0'}
     peerDependencies:
       react: '*'
       react-dom: '*'
     dependencies:
-      '@remix-run/node': 2.0.0(typescript@5.2.2)
-      '@remix-run/server-runtime': 2.0.0(typescript@5.2.2)
+      '@remix-run/node': 2.0.1(typescript@5.2.2)
+      '@remix-run/server-runtime': 2.0.1(typescript@5.2.2)
       isbot: 3.7.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
