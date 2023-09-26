@@ -86,7 +86,7 @@
     "typescript": "^5.2.2"
   },
   "engines": {
-    "node": ">=v18.17.1"
+    "node": ">=18.18.0"
   },
   "sideEffects": false,
   "lint-staged": {
