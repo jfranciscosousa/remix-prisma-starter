@@ -3,5 +3,5 @@
   "extends": ["config:base"],
   "rangeStrategy": "bump",
   "ignorePaths": ["remix.init/package.json"],
-  "schedule": ["every weekend"]
+  "schedule": ["every last weekend of the month"]
 }
