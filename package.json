@@ -39,7 +39,7 @@
     "isbot": "^3.7.0",
     "lodash": "^4.17.21",
     "lucide-react": "^0.279.0",
-    "postcss": "^8.4.30",
+    "postcss": "^8.4.31",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-use": "^17.4.0",
