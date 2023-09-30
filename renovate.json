@@ -3,5 +3,5 @@
   "extends": ["config:base"],
   "rangeStrategy": "bump",
   "ignorePaths": ["remix.init/package.json"],
-  "schedule": ["0 0 1 * *"]
+  "schedule": ["before 3am on the first day of the month"]
 }
