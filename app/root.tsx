@@ -7,15 +7,15 @@ import {
   ScrollRestoration,
   isRouteErrorResponse,
   useLoaderData,
-  useMatches,
   useRouteError,
+  useRouteLoaderData,
 } from "@remix-run/react";
 import { DataFunctionArgs } from "@vercel/remix";
 import acceptLanguage from "accept-language-parser";
 import React, { useEffect } from "react";
+import { CLIENT_ENV } from "./env";
 import { ToastsRenderer } from "./hooks/useToast";
 import styles from "./root.css";
-import { CLIENT_ENV } from "./env";
 import { getCurrentTheme } from "./server/theme.server";
 import { cn } from "./utils";
 
@@ -51,7 +51,7 @@ export const loader = async ({ request }: DataFunctionArgs) => {
 export type RootLoaderType = Awaited<ReturnType<typeof loader>>;
 
 export function useRootLoaderData(): RootLoaderType {
-  return useMatches()[0].data as RootLoaderType;
+  return useRouteLoaderData("root")!;
 }
 
 function applySystemTheme() {
