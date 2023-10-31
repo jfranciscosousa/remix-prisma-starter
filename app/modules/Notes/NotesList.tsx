@@ -8,13 +8,9 @@ import useIsLoading from "~/hooks/useIsLoading";
 import { NotesRouteData } from "~/routes/__authed.notes";
 import { cn } from "~/utils";
 
-export default function NotesList() {
-  const { notes } = useLoaderData<NotesRouteData>();
-  const { formatRelativeTime } = useDates();
-  const previousNotesLength = usePrevious<number>(notes.length);
+function useNotesScoller(notes: unknown[]) {
   const notesContainerRef = useRef<HTMLDivElement>(null);
-  const isLoading = useIsLoading();
-
+  const previousNotesLength = usePrevious<number>(notes.length);
   // Scroll the notes to bottom if a new one comes in
   useEffect(() => {
     if (notes.length > (previousNotesLength || 0)) {
@@ -27,6 +23,15 @@ export default function NotesList() {
       scrollingContainer.scrollTop = scrollingContainer.scrollHeight;
     }
   }, [notes.length, previousNotesLength]);
+
+  return { notesContainerRef };
+}
+
+export default function NotesList() {
+  const { notes } = useLoaderData<NotesRouteData>();
+  const { formatRelativeTime } = useDates();
+  const { notesContainerRef } = useNotesScoller(notes);
+  const isLoading = useIsLoading();
 
   if (notes.length === 0)
     return (
