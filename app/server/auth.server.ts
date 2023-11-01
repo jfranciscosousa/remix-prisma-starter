@@ -1,4 +1,4 @@
-import { createCookie, redirect } from "@vercel/remix";
+import { createCookie, redirect } from "@remix-run/node";
 import prisma from "~/server/utils/prisma.server";
 import { SERVER_ENV } from "~/env.server";
 

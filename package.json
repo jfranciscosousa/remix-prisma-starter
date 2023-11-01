@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "remix-prisma-starter",
-  "description": "A Remix starter with Prisma and Vercel",
+  "description": "A Remix starter with Prisma",
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf .eslintcache playwright-report build public/build .cache node_modules",
@@ -27,9 +27,6 @@
     "@remix-run/node": "^2.2.0",
     "@remix-run/react": "2.2.0",
     "@remix-run/serve": "^2.2.0",
-    "@remix-run/vercel": "1.19.3",
-    "@vercel/node": "^2.15.10",
-    "@vercel/remix": "^2.2.0",
     "accept-language-parser": "^1.5.0",
     "argon2": "^0.31.1",
     "class-variance-authority": "^0.7.0",
@@ -48,7 +45,7 @@
     "zod": "^3.22.4",
     "zod-error": "^1.5.0",
     "zod-form-data": "^2.0.2",
-    "zustand": "^4.4.4"
+    "zustand": "^4.4.5"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.2.0",
@@ -81,7 +78,7 @@
     "prisma": "5.5.2",
     "tailwindcss": "^3.3.5",
     "ts-node": "^10.9.1",
-    "type-fest": "^4.5.0",
+    "type-fest": "^4.6.0",
     "typescript": "^5.2.2",
     "vite": "^4.5.0",
     "vite-tsconfig-paths": "^4.2.1"

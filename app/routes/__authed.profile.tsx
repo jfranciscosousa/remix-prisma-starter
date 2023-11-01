@@ -3,7 +3,7 @@ import type {
   DataFunctionArgs,
   SerializeFrom,
   MetaFunction,
-} from "@vercel/remix";
+} from "@remix-run/node";
 import { useEffect } from "react";
 import { Button } from "~/components/ui/button";
 import { FullInput } from "~/components/ui/full-input";

@@ -10,7 +10,7 @@ import {
   useRouteError,
   useRouteLoaderData,
 } from "@remix-run/react";
-import { DataFunctionArgs } from "@vercel/remix";
+import { DataFunctionArgs } from "@remix-run/node";
 import acceptLanguage from "accept-language-parser";
 import React, { useEffect } from "react";
 import { CLIENT_ENV } from "./env";

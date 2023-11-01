@@ -2,7 +2,6 @@
 
 - [Remix Docs](https://remix.run/docs)
 - [Fly deployment](https://remix-prisma-starter.fly.dev/)
-- [Vercel deployment](https://remix-prisma-starter.vercel.app/)
 
 ## Custom things to this repo
 
@@ -24,18 +23,7 @@ This will prompt you to add your postgres database details. Make sure to use dif
 
 ## Deployment
 
-After having run the `create-remix` command and selected "Vercel" as a deployment target, you only need to [import your Git repository](https://vercel.com/new) into Vercel, and it will be deployed.
-
-If you'd like to avoid using a Git repository, you can also deploy the directory by running [Vercel CLI](https://vercel.com/cli):
-
-```sh
-npm install --global vercel
-vercel
-```
-
-It is generally recommended to use a Git repository, because future commits will then automatically be deployed by Vercel, through its [Git Integration](https://vercel.com/docs/concepts/git).
-
-You can also deploy this to [Fly](https://fly.io). You just have to run `fly deploy --remote-only`. This template already has a Github action that does that for you, you just need to setup a `FLY_API_TOKEN` for your Github repo.
+You can deploy this to [Fly](https://fly.io). You just have to run `fly deploy --remote-only`. This template already has a Github action that does that for you, you just need to setup a `FLY_API_TOKEN` for your Github repo.
 
 ## Development
 

@@ -1,4 +1,4 @@
-import { createCookie, redirect } from "@vercel/remix";
+import { createCookie, redirect } from "@remix-run/node";
 
 export type ThemeType = "dark" | "light" | "system";
 

@@ -1,6 +1,6 @@
 import { Form, Link, useActionData } from "@remix-run/react";
-import type { DataFunctionArgs, MetaFunction } from "@vercel/remix";
-import { redirect } from "@vercel/remix";
+import type { DataFunctionArgs, MetaFunction } from "@remix-run/node";
+import { redirect } from "@remix-run/node";
 import { Button } from "~/components/ui/button";
 import { FullInput } from "~/components/ui/full-input";
 import { createUser } from "~/server/users.server";

@@ -4,7 +4,7 @@ import {
   SerializeFrom,
   MetaFunction,
   redirect,
-} from "@vercel/remix";
+} from "@remix-run/node";
 import NotesDeleteAll from "~/modules/Notes/NotesDeleteAll";
 import NotesForm from "~/modules/Notes/NotesForm";
 import NotesList from "~/modules/Notes/NotesList";

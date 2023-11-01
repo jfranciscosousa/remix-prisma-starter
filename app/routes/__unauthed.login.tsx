@@ -3,8 +3,8 @@ import type {
   LoaderFunction,
   MetaFunction,
   SerializeFrom,
-} from "@vercel/remix";
-import { redirect } from "@vercel/remix";
+} from "@remix-run/node";
+import { redirect } from "@remix-run/node";
 import Login from "~/modules/Login";
 import { authenticate, userFromRequest } from "~/server/auth.server";
 import { login } from "~/server/users/auth.server";

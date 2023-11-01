@@ -1,6 +1,5 @@
 node_modules
 .cache
-.vercel
 .output
 build
 public/build
