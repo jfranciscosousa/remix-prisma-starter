@@ -4,6 +4,7 @@ import { SERVER_ENV } from "~/env.server";
 import { UserFeatureFlagsSchema } from "./userFeatureFlags.server";
 
 function buildClient() {
+  console.log(SERVER_ENV.DATABASE_PRISMA_URL);
   const client = new PrismaClient({
     log: ["query", "info", "warn", "error"],
   })

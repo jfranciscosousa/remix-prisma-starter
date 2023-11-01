@@ -15,13 +15,9 @@ import acceptLanguage from "accept-language-parser";
 import React, { useEffect } from "react";
 import { CLIENT_ENV } from "./env";
 import { ToastsRenderer } from "./hooks/useToast";
-import styles from "./root.css";
 import { getCurrentTheme } from "./server/theme.server";
 import { cn } from "./utils";
-
-export function links() {
-  return [{ rel: "stylesheet", href: styles }];
-}
+import "./root.css";
 
 // Load the locale from the Accept-Language header to later
 // inject it on the app's context
@@ -146,8 +142,8 @@ function Document({
         <body>
           {children}
           <ScrollRestoration />
-          <Scripts />
           <LiveReload />
+          <Scripts />
         </body>
       </html>
     </React.StrictMode>

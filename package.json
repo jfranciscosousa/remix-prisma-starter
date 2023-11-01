@@ -5,10 +5,9 @@
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf .eslintcache playwright-report build public/build .cache node_modules",
-    "start": "remix-serve build/index.js",
-    "build": "remix build",
-    "dev": "remix dev",
-    "postinstall": "remix setup node",
+    "start": "remix-serve ./build/index.js",
+    "build": "NODE_ENV=production vite build && NODE_ENV=production  vite build --ssr",
+    "dev": "vite dev",
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\" --cache",
     "test": "dotenv -e .env.test -- bash -c 'prisma db push -- --force && npm run build && playwright test'",
     "test:ci": "prisma db push && npm run build && playwright test",
@@ -83,7 +82,9 @@
     "tailwindcss": "^3.3.5",
     "ts-node": "^10.9.1",
     "type-fest": "^4.5.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "vite": "^4.5.0",
+    "vite-tsconfig-paths": "^4.2.1"
   },
   "engines": {
     "node": ">=18.18.2"

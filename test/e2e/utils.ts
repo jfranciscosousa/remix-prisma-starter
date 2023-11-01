@@ -13,10 +13,7 @@ export const USER_TEST_PASSWORD = "foobar";
 export const test = base.extend<TestingLibraryFixtures>(fixtures);
 
 /**
- * Let's truncate the database before all tests, for a fresh run.
- *
- * We can't do it beforeEach because playwright runs tests in parallel.
- * We could change it, but it would make testing very slow.
+ * Truncates the database between each test
  */
 test.beforeEach(truncateAll);
 
