@@ -46,7 +46,7 @@
     "zod": "^3.22.4",
     "zod-error": "^1.5.0",
     "zod-form-data": "^2.0.2",
-    "zustand": "^4.4.5"
+    "zustand": "^4.4.6"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.2.0",
