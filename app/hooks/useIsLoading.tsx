@@ -1,7 +1,13 @@
 import { useNavigation } from "@remix-run/react";
 
-export default function useIsLoading() {
+type Opts = {
+  action?: string;
+};
+
+export default function useIsLoading({ action }: Opts = {}) {
   const navigation = useNavigation();
 
-  return navigation.state !== "idle";
+  if (action && action !== navigation.formAction) return false;
+
+  return navigation.state === "loading" || navigation.state === "submitting";
 }

@@ -14,9 +14,10 @@ import { DataFunctionArgs } from "@remix-run/node";
 import acceptLanguage from "accept-language-parser";
 import React, { useEffect } from "react";
 import { CLIENT_ENV } from "./env";
-import { ToastsRenderer } from "./hooks/useToast";
 import { getCurrentTheme } from "./server/theme.server";
 import { cn } from "./utils";
+import { Toaster } from "./components/ui/toaster";
+
 import "./root.css";
 
 // Load the locale from the Accept-Language header to later
@@ -88,8 +89,7 @@ export default function App() {
       />
 
       <Outlet />
-
-      <ToastsRenderer />
+      <Toaster />
     </Document>
   );
 }

@@ -12,7 +12,7 @@ export default function useFeatureFlags() {
       hasGlobalFeatureFlag: (flag: keyof ClientEnv): boolean =>
         !!CLIENT_ENV[flag],
       // Check the current user feature flags. If there's no user, this returns false, always
-      hasFeatureFlag: (flag: keyof UserFeatureFlags): boolean =>
+      hasUserFeatureFlag: (flag: keyof UserFeatureFlags): boolean =>
         !!userContext?.featureFlags?.[flag],
     }),
     [userContext?.featureFlags],

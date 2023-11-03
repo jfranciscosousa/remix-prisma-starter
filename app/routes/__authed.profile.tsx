@@ -9,10 +9,10 @@ import { Button } from "~/components/ui/button";
 import { FullInput } from "~/components/ui/full-input";
 import { updateUser } from "~/server/users.server";
 import useIsLoading from "~/hooks/useIsLoading";
-import useToast from "~/hooks/useToast";
 import useUser from "~/hooks/useUser";
 import { userIdFromRequest } from "~/server/auth.server";
 import { Card, CardTitle } from "~/components/ui/card";
+import { useToast } from "~/components/ui/use-toast";
 
 export type ProfileRouteActionType = SerializeFrom<typeof action>;
 
@@ -39,8 +39,9 @@ export default function Profile() {
   const isLoading = useIsLoading();
 
   useEffect(() => {
-    if (actionData?.errors) toast("Failed to update profile!", "error");
-    else if (actionData?.data) toast("Updated profile!", "success");
+    if (actionData?.errors) {
+      toast({ title: "Failed to update profile!", variant: "destructive" });
+    } else if (actionData?.data) toast({ title: "Updated profile!" });
   }, [actionData, toast]);
 
   return (

@@ -1,10 +1,9 @@
-import { Form, useLoaderData } from "@remix-run/react";
+import { useFetcher, useLoaderData } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 import { usePrevious } from "react-use";
 import { Card } from "~/components/ui/card";
 import { ScrollArea } from "~/components/ui/scroll-area";
 import useDates from "~/hooks/useDates";
-import useIsLoading from "~/hooks/useIsLoading";
 import { NotesRouteData } from "~/routes/__authed.notes";
 import { cn } from "~/utils";
 
@@ -28,10 +27,11 @@ function useNotesScoller(notes: unknown[]) {
 }
 
 export default function NotesList() {
+  const fetcher = useFetcher();
+  const loadingFetcher = fetcher.state === "submitting";
   const { notes } = useLoaderData<NotesRouteData>();
   const { formatRelativeTime } = useDates();
   const { notesContainerRef } = useNotesScoller(notes);
-  const isLoading = useIsLoading();
 
   if (notes.length === 0)
     return (
@@ -54,7 +54,7 @@ export default function NotesList() {
                 </p>
               </div>
 
-              <Form
+              <fetcher.Form
                 method="post"
                 className="flex flex-col items-center justify-center"
               >
@@ -62,16 +62,16 @@ export default function NotesList() {
                 <button
                   type="submit"
                   className={cn("link", {
-                    "cursor-not-allowed": isLoading,
+                    "cursor-not-allowed": loadingFetcher,
                   })}
-                  disabled={isLoading}
+                  disabled={loadingFetcher}
                   name="_action"
                   value="delete"
                   aria-label="Delete note"
                 >
                   X
                 </button>
-              </Form>
+              </fetcher.Form>
             </Card>
           </li>
         ))}

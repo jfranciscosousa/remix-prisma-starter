@@ -1,5 +1,6 @@
-import { Form } from "@remix-run/react";
+import { useFetcher } from "@remix-run/react";
 import { Moon, Sun } from "lucide-react";
+import { useEffect } from "react";
 
 import { Button } from "~/components/ui/button";
 import {
@@ -9,9 +10,20 @@ import {
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
 import { useRootLoaderData } from "~/root";
+import { useToast } from "./ui/use-toast";
 
 export default function ThemeChanger() {
+  const fetcher = useFetcher();
   const { currentTheme } = useRootLoaderData();
+  const { toast } = useToast();
+
+  useEffect(() => {
+    const theme = fetcher.formData?.get("theme");
+
+    if (typeof theme === "string" && fetcher.state === "loading") {
+      toast({ title: `Theme changed to ${theme}` });
+    }
+  }, [fetcher.formData, fetcher.state, toast]);
 
   return (
     <DropdownMenu>
@@ -23,7 +35,7 @@ export default function ThemeChanger() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <Form action="/theme" method="post">
+        <fetcher.Form action="/theme" method="post">
           <button className="contents" type="submit" name="theme" value="light">
             <DropdownMenuCheckboxItem checked={currentTheme === "light"}>
               Light
@@ -44,7 +56,7 @@ export default function ThemeChanger() {
               System
             </DropdownMenuCheckboxItem>
           </button>
-        </Form>
+        </fetcher.Form>
       </DropdownMenuContent>
     </DropdownMenu>
   );

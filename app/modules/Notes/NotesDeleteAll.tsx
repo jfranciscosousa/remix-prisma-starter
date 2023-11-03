@@ -1,22 +1,24 @@
-import { Form } from "@remix-run/react";
+import { useFetcher } from "@remix-run/react";
 import { Button } from "~/components/ui/button";
-import useIsLoading from "~/hooks/useIsLoading";
 
 export default function NotesDeleteAll() {
-  const isLoading = useIsLoading();
+  const fetcher = useFetcher();
 
   return (
-    <Form method="post" className="flex flex-col items-center justify-center">
+    <fetcher.Form
+      method="post"
+      className="flex flex-col items-center justify-center"
+    >
       <Button
         variant="destructive"
         type="submit"
         name="_action"
         value="delete-all"
         aria-label="Delete all notes"
-        isLoading={isLoading}
+        isLoading={fetcher.state === "submitting"}
       >
         Delete all
       </Button>
-    </Form>
+    </fetcher.Form>
   );
 }

@@ -1,16 +1,14 @@
-import { Form, useNavigation } from "@remix-run/react";
+import { useFetcher } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 import { Button } from "~/components/ui/button";
 import { FullInput } from "~/components/ui/full-input";
-import useIsLoading from "~/hooks/useIsLoading";
 
 export default function NotesForm() {
-  const navigation = useNavigation();
-  const isLoading = useIsLoading();
+  const fetcher = useFetcher();
   const inputRef = useRef<HTMLInputElement>(null);
   const isAdding =
-    navigation.state === "submitting" &&
-    navigation.formData?.get("_action") === "create";
+    fetcher.state === "submitting" &&
+    fetcher.formData?.get("_action") === "create";
 
   useEffect(() => {
     if (!isAdding || !inputRef.current) return;
@@ -20,7 +18,7 @@ export default function NotesForm() {
   }, [isAdding]);
 
   return (
-    <Form method="post" className="flex flex-col space-y-4">
+    <fetcher.Form method="post" className="flex flex-col space-y-4">
       <div className="flex flex-row items-end space-x-4 w-full">
         <FullInput
           label="New todo"
@@ -34,7 +32,7 @@ export default function NotesForm() {
 
         <Button
           type="submit"
-          isLoading={isLoading}
+          isLoading={fetcher.state === "submitting"}
           name="_action"
           value="create"
           className="w-[120px]"
@@ -42,6 +40,6 @@ export default function NotesForm() {
           Submit
         </Button>
       </div>
-    </Form>
+    </fetcher.Form>
   );
 }

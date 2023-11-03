@@ -5,6 +5,7 @@ import { UserProvider } from "~/hooks/useUser";
 import { AuthedRouteData } from "~/routes/__authed";
 import { Button } from "../ui/button";
 import ThemeChanger from "../ThemeChanger";
+import useIsLoading from "~/hooks/useIsLoading";
 
 function InnerLoggedInLayout({
   user,
@@ -13,12 +14,13 @@ function InnerLoggedInLayout({
   user: NonNullable<AuthedRouteData["user"]>;
   children: ReactNode;
 }) {
-  const { hasFeatureFlag } = useFeatureFlags();
+  const { hasUserFeatureFlag } = useFeatureFlags();
+  const isLoading = useIsLoading({ action: "/logout" });
 
   return (
     <div className="flex flex-col h-screen w-full px-12">
       <nav className="max-w-6xl mx-auto flex w-full justify-between shrink-0 py-8">
-        {hasFeatureFlag("EXAMPLE_FEATURE_FLAG") ? (
+        {hasUserFeatureFlag("EXAMPLE_FEATURE_FLAG") ? (
           <p>Special welcome, {user.name}!</p>
         ) : (
           <p>Welcome, {user.name}!</p>
@@ -47,7 +49,7 @@ function InnerLoggedInLayout({
 
           <li>
             <Form method="post" action="/logout">
-              <Button type="submit" variant="destructive">
+              <Button type="submit" variant="destructive" disabled={isLoading}>
                 Logout
               </Button>
             </Form>
