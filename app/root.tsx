@@ -1,3 +1,5 @@
+import "./root.css";
+
 import {
   Links,
   LiveReload,
@@ -16,9 +18,6 @@ import React, { useEffect } from "react";
 import { CLIENT_ENV } from "./env";
 import { getCurrentTheme } from "./server/theme.server";
 import { cn } from "./utils";
-import { Toaster } from "./components/ui/toaster";
-
-import "./root.css";
 
 // Load the locale from the Accept-Language header to later
 // inject it on the app's context
@@ -89,7 +88,6 @@ export default function App() {
       />
 
       <Outlet />
-      <Toaster />
     </Document>
   );
 }
