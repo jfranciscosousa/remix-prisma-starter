@@ -7,9 +7,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  isRouteErrorResponse,
   useLoaderData,
-  useRouteError,
   useRouteLoaderData,
 } from "@remix-run/react";
 import { DataFunctionArgs } from "@remix-run/node";
@@ -18,6 +16,7 @@ import React, { useEffect } from "react";
 import { CLIENT_ENV } from "./env";
 import { getCurrentTheme } from "./server/theme.server";
 import { cn } from "./utils";
+import ErrorPage from "./components/Error500Page";
 
 // Load the locale from the Accept-Language header to later
 // inject it on the app's context
@@ -93,26 +92,7 @@ export default function App() {
 }
 
 export function ErrorBoundary() {
-  const error = useRouteError();
-
-  if (isRouteErrorResponse(error)) {
-    return (
-      <Document>
-        <h1>Oops</h1>
-        <p>Status: {error.status}</p>
-        <p>{error.data.message}</p>
-      </Document>
-    );
-  }
-
-  console.error(error);
-
-  return (
-    <Document>
-      <h1>Uh oh ...</h1>
-      <p>Something went wrong.</p>
-    </Document>
-  );
+  return <ErrorPage />;
 }
 
 function Document({

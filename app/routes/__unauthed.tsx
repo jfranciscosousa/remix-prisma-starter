@@ -2,6 +2,7 @@ import { Outlet } from "@remix-run/react";
 import { LoaderFunction, redirect } from "@remix-run/node";
 import LoggedOutLayout from "~/components/layouts/LoggedOutLayout";
 import { userFromRequest } from "~/server/auth.server";
+import ErrorPage from "~/components/Error500Page";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await userFromRequest(request);
@@ -10,6 +11,10 @@ export const loader: LoaderFunction = async ({ request }) => {
 
   return null;
 };
+
+export function ErrorBoundary() {
+  return <ErrorPage />;
+}
 
 export default function UnauthedLayout() {
   return (

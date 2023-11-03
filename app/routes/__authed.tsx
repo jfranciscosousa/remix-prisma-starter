@@ -1,5 +1,6 @@
-import { Outlet, useLoaderData } from "@remix-run/react";
 import { DataFunctionArgs, SerializeFrom } from "@remix-run/node";
+import { Outlet, useLoaderData } from "@remix-run/react";
+import ErrorPage from "~/components/Error500Page";
 import LoggedInLayout from "~/components/layouts/LoggedInLayout";
 import LoggedOutLayout from "~/components/layouts/LoggedOutLayout";
 import Login from "~/modules/Login";
@@ -12,6 +13,10 @@ export const loader = async ({ request }: DataFunctionArgs) => {
 
   return { user };
 };
+
+export function ErrorBoundary() {
+  return <ErrorPage />;
+}
 
 export default function AppPage() {
   const { user } = useLoaderData<AuthedRouteData>();
