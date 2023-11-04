@@ -6,7 +6,7 @@ import type {
 } from "@remix-run/node";
 import { useEffect } from "react";
 import { Button } from "~/components/ui/button";
-import { FullInput } from "~/components/ui/full-input";
+import { InputField } from "~/components/ui/input-field";
 import { updateUser } from "~/data/users.server";
 import useIsLoading from "~/hooks/useIsLoading";
 import useUser from "~/hooks/useUser";
@@ -49,7 +49,7 @@ export default function Profile() {
       <Form method="post" className="p-10 w-full flex flex-col space-y-4">
         <CardTitle className="mb-8">Edit your profile</CardTitle>
 
-        <FullInput
+        <InputField
           label="Email"
           name="email"
           type="text"
@@ -59,7 +59,7 @@ export default function Profile() {
           errors={actionData?.errors}
         />
 
-        <FullInput
+        <InputField
           label="Name"
           name="name"
           type="text"
@@ -69,7 +69,7 @@ export default function Profile() {
           errors={actionData?.errors}
         />
 
-        <FullInput
+        <InputField
           label="Current password"
           name="currentPassword"
           type="password"
@@ -78,7 +78,7 @@ export default function Profile() {
           errors={actionData?.errors}
         />
 
-        <FullInput
+        <InputField
           label="New password"
           name="newPassword"
           type="password"
@@ -86,7 +86,7 @@ export default function Profile() {
           errors={actionData?.errors}
         />
 
-        <FullInput
+        <InputField
           label="Confirm password"
           name="passwordConfirmation"
           type="password"

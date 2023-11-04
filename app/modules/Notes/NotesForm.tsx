@@ -1,7 +1,7 @@
 import { useFetcher } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 import { Button } from "~/components/ui/button";
-import { FullInput } from "~/components/ui/full-input";
+import { InputField } from "~/components/ui/input-field";
 
 export default function NotesForm() {
   const fetcher = useFetcher();
@@ -20,7 +20,7 @@ export default function NotesForm() {
   return (
     <fetcher.Form method="post" className="flex flex-col space-y-4">
       <div className="flex flex-row items-end space-x-4 w-full">
-        <FullInput
+        <InputField
           label="New todo"
           name="content"
           type="text"

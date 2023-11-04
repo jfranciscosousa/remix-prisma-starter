@@ -1,14 +1,14 @@
-import { Form, Link, useActionData } from "@remix-run/react";
 import type { DataFunctionArgs, MetaFunction } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
+import { Form, Link, useActionData } from "@remix-run/react";
 import { Button } from "~/components/ui/button";
-import { FullInput } from "~/components/ui/full-input";
+import { Card, CardTitle } from "~/components/ui/card";
+import { CheckboxField } from "~/components/ui/checkbox-field";
+import { InputField } from "~/components/ui/input-field";
 import { createUser } from "~/data/users.server";
 import { GenericDataError } from "~/data/utils/types";
 import useIsLoading from "~/hooks/useIsLoading";
 import { authenticate, userFromRequest } from "~/web/auth.server";
-import { Card, CardTitle } from "~/components/ui/card";
-import { Checkbox } from "~/components/ui/checkbox";
 
 export const loader = async ({ request }: DataFunctionArgs) => {
   const user = await userFromRequest(request);
@@ -49,7 +49,7 @@ export default function SignUp() {
       >
         <CardTitle className="mb-8">Please sign up</CardTitle>
 
-        <FullInput
+        <InputField
           label="Email"
           name="email"
           type="text"
@@ -58,7 +58,7 @@ export default function SignUp() {
           errors={errors}
         />
 
-        <FullInput
+        <InputField
           label="Name"
           name="name"
           type="text"
@@ -67,7 +67,7 @@ export default function SignUp() {
           errors={errors}
         />
 
-        <FullInput
+        <InputField
           label="Password"
           name="password"
           type="password"
@@ -76,7 +76,7 @@ export default function SignUp() {
           errors={errors}
         />
 
-        <FullInput
+        <InputField
           label="Confirm password"
           name="passwordConfirmation"
           type="password"
@@ -85,17 +85,7 @@ export default function SignUp() {
           errors={errors}
         />
 
-        <div className="items-top flex space-x-2 pb-4">
-          <Checkbox id="rememberMe" name="rememberMe" />
-          <div className="grid gap-1.5 leading-none">
-            <label
-              htmlFor="rememberMe"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Remember me
-            </label>
-          </div>
-        </div>
+        <CheckboxField name="rememberMe" label="Remember me" className="pb-4" />
 
         <Button type="submit" className="mt-8" isLoading={isLoading}>
           Sign up

@@ -4,14 +4,14 @@ import { Input } from "./input";
 import { Label } from "./label";
 import { cn } from "~/utils";
 
-export interface FullInputProps extends ComponentPropsWithRef<"input"> {
+export interface InputFieldProps extends ComponentPropsWithRef<"input"> {
   label: string;
   name: string;
   errors?: Record<string, string> | null;
   inputClassName?: string;
 }
 
-const FullInput = forwardRef(
+const InputField = forwardRef(
   (
     {
       errors,
@@ -20,7 +20,7 @@ const FullInput = forwardRef(
       className,
       inputClassName,
       ...props
-    }: FullInputProps,
+    }: InputFieldProps,
     ref: Ref<HTMLInputElement>,
   ) => {
     const reactId = useId();
@@ -45,6 +45,6 @@ const FullInput = forwardRef(
   },
 );
 
-FullInput.displayName = "FullInput";
+InputField.displayName = "FullInput";
 
-export { FullInput };
+export { InputField };

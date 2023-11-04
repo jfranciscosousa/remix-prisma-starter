@@ -1,8 +1,8 @@
 import { Form, Link, useActionData, useLocation } from "@remix-run/react";
 import { Button } from "~/components/ui/button";
 import { Card, CardTitle } from "~/components/ui/card";
-import { Checkbox } from "~/components/ui/checkbox";
-import { FullInput } from "~/components/ui/full-input";
+import { CheckboxField } from "~/components/ui/checkbox-field";
+import { InputField } from "~/components/ui/input-field";
 import useIsLoading from "~/hooks/useIsLoading";
 import { LoginActionType } from "~/routes/__unauthed.login";
 
@@ -20,7 +20,7 @@ export default function Login() {
       >
         <CardTitle className="mb-8">Please login</CardTitle>
 
-        <FullInput
+        <InputField
           label="Email"
           name="email"
           type="text"
@@ -30,7 +30,7 @@ export default function Login() {
           defaultValue={actionData?.original?.email}
         />
 
-        <FullInput
+        <InputField
           label="Password"
           name="password"
           type="password"
@@ -40,17 +40,7 @@ export default function Login() {
           defaultValue={actionData?.original?.password}
         />
 
-        <div className="items-top flex space-x-2 pb-4">
-          <Checkbox id="rememberMe" name="rememberMe" />
-          <div className="grid gap-1.5 leading-none">
-            <label
-              htmlFor="rememberMe"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Remember me
-            </label>
-          </div>
-        </div>
+        <CheckboxField name="rememberMe" label="Remember me" className="pb-4" />
 
         <input
           name="redirectUrl"
