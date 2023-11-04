@@ -1,5 +1,5 @@
 import { ActionFunction, LoaderFunction, redirect } from "@remix-run/node";
-import { setTheme } from "~/server/theme.server";
+import { setTheme } from "~/web/theme.server";
 
 export const action: ActionFunction = async ({ request }) => setTheme(request);
 

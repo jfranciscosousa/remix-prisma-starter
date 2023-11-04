@@ -7,10 +7,10 @@ import type {
 import { useEffect } from "react";
 import { Button } from "~/components/ui/button";
 import { FullInput } from "~/components/ui/full-input";
-import { updateUser } from "~/server/users.server";
+import { updateUser } from "~/data/users.server";
 import useIsLoading from "~/hooks/useIsLoading";
 import useUser from "~/hooks/useUser";
-import { userIdFromRequest } from "~/server/auth.server";
+import { userIdFromRequest } from "~/web/auth.server";
 import { Card, CardTitle } from "~/components/ui/card";
 import { useToast } from "~/components/ui/use-toast";
 

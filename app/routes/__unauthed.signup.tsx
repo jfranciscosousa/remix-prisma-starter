@@ -3,11 +3,12 @@ import type { DataFunctionArgs, MetaFunction } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 import { Button } from "~/components/ui/button";
 import { FullInput } from "~/components/ui/full-input";
-import { createUser } from "~/server/users.server";
-import { GenericDataError } from "~/server/utils/types";
+import { createUser } from "~/data/users.server";
+import { GenericDataError } from "~/data/utils/types";
 import useIsLoading from "~/hooks/useIsLoading";
-import { authenticate, userFromRequest } from "~/server/auth.server";
+import { authenticate, userFromRequest } from "~/web/auth.server";
 import { Card, CardTitle } from "~/components/ui/card";
+import { Checkbox } from "~/components/ui/checkbox";
 
 export const loader = async ({ request }: DataFunctionArgs) => {
   const user = await userFromRequest(request);
@@ -23,7 +24,7 @@ export const action = async ({ request }: DataFunctionArgs) => {
 
   if (result.errors) return result.errors;
 
-  return authenticate(result.data);
+  return authenticate(result.data, { rememberMe: result.data.rememberMe });
 };
 
 export const meta: MetaFunction = () => [
@@ -82,8 +83,19 @@ export default function SignUp() {
           placeholder="**************"
           required
           errors={errors}
-          className="pb-4"
         />
+
+        <div className="items-top flex space-x-2 pb-4">
+          <Checkbox id="rememberMe" name="rememberMe" />
+          <div className="grid gap-1.5 leading-none">
+            <label
+              htmlFor="rememberMe"
+              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              Remember me
+            </label>
+          </div>
+        </div>
 
         <Button type="submit" className="mt-8" isLoading={isLoading}>
           Sign up

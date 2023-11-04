@@ -14,7 +14,7 @@ import { DataFunctionArgs } from "@remix-run/node";
 import acceptLanguage from "accept-language-parser";
 import React, { useEffect } from "react";
 import { CLIENT_ENV } from "./env";
-import { getCurrentTheme } from "./server/theme.server";
+import { getCurrentTheme } from "./web/theme.server";
 import { cn } from "./utils";
 import ErrorPage from "./components/Error500Page";
 

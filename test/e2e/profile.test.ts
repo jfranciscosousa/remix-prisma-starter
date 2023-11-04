@@ -1,8 +1,8 @@
 import { faker } from "@faker-js/faker";
 import { waitFor } from "@playwright-testing-library/test";
 import { expect } from "@playwright/test";
-import { verifyPassword } from "~/server/users/passwordUtils.server";
-import prisma from "~/server/utils/prisma.server";
+import { verifyPassword } from "~/data/users/passwordUtils.server";
+import prisma from "~/data/utils/prisma.server";
 import { createUserAndLogin, test, USER_TEST_PASSWORD } from "./utils";
 
 function assertUserSame(user1: object, user2: object) {

@@ -1,23 +1,30 @@
 import { createCookie, redirect } from "@remix-run/node";
-import prisma from "~/server/utils/prisma.server";
+import prisma from "~/data/utils/prisma.server";
 import { SERVER_ENV } from "~/env.server";
 
 const authCookie = createCookie("auth", {
   secrets: [SERVER_ENV.SECRET_KEY_BASE],
-  sameSite: "lax",
+  sameSite: "strict",
   httpOnly: true,
   secure: SERVER_ENV.SECURE_AUTH_COOKIE,
-  maxAge: 604_800, // one week,
 });
 
-export async function authenticate(user: { id: string }, redirectUrl = "/") {
+export async function authenticate(
+  user: { id: string },
+  { redirectUrl = "/", rememberMe = false } = {},
+) {
   return redirect(redirectUrl, {
     status: 302,
     headers: {
       location: redirectUrl,
-      "Set-Cookie": await authCookie.serialize({
-        userId: user.id,
-      }),
+      "Set-Cookie": await authCookie.serialize(
+        {
+          userId: user.id,
+        },
+        {
+          maxAge: rememberMe ? 31536000 : 3600,
+        },
+      ),
     },
   });
 }

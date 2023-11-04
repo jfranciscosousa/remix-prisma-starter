@@ -6,8 +6,8 @@ import type {
 } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 import Login from "~/modules/Login";
-import { authenticate, userFromRequest } from "~/server/auth.server";
-import { login } from "~/server/users/auth.server";
+import { authenticate, userFromRequest } from "~/web/auth.server";
+import { login } from "~/data/users/login.server";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await userFromRequest(request);
@@ -26,7 +26,10 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   if (result.errors) return { errors: result.errors, original };
 
-  return authenticate(result.data, original.redirectUrl as string) as never;
+  return authenticate(result.data, {
+    redirectUrl: original.redirectUrl as string,
+    rememberMe: result.data.rememberMe,
+  }) as never;
 };
 
 export const meta: MetaFunction = () => [

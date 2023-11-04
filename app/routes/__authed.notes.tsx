@@ -8,13 +8,13 @@ import {
 import NotesDeleteAll from "~/modules/Notes/NotesDeleteAll";
 import NotesForm from "~/modules/Notes/NotesForm";
 import NotesList from "~/modules/Notes/NotesList";
-import { userIdFromRequest } from "~/server/auth.server";
+import { userIdFromRequest } from "~/web/auth.server";
 import {
   createNote,
   deleteAllNotes,
   deleteNote,
   listNotes,
-} from "~/server/notes.server";
+} from "~/data/notes.server";
 
 export type NotesRouteData = SerializeFrom<typeof loader>;
 

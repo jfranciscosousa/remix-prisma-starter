@@ -11,6 +11,7 @@ export const createUserParams = zfd.formData({
   name: zfd.text(),
   password: zfd.text(),
   passwordConfirmation: zfd.text(),
+  rememberMe: zfd.checkbox().optional(),
 });
 
 export type CreateUserParams = z.infer<typeof createUserParams> | FormData;
@@ -27,13 +28,14 @@ export async function findUserByEmail(
 
 export async function createUser(
   params: CreateUserParams,
-): Promise<DataResult<Omit<User, "password">>> {
+): Promise<DataResult<Omit<User, "password"> & { rememberMe?: boolean }>> {
   const parsedSchema = createUserParams.safeParse(params);
 
   if (!parsedSchema.success)
     return { data: null, errors: formatZodErrors(parsedSchema.error) };
 
-  const { email, name, password, passwordConfirmation } = parsedSchema.data;
+  const { email, name, password, passwordConfirmation, rememberMe } =
+    parsedSchema.data;
 
   if (password !== passwordConfirmation) {
     return {
@@ -53,7 +55,7 @@ export async function createUser(
 
   user.password = "";
 
-  return { data: user, errors: null };
+  return { data: { ...user, rememberMe }, errors: null };
 }
 
 const updateUserParams = zfd.formData({

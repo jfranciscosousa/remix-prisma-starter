@@ -1,6 +1,7 @@
 import { Form, Link, useActionData, useLocation } from "@remix-run/react";
 import { Button } from "~/components/ui/button";
 import { Card, CardTitle } from "~/components/ui/card";
+import { Checkbox } from "~/components/ui/checkbox";
 import { FullInput } from "~/components/ui/full-input";
 import useIsLoading from "~/hooks/useIsLoading";
 import { LoginActionType } from "~/routes/__unauthed.login";
@@ -37,8 +38,19 @@ export default function Login() {
           required
           errors={actionData?.errors}
           defaultValue={actionData?.original?.password}
-          className="pb-4"
         />
+
+        <div className="items-top flex space-x-2 pb-4">
+          <Checkbox id="rememberMe" name="rememberMe" />
+          <div className="grid gap-1.5 leading-none">
+            <label
+              htmlFor="rememberMe"
+              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              Remember me
+            </label>
+          </div>
+        </div>
 
         <input
           name="redirectUrl"
