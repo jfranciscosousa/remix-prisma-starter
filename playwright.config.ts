@@ -5,7 +5,7 @@ import { devices } from "@playwright/test";
  * See https://playwright.dev/docs/test-configuration.
  */
 const config: PlaywrightTestConfig = {
-  testDir: "./test/e2e",
+  testDir: "./tests/e2e",
   webServer: {
     command: "npm run start",
     port: 3001,

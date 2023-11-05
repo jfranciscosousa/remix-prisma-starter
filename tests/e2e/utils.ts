@@ -6,7 +6,7 @@ import {
 } from "@playwright-testing-library/test/fixture";
 import { Page, test as base } from "@playwright/test";
 import { createUser } from "~/data/users.server";
-import { truncateAll } from "../truncateAll";
+import { truncateAll } from "./truncateAll";
 
 export const USER_TEST_PASSWORD = "foobar";
 
