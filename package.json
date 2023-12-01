@@ -58,7 +58,7 @@
     "@remix-run/dev": "^2.2.0",
     "@remix-run/eslint-config": "^2.2.0",
     "@remix-run/testing": "^2.2.0",
-    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.0.0",
     "@types/accept-language-parser": "^1.5.5",
     "@types/lodash": "^4.14.200",
