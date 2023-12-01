@@ -50,10 +50,7 @@ export const action: ActionFunction = async ({ request }) => {
 
 export const meta: MetaFunction = () => [
   {
-    title: "Remix Prisma Starter",
-  },
-  {
-    description: "Welcome to remix!",
+    title: "Notes",
   },
 ];
 

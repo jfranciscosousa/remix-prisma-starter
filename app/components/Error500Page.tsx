@@ -1,5 +1,6 @@
 import { Link, isRouteErrorResponse, useRouteError } from "@remix-run/react";
 import { Button } from "./ui/button";
+import Error404Page from "./Error404Page";
 
 export default function ErrorPage() {
   const error = useRouteError();
@@ -12,6 +13,8 @@ export default function ErrorPage() {
   // This is just for dev, if you want to log server errors do it on entry.server.ts
   console.error(error);
 
+  if (errorCode === 404) return <Error404Page />;
+
   return (
     <section className="flex flex-col items-center justify-center h-screen px-4 text-center space-y-8 md:px-6">
       <h1 className="text-6xl font-bold text-red-600 dark:text-red-400">
@@ -23,7 +26,9 @@ export default function ErrorPage() {
       </p>
 
       <Button variant="outline" asChild>
-        <Link to="/">Go home</Link>
+        <Link className="block mt-4" to="/">
+          Go home
+        </Link>
       </Button>
     </section>
   );

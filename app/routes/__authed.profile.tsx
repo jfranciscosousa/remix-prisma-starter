@@ -27,9 +27,6 @@ export const meta: MetaFunction = () => [
   {
     title: "Profile",
   },
-  {
-    description: "Welcome to remix!",
-  },
 ];
 
 export default function Profile() {

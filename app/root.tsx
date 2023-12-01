@@ -91,8 +91,16 @@ export default function App() {
   );
 }
 
+/**
+ * This will render errors without env vars or any locale
+ * info unfortunately as errors can happen on the root loader.
+ */
 export function ErrorBoundary() {
-  return <ErrorPage />;
+  return (
+    <Document>
+      <ErrorPage />
+    </Document>
+  );
 }
 
 function Document({

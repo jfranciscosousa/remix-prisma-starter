@@ -29,10 +29,7 @@ export const action = async ({ request }: DataFunctionArgs) => {
 
 export const meta: MetaFunction = () => [
   {
-    title: "Remix Prisma Starter",
-  },
-  {
-    description: "Welcome to remix!",
+    title: "Sign up",
   },
 ];
 
