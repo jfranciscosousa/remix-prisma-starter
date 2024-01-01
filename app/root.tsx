@@ -1,5 +1,6 @@
 import "./root.css";
 
+import { DataFunctionArgs } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -7,16 +8,14 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
-  useRouteLoaderData,
 } from "@remix-run/react";
-import { DataFunctionArgs } from "@remix-run/node";
 import acceptLanguage from "accept-language-parser";
 import React, { useEffect } from "react";
-import { CLIENT_ENV } from "./env";
-import { getCurrentTheme } from "./web/theme.server";
-import { cn } from "./utils";
 import ErrorPage from "./components/Error500Page";
+import { CLIENT_ENV } from "./env";
+import { useRootLoaderData } from "./hooks/useRootLoaderData";
+import { cn } from "./utils";
+import { getCurrentTheme } from "./web/theme.server";
 
 // Load the locale from the Accept-Language header to later
 // inject it on the app's context
@@ -43,12 +42,6 @@ export const loader = async ({ request }: DataFunctionArgs) => {
   };
 };
 
-export type RootLoaderType = Awaited<ReturnType<typeof loader>>;
-
-export function useRootLoaderData(): RootLoaderType {
-  return useRouteLoaderData("root")!;
-}
-
 function applySystemTheme() {
   const theme = window.matchMedia("(prefers-color-scheme: dark)").matches
     ? "dark"
@@ -68,7 +61,7 @@ const applySystemThemeString = `
 `;
 
 export default function App() {
-  const { ENV, currentTheme } = useLoaderData<RootLoaderType>();
+  const { ENV, currentTheme } = useRootLoaderData();
 
   useEffect(() => {
     if (currentTheme === "system") applySystemTheme();

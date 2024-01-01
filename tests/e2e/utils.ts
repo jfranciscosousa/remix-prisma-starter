@@ -3,7 +3,7 @@ import { Screen } from "@playwright-testing-library/test/dist/fixture/types";
 import {
   locatorFixtures as fixtures,
   LocatorFixtures as TestingLibraryFixtures,
-} from "@playwright-testing-library/test/fixture";
+} from "@playwright-testing-library/test/fixture.js";
 import { Page, test as base } from "@playwright/test";
 import { createUser } from "~/data/users.server";
 import { truncateAll } from "./truncateAll";

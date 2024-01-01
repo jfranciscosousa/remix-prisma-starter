@@ -1,4 +1,4 @@
-import capitalize from "lodash/capitalize";
+import capitalize from "lodash/capitalize.js";
 import type { ZodError } from "zod";
 
 export function formatZodErrors(zodError: ZodError) {

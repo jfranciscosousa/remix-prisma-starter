@@ -1,6 +1,7 @@
 import { useFetcher, useLoaderData } from "@remix-run/react";
+import { usePrevious } from "@uidotdev/usehooks";
 import { useEffect, useRef } from "react";
-import { usePrevious } from "react-use";
+
 import { Card } from "~/components/ui/card";
 import { ScrollArea } from "~/components/ui/scroll-area";
 import useDates from "~/hooks/useDates";

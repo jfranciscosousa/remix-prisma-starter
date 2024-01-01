@@ -9,8 +9,8 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
-import { useRootLoaderData } from "~/root";
 import { useToast } from "./ui/use-toast";
+import { useRootLoaderData } from "~/hooks/useRootLoaderData";
 
 export default function ThemeChanger() {
   const fetcher = useFetcher();

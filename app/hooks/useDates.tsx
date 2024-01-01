@@ -1,6 +1,6 @@
-import { useRootLoaderData } from "~/root";
 import { formatDistance } from "date-fns";
 import { useMemo } from "react";
+import { useRootLoaderData } from "./useRootLoaderData";
 
 function formatDateLocale(timestamp: string, locale: string) {
   return new Date(timestamp).toLocaleString(locale);
