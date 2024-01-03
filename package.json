@@ -15,7 +15,6 @@
     "test:e2e-quick": "dotenv -e .env.test -- bash -c 'playwright test'",
     "test:vitest": "vitest --run",
     "test:vitest:watch": "vitest",
-    "test:ci": "prisma db push && npm run build && npm run test:vitest && playwright test",
     "prepare": "husky install",
     "deploy": "npm run ts-run tasks/validateConfig.ts && prisma generate && prisma db push && npm run build",
     "ts-check": "tsc --project tsconfig.json --noEmit --skipLibCheck",

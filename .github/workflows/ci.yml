@@ -69,11 +69,12 @@ jobs:
           pnpm lint
           pnpm ts-check
 
+      - name: Vitest
+        run: pnpm test:vitest
+
       - name: E2E
         run: |
-          pnpm prisma db push
-          pnpm build
-          pnpm test:ci
+          pnpm test:e2e
         env:
           SECRET_KEY_BASE: supersecret42069
           DATABASE_PRISMA_URL: postgres://postgres:postgres@localhost:5432/remix-prisma-starter-test
