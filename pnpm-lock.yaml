@@ -146,8 +146,8 @@ devDependencies:
     specifier: ^10.4.17
     version: 10.4.17(postcss@8.4.35)
   dotenv:
-    specifier: ^16.4.4
-    version: 16.4.4
+    specifier: ^16.4.5
+    version: 16.4.5
   dotenv-cli:
     specifier: ^7.3.0
     version: 7.3.0
@@ -2129,7 +2129,7 @@ packages:
       chalk: 4.1.2
       chokidar: 3.6.0
       cross-spawn: 7.0.3
-      dotenv: 16.4.4
+      dotenv: 16.4.5
       es-module-lexer: 1.4.1
       esbuild: 0.17.6
       esbuild-plugins-node-modules-polyfill: 1.6.2(esbuild@0.17.6)
@@ -3009,7 +3009,7 @@ packages:
       '@babel/plugin-syntax-typescript': 7.23.3(@babel/core@7.23.9)
       '@vanilla-extract/babel-plugin-debug-ids': 1.0.4
       '@vanilla-extract/css': 1.14.1
-      esbuild: 0.17.6
+      esbuild: 0.19.12
       eval: 0.1.8
       find-up: 5.0.0
       javascript-stringify: 2.1.0
@@ -4133,7 +4133,7 @@ packages:
     hasBin: true
     dependencies:
       cross-spawn: 7.0.3
-      dotenv: 16.4.4
+      dotenv: 16.4.5
       dotenv-expand: 10.0.0
       minimist: 1.2.8
     dev: true
@@ -4143,8 +4143,8 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
-  /dotenv@16.4.4:
-    resolution: {integrity: sha512-XvPXc8XAQThSjAbY6cQ/9PcBXmFoWuw1sQ3b8HqUCR6ziGXjkTi//kB9SWa2UwqlgdAIuRqAa/9hVljzPehbYg==}
+  /dotenv@16.4.5:
+    resolution: {integrity: sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==}
     engines: {node: '>=12'}
     dev: true
 
