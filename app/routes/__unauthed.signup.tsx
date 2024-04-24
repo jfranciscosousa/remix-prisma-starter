@@ -1,4 +1,8 @@
-import type { DataFunctionArgs, MetaFunction } from "@remix-run/node";
+import type {
+  ActionFunctionArgs,
+  LoaderFunctionArgs,
+  MetaFunction,
+} from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 import { Form, Link, useActionData } from "@remix-run/react";
 import { Button } from "~/components/ui/button";
@@ -10,7 +14,7 @@ import { GenericDataError } from "~/data/utils/types";
 import useIsLoading from "~/hooks/useIsLoading";
 import { authenticate, userFromRequest } from "~/web/auth.server";
 
-export const loader = async ({ request }: DataFunctionArgs) => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   const user = await userFromRequest(request);
 
   if (user) return redirect("/notes");
@@ -18,7 +22,7 @@ export const loader = async ({ request }: DataFunctionArgs) => {
   return null;
 };
 
-export const action = async ({ request }: DataFunctionArgs) => {
+export const action = async ({ request }: ActionFunctionArgs) => {
   const form = await request.formData();
   const result = await createUser(form);
 

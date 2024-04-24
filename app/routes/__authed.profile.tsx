@@ -1,22 +1,18 @@
+import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { Form, useActionData } from "@remix-run/react";
-import type {
-  DataFunctionArgs,
-  SerializeFrom,
-  MetaFunction,
-} from "@remix-run/node";
 import { useEffect } from "react";
 import { Button } from "~/components/ui/button";
+import { Card, CardTitle } from "~/components/ui/card";
 import { InputField } from "~/components/ui/input-field";
+import { useToast } from "~/components/ui/use-toast";
 import { updateUser } from "~/data/users.server";
 import useIsLoading from "~/hooks/useIsLoading";
 import useUser from "~/hooks/useUser";
 import { userIdFromRequest } from "~/web/auth.server";
-import { Card, CardTitle } from "~/components/ui/card";
-import { useToast } from "~/components/ui/use-toast";
 
-export type ProfileRouteActionType = SerializeFrom<typeof action>;
+export type ProfileRouteActionType = typeof action;
 
-export const action = async ({ request }: DataFunctionArgs) => {
+export const action = async ({ request }: LoaderFunctionArgs) => {
   const userId = await userIdFromRequest(request);
   const form = await request.formData();
 

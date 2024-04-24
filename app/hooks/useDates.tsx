@@ -2,11 +2,11 @@ import { formatDistance } from "date-fns";
 import { useMemo } from "react";
 import { useRootLoaderData } from "./useRootLoaderData";
 
-function formatDateLocale(timestamp: string, locale: string) {
+function formatDateLocale(timestamp: string | Date, locale: string) {
   return new Date(timestamp).toLocaleString(locale);
 }
 
-function formatRelativeTime(timestamp: string, rootTime: string) {
+function formatRelativeTime(timestamp: string | Date, rootTime: string) {
   return formatDistance(new Date(timestamp), new Date(rootTime));
 }
 
@@ -15,9 +15,9 @@ export default function useDates() {
 
   return useMemo(
     () => ({
-      formatDateLocale: (timestamp: string) =>
+      formatDateLocale: (timestamp: string | Date) =>
         formatDateLocale(timestamp, locale),
-      formatRelativeTime: (timestamp: string) =>
+      formatRelativeTime: (timestamp: string | Date) =>
         formatRelativeTime(timestamp, rootTime),
     }),
     [locale, rootTime],

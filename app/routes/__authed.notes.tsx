@@ -1,31 +1,30 @@
 import {
-  ActionFunction,
-  DataFunctionArgs,
-  SerializeFrom,
+  ActionFunctionArgs,
+  LoaderFunctionArgs,
   MetaFunction,
   redirect,
 } from "@remix-run/node";
-import NotesDeleteAll from "~/modules/Notes/NotesDeleteAll";
-import NotesForm from "~/modules/Notes/NotesForm";
-import NotesList from "~/modules/Notes/NotesList";
-import { userIdFromRequest } from "~/web/auth.server";
 import {
   createNote,
   deleteAllNotes,
   deleteNote,
   listNotes,
 } from "~/data/notes.server";
+import NotesDeleteAll from "~/modules/Notes/NotesDeleteAll";
+import NotesForm from "~/modules/Notes/NotesForm";
+import NotesList from "~/modules/Notes/NotesList";
+import { userIdFromRequest } from "~/web/auth.server";
 
-export type NotesRouteData = SerializeFrom<typeof loader>;
+export type NotesRouteData = typeof loader;
 
-export const loader = async ({ request }: DataFunctionArgs) => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   const userId = await userIdFromRequest(request);
   const notes = await listNotes(userId);
 
   return { notes };
 };
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionFunctionArgs) => {
   const userId = await userIdFromRequest(request);
   const form = Object.fromEntries(await request.formData());
 

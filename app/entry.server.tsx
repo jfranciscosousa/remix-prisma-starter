@@ -2,8 +2,8 @@ import { PassThrough } from "node:stream";
 
 import type {
   AppLoadContext,
-  DataFunctionArgs,
   EntryContext,
+  HandleErrorFunction,
 } from "@remix-run/node";
 import { createReadableStreamFromReadable } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
@@ -12,16 +12,16 @@ import { renderToPipeableStream } from "react-dom/server";
 
 const ABORT_DELAY = 5_000;
 
-export function handleError(
-  error: unknown,
+export const handleError: HandleErrorFunction = (
+  error,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  { request, params, context }: DataFunctionArgs,
-) {
+  { request, params, context },
+) => {
   if (!request.signal.aborted) {
     // Here you can log the error to your preferred error handling service
     // handleError(error)
   }
-}
+};
 
 export default function handleRequest(
   request: Request,
