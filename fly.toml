@@ -4,20 +4,22 @@
 #
 
 app = "remix-prisma-starter"
-primary_region = "lhr"
+primary_region = "mad"
 kill_signal = "SIGINT"
 kill_timeout = "5s"
 
 [experimental]
+  allowed_public_ports = []
   auto_rollback = true
+  cmd = "docker-start.sh"
+  entrypoint = "sh"
 
 [env]
   METRICS_PORT = "8081"
   PORT = "8080"
   PRIMARY_REGION = "mad"
-
-[deploy]
-  release_command = "npx prisma db push"
+  SECURE_AUTH_COOKIE= "true"
+  NODE_ENV = "production"
 
 [[services]]
   protocol = "tcp"
