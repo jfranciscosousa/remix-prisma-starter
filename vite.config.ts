@@ -10,7 +10,6 @@ export default defineConfig({
   plugins: [
     remix({
       ignoredRouteFiles: ["**/.*"],
-      future: { unstable_singleFetch: true },
     }),
     tsconfigPaths(),
   ],

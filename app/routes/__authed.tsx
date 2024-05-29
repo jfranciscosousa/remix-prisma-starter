@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs } from "@remix-run/node";
+import { LoaderFunctionArgs, SerializeFrom } from "@remix-run/node";
 import { Outlet, useLoaderData } from "@remix-run/react";
 import ErrorPage from "~/components/Error500Page";
 import LoggedInLayout from "~/components/layouts/LoggedInLayout";
@@ -6,7 +6,7 @@ import LoggedOutLayout from "~/components/layouts/LoggedOutLayout";
 import Login from "~/modules/Login";
 import { userFromRequest } from "~/web/auth.server";
 
-export type AuthedRouteData = Awaited<ReturnType<typeof loader>>;
+export type AuthedRouteData = SerializeFrom<Awaited<ReturnType<typeof loader>>>;
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const user = await userFromRequest(request);

@@ -1,6 +1,6 @@
 import { createCookie, redirect } from "@remix-run/node";
 import prisma from "~/data/utils/prisma.server";
-import { SERVER_ENV } from "~/env.server";
+import { SERVER_ENV } from "~/env/envFlags.server";
 
 const authCookie = createCookie("auth", {
   secrets: [SERVER_ENV.SECRET_KEY_BASE],

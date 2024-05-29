@@ -3,6 +3,7 @@ import {
   LoaderFunctionArgs,
   MetaFunction,
   redirect,
+  SerializeFrom,
 } from "@remix-run/node";
 import {
   createNote,
@@ -15,7 +16,7 @@ import NotesForm from "~/modules/Notes/NotesForm";
 import NotesList from "~/modules/Notes/NotesList";
 import { userIdFromRequest } from "~/web/auth.server";
 
-export type NotesRouteData = typeof loader;
+export type NotesRouteData = SerializeFrom<typeof loader>;
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const userId = await userIdFromRequest(request);

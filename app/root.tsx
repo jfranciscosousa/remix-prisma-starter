@@ -10,7 +10,7 @@ import {
 import acceptLanguage from "accept-language-parser";
 import React, { useEffect } from "react";
 import ErrorPage from "./components/Error500Page";
-import { CLIENT_ENV } from "./env";
+import { GLOBAL_ENV } from "./env/globalEnv";
 import { useRootLoaderData } from "./hooks/useRootLoaderData";
 import { cn } from "./utils";
 import { getCurrentTheme } from "./web/theme.server";
@@ -35,7 +35,7 @@ function localeFromRequest(request: Request): string {
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   return {
     locale: localeFromRequest(request),
-    ENV: CLIENT_ENV,
+    ENV: GLOBAL_ENV,
     rootTime: new Date().toISOString(),
     currentTheme: await getCurrentTheme(request),
   };

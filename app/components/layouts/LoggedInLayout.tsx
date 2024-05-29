@@ -1,12 +1,12 @@
 import { Form, NavLink } from "@remix-run/react";
 import { ReactNode } from "react";
-import useFeatureFlags from "~/hooks/useFeatureFlags";
 import { UserProvider } from "~/hooks/useUser";
 import { AuthedRouteData } from "~/routes/__authed";
 import { Button } from "../ui/button";
 import ThemeChanger from "../ThemeChanger";
 import useIsLoading from "~/hooks/useIsLoading";
 import { Toaster } from "../ui/toaster";
+import useFeatureFlags from "~/env/useFeatureFlags";
 
 function InnerLoggedInLayout({
   user,

@@ -78,7 +78,6 @@ jobs:
         env:
           SECRET_KEY_BASE: supersecret42069
           DATABASE_PRISMA_URL: postgres://postgres:postgres@localhost:5432/remix-prisma-starter-test
-          DATABASE_URL_NON_POOLING: postgres://postgres:postgres@localhost:5432/remix-prisma-starter-test
           SECURE_AUTH_COOKIE: false
           NODE_ENV: production
           PORT: 3001

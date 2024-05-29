@@ -1,8 +1,8 @@
-import { clientEnvSchema } from "../app/env";
-import { serverEnvSchema } from "../app/env.server";
+import { globalEnvSchema } from "../app/env/globalEnv";
+import { serverEnvSchema } from "../app/env/envFlags.server";
 
 const serverEnvResult = serverEnvSchema.safeParse(process.env);
-const clientEnvResult = clientEnvSchema.safeParse(process.env);
+const clientEnvResult = globalEnvSchema.safeParse(process.env);
 
 if (!serverEnvResult.success || !clientEnvResult.success) {
   process.exit(-1);
