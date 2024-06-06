@@ -1,9 +1,9 @@
 import {
-  ActionFunctionArgs,
-  LoaderFunctionArgs,
   MetaFunction,
   redirect,
   SerializeFrom,
+  unstable_defineAction,
+  unstable_defineLoader,
 } from "@remix-run/node";
 import {
   createNote,
@@ -18,14 +18,14 @@ import { userIdFromRequest } from "~/web/auth.server";
 
 export type NotesRouteData = SerializeFrom<typeof loader>;
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+export const loader = unstable_defineLoader(async ({ request }) => {
   const userId = await userIdFromRequest(request);
   const notes = await listNotes(userId);
 
   return { notes };
-};
+});
 
-export const action = async ({ request }: ActionFunctionArgs) => {
+export const action = unstable_defineAction(async ({ request }) => {
   const userId = await userIdFromRequest(request);
   const form = Object.fromEntries(await request.formData());
 
@@ -46,7 +46,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   }
 
   return redirect("/notes");
-};
+});
 
 export const meta: MetaFunction = () => [
   {

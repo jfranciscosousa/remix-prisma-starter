@@ -1,9 +1,9 @@
-import type {
-  ActionFunctionArgs,
-  LoaderFunctionArgs,
-  MetaFunction,
+import type { MetaFunction } from "@remix-run/node";
+import {
+  redirect,
+  unstable_defineAction,
+  unstable_defineLoader,
 } from "@remix-run/node";
-import { redirect } from "@remix-run/node";
 import { Form, Link, useActionData } from "@remix-run/react";
 import { Button } from "~/components/ui/button";
 import { Card, CardTitle } from "~/components/ui/card";
@@ -14,22 +14,22 @@ import { GenericDataError } from "~/data/utils/types";
 import useIsLoading from "~/hooks/useIsLoading";
 import { authenticate, userFromRequest } from "~/web/auth.server";
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+export const loader = unstable_defineLoader(async ({ request }) => {
   const user = await userFromRequest(request);
 
   if (user) return redirect("/notes");
 
   return null;
-};
+});
 
-export const action = async ({ request }: ActionFunctionArgs) => {
+export const action = unstable_defineAction(async ({ request }) => {
   const form = await request.formData();
   const result = await createUser(form);
 
   if (result.errors) return result.errors;
 
   return authenticate(result.data, { rememberMe: result.data.rememberMe });
-};
+});
 
 export const meta: MetaFunction = () => [
   {

@@ -1,5 +1,5 @@
 {
-  "include": ["env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["env.d.ts", "**/*.ts", "**/*.tsx", "app/**/*"],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2019"],
     "isolatedModules": true,
@@ -15,7 +15,11 @@
     "noEmit": true,
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["@remix-run/node", "vite/client"],
+    "types": [
+      "@remix-run/node",
+      "vite/client",
+      "@remix-run/react/future/single-fetch.d.ts"
+    ],
     "skipLibCheck": true,
     "module": "ESNext",
     "moduleResolution": "Bundler"

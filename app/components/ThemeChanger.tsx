@@ -13,7 +13,7 @@ import { useToast } from "./ui/use-toast";
 import { useRootLoaderData } from "~/hooks/useRootLoaderData";
 
 export default function ThemeChanger() {
-  const fetcher = useFetcher();
+  const fetcher = useFetcher<never>();
   const { currentTheme } = useRootLoaderData();
   const { toast } = useToast();
 

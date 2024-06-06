@@ -28,7 +28,7 @@ function useNotesScoller(notes: unknown[]) {
 }
 
 export default function NotesList() {
-  const fetcher = useFetcher();
+  const fetcher = useFetcher<never>();
   const loadingFetcher = fetcher.state === "submitting";
   const { notes } = useLoaderData<NotesRouteData>();
   const { formatRelativeTime } = useDates();

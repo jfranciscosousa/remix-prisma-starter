@@ -4,7 +4,7 @@ import { Button } from "~/components/ui/button";
 import { InputField } from "~/components/ui/input-field";
 
 export default function NotesForm() {
-  const fetcher = useFetcher();
+  const fetcher = useFetcher<never>();
   const inputRef = useRef<HTMLInputElement>(null);
   const isAdding =
     fetcher.state === "submitting" &&

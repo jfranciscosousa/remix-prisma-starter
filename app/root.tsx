@@ -1,5 +1,6 @@
 import "./root.css";
 
+import { unstable_defineLoader } from "@remix-run/node";
 import {
   Links,
   Meta,
@@ -14,7 +15,6 @@ import { GLOBAL_ENV } from "./env/globalEnv";
 import { useRootLoaderData } from "./hooks/useRootLoaderData";
 import { cn } from "./utils";
 import { getCurrentTheme } from "./web/theme.server";
-import { LoaderFunctionArgs } from "@remix-run/node";
 
 // Load the locale from the Accept-Language header to later
 // inject it on the app's context
@@ -32,14 +32,14 @@ function localeFromRequest(request: Request): string {
   return `${languages[0].code}-${languages[0].region.toLowerCase()}`;
 }
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+export const loader = unstable_defineLoader(async ({ request }) => {
   return {
     locale: localeFromRequest(request),
     ENV: GLOBAL_ENV,
     rootTime: new Date().toISOString(),
     currentTheme: await getCurrentTheme(request),
   };
-};
+});
 
 function applySystemTheme() {
   const theme = window.matchMedia("(prefers-color-scheme: dark)").matches

@@ -2,7 +2,7 @@ import { useFetcher } from "@remix-run/react";
 import { Button } from "~/components/ui/button";
 
 export default function NotesDeleteAll() {
-  const fetcher = useFetcher();
+  const fetcher = useFetcher<never>();
 
   return (
     <fetcher.Form
