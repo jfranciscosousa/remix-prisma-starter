@@ -1,4 +1,4 @@
-ARG NODE_VERSION=20.12.2
+ARG NODE_VERSION=20.14.0
 FROM node:${NODE_VERSION}-slim as base
 
 ENV NODE_ENV production

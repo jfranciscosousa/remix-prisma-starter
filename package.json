@@ -95,7 +95,7 @@
     "vitest": "^1.6.0"
   },
   "engines": {
-    "node": ">=20.12.2"
+    "node": ">=20.14.0"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": "eslint --cache --fix"
