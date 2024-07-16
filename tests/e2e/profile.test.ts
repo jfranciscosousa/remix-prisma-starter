@@ -30,9 +30,9 @@ test("renders profile", async ({ page, screen }) => {
 
 test("updates profile", async ({ page, screen }) => {
   const user = await createUserAndLogin(page, screen);
-  const newName = faker.name.firstName();
+  const newName = faker.person.firstName();
   const newEmail = faker.internet.email();
-  const newPassword = faker.internet.password(8);
+  const newPassword = faker.internet.password();
 
   await page.goto("/profile");
   await page.getByLabel("Name").fill(newName);
@@ -63,7 +63,7 @@ test("does not update profile if password confirmation does not match", async ({
   screen,
 }) => {
   const user = await createUserAndLogin(page, screen);
-  const newPassword = faker.internet.password(8);
+  const newPassword = faker.internet.password();
 
   await page.goto("/profile");
   await page.getByLabel("New password").fill(newPassword);
@@ -87,7 +87,7 @@ test("does not update profile if password confirmation does not match", async ({
 
 test("does not update profile if password is bad", async ({ page, screen }) => {
   const user = await createUserAndLogin(page, screen);
-  const newName = faker.name.firstName();
+  const newName = faker.person.firstName();
 
   await page.goto("/profile");
   await page.getByLabel("Name").fill(newName);

@@ -1,16 +1,13 @@
+import { faker } from "@faker-js/faker";
 import { createUserAndLogin, expect, test } from "./utils";
-
-const EMAIL = "test@mail.com";
-const NAME = "Test name";
-const PASSWORD = "foobar";
 
 test("signs up", async ({ page, screen }) => {
   await page.goto("/signup");
 
-  await screen.getByLabelText("Email").fill(EMAIL);
-  await screen.getByLabelText("Name").fill(NAME);
-  await screen.getByLabelText("Password").fill(PASSWORD);
-  await screen.getByLabelText("Confirm password").fill(PASSWORD);
+  await screen.getByLabelText("Email").fill(faker.internet.email());
+  await screen.getByLabelText("Name").fill(faker.person.fullName());
+  await screen.getByLabelText("Password").fill("foobar");
+  await screen.getByLabelText("Confirm password").fill("foobar");
   await screen.getByText("Sign up", { selector: "button > span" }).click();
 
   await page.waitForURL("/notes");
@@ -18,9 +15,8 @@ test("signs up", async ({ page, screen }) => {
 
 test("logins", async ({ page, screen }) => {
   await page.goto("/");
-  await screen.getByLabelText("Email").fill(EMAIL);
-  await screen.getByLabelText("Password").fill(PASSWORD);
-  await screen.getByText("Login", { selector: "button > span" }).click();
+
+  await createUserAndLogin(page, screen);
 
   await page.waitForURL("/notes");
 });
@@ -29,11 +25,7 @@ test("shows login and then redirects to original page", async ({
   page,
   screen,
 }) => {
-  await page.goto("/profile");
-
-  await screen.getByLabelText("Email").fill(EMAIL);
-  await screen.getByLabelText("Password").fill(PASSWORD);
-  await screen.getByText("Login", { selector: "button > span" }).click();
+  await createUserAndLogin(page, screen, "/profile");
 
   await page.waitForURL("/profile");
 });

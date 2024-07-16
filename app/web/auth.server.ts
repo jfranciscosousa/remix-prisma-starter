@@ -11,12 +11,12 @@ const authCookie = createCookie("auth", {
 
 export async function authenticate(
   user: { id: string },
-  { redirectUrl = "/", rememberMe = false } = {},
+  { redirectTo = "/", rememberMe = false } = {},
 ) {
-  return redirect(redirectUrl, {
+  return redirect(redirectTo, {
     status: 302,
     headers: {
-      location: redirectUrl,
+      location: redirectTo,
       "Set-Cookie": await authCookie.serialize(
         {
           userId: user.id,
@@ -39,7 +39,7 @@ export async function logout() {
   });
 }
 
-export async function userIdFromRequest(request: Request) {
+export async function userIdFromRequest(request: Request): Promise<string> {
   const cookieHeader = request.headers.get("Cookie");
   const { userId } = (await authCookie.parse(cookieHeader)) || {};
 

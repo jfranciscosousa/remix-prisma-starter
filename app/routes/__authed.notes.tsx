@@ -11,9 +11,7 @@ import {
   deleteNote,
   listNotes,
 } from "~/data/notes.server";
-import NotesDeleteAll from "~/modules/Notes/NotesDeleteAll";
-import NotesForm from "~/modules/Notes/NotesForm";
-import NotesList from "~/modules/Notes/NotesList";
+import NotesView from "~/modules/Notes/NotesView";
 import { userIdFromRequest } from "~/web/auth.server";
 
 export type NotesRouteData = SerializeFrom<typeof loader>;
@@ -55,17 +53,5 @@ export const meta: MetaFunction = () => [
 ];
 
 export default function NotesPage() {
-  return (
-    <>
-      <main className="max-w-xl w-full mx-auto flex-grow overflow-hidden">
-        <NotesList />
-      </main>
-
-      <div className="shrink-0 max-w-xl w-full mx-auto py-8">
-        <NotesDeleteAll />
-
-        <NotesForm />
-      </div>
-    </>
-  );
+  return <NotesView />;
 }

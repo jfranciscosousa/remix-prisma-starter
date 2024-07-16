@@ -5,3 +5,5 @@ app/styles
 dist/
 node_modules
 api/
+playwright-report/
+test-results/
