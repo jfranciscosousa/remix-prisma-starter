@@ -4,17 +4,17 @@
     "module": true,
     "require": true,
     "process": true,
-    "exports": true
+    "exports": true,
   },
   "settings": {
     "react": {
-      "version": "detect"
+      "version": "detect",
     },
     "formComponents": ["Form"],
     "linkComponents": [
       { "name": "Link", "linkAttribute": "to" },
-      { "name": "NavLink", "linkAttribute": "to" }
-    ]
+      { "name": "NavLink", "linkAttribute": "to" },
+    ],
   },
   "plugins": [
     "prettier",
@@ -23,7 +23,7 @@
     "import",
     "react",
     "react-hooks",
-    "lodash"
+    "lodash",
   ],
   "extends": [
     "eslint:recommended",
@@ -36,7 +36,7 @@
     "plugin:react/jsx-runtime",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
-    "@remix-run/eslint-config/node"
+    "@remix-run/eslint-config/node",
   ],
   "rules": {
     "lodash/import-scope": [2, "method"],
@@ -44,14 +44,14 @@
     "import/no-unresolved": "off",
     "@typescript-eslint/no-unused-vars": [
       "error",
-      { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+      { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" },
     ],
     "jsx-a11y/anchor-is-valid": [
       "error",
       {
         "components": ["Link", "NavLink"],
-        "specialLink": ["to"]
-      }
+        "specialLink": ["to"],
+      },
     ],
     "react/boolean-prop-naming": "error",
     "react/react-in-jsx-scope": "off",
@@ -61,8 +61,9 @@
       {
         "warnOnSpreadAttributes": true,
         "links": true,
-        "forms": true
-      }
-    ]
-  }
+        "forms": true,
+      },
+    ],
+    "react/prop-types": "off",
+  },
 }
