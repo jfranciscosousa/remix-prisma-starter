@@ -55,6 +55,9 @@
     "zod-form-data": "^2.0.2"
   },
   "devDependencies": {
+    "@eslint/compat": "^1.1.1",
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.9.0",
     "@faker-js/faker": "^8.4.1",
     "@playwright-testing-library/test": "^4.5.0",
     "@playwright/test": "^1.46.1",
