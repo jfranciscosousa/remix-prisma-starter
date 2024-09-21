@@ -15,11 +15,7 @@
     "noEmit": true,
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
-    "types": [
-      "@remix-run/node",
-      "vite/client",
-      "@remix-run/react/future/single-fetch.d.ts"
-    ],
+    "types": ["@remix-run/node", "vite/client"],
     "skipLibCheck": true,
     "module": "ESNext",
     "moduleResolution": "Bundler"

@@ -1,6 +1,6 @@
 import "./root.css";
 
-import { unstable_defineLoader } from "@remix-run/node";
+import { LoaderFunctionArgs } from "@remix-run/node";
 import {
   Links,
   Meta,
@@ -32,14 +32,14 @@ function localeFromRequest(request: Request): string {
   return `${languages[0].code}-${languages[0].region.toLowerCase()}`;
 }
 
-export const loader = unstable_defineLoader(async ({ request }) => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   return {
     locale: localeFromRequest(request),
     ENV: GLOBAL_ENV,
     rootTime: new Date().toISOString(),
     currentTheme: await getCurrentTheme(request),
   };
-});
+};
 
 function applySystemTheme() {
   const theme = window.matchMedia("(prefers-color-scheme: dark)").matches

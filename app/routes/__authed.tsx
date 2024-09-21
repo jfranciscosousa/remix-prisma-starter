@@ -1,8 +1,4 @@
-import {
-  redirect,
-  SerializeFrom,
-  unstable_defineLoader,
-} from "@remix-run/node";
+import { LoaderFunctionArgs, redirect, SerializeFrom } from "@remix-run/node";
 import { Outlet, useLoaderData } from "@remix-run/react";
 import ErrorPage from "~/components/Error500Page";
 import LoggedInLayout from "~/components/layouts/LoggedInLayout";
@@ -10,7 +6,7 @@ import { userFromRequest } from "~/web/auth.server";
 
 export type AuthedRouteData = SerializeFrom<Awaited<ReturnType<typeof loader>>>;
 
-export const loader = unstable_defineLoader(async ({ request }) => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   const user = await userFromRequest(request);
 
   if (!user) {
@@ -23,7 +19,7 @@ export const loader = unstable_defineLoader(async ({ request }) => {
   }
 
   return { user };
-});
+};
 
 export function ErrorBoundary() {
   return <ErrorPage />;
