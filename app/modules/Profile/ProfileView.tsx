@@ -21,8 +21,8 @@ export default function ProfileView() {
   }, [actionData, toast]);
 
   return (
-    <Card className="max-w-lg w-full mx-auto flex items-center justify-center">
-      <Form method="post" className="p-10 w-full flex flex-col space-y-4">
+    <Card className="mx-auto flex w-full max-w-lg items-center justify-center">
+      <Form method="post" className="flex w-full flex-col space-y-4 p-10">
         <CardTitle className="mb-8">Edit your profile</CardTitle>
 
         <InputField

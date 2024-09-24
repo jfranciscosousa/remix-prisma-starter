@@ -11,11 +11,11 @@ export default function SignUp() {
   const isLoading = useIsLoading();
 
   return (
-    <Card className="max-w-lg w-full mx-auto flex items-center justify-center">
+    <Card className="mx-auto flex w-full max-w-lg items-center justify-center">
       <Form
         method="post"
         action="/signup"
-        className="p-10 w-full flex flex-col space-y-4"
+        className="flex w-full flex-col space-y-4 p-10"
       >
         <CardTitle className="mb-8">Please sign up</CardTitle>
 

@@ -5,11 +5,11 @@ import NotesList from "./NotesList";
 export default function NotesView() {
   return (
     <>
-      <main className="max-w-xl w-full mx-auto flex-grow overflow-hidden">
+      <main className="mx-auto w-full max-w-xl flex-grow overflow-hidden">
         <NotesList />
       </main>
 
-      <div className="shrink-0 max-w-xl w-full mx-auto py-8">
+      <div className="mx-auto w-full max-w-xl shrink-0 py-8">
         <NotesDeleteAll />
 
         <NotesForm />

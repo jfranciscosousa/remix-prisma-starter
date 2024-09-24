@@ -36,17 +36,17 @@ export default function NotesList() {
 
   if (notes.length === 0)
     return (
-      <div className="h-full flex flex-col justify-center items-center">
+      <div className="flex h-full flex-col items-center justify-center">
         <p className="text-center">You have no notes! Please write some.</p>
       </div>
     );
 
   return (
-    <ScrollArea className="max-h-full h-full" ref={notesContainerRef}>
-      <ul className="space-y-6 flex flex-col">
+    <ScrollArea className="h-full max-h-full" ref={notesContainerRef}>
+      <ul className="flex flex-col space-y-6">
         {notes.map((note) => (
           <li key={note.id}>
-            <Card className="p-4 flex flex-row justify-between">
+            <Card className="flex flex-row justify-between p-4">
               <div className="flex flex-col space-y-6">
                 <p>{note.content}</p>
 

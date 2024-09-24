@@ -19,7 +19,7 @@ export default function NotesForm() {
 
   return (
     <fetcher.Form method="post" className="flex flex-col space-y-4">
-      <div className="flex flex-row items-end space-x-4 w-full">
+      <div className="flex w-full flex-row items-end space-x-4">
         <InputField
           label="New todo"
           name="content"
