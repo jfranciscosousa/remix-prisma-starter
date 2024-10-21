@@ -11,6 +11,7 @@ import {
 import acceptLanguage from "accept-language-parser";
 import React, { useEffect } from "react";
 import ErrorPage from "./components/Error500Page";
+import { Toaster } from "./components/ui/toaster";
 import { GLOBAL_ENV } from "./env/globalEnv";
 import { useRootLoaderData } from "./hooks/useRootLoaderData";
 import { cn } from "./utils";
@@ -118,6 +119,7 @@ function Document({
           <Links />
         </head>
         <body>
+          <Toaster />
           {children}
           <ScrollRestoration />
           <Scripts />
