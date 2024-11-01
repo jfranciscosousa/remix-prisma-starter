@@ -55,7 +55,7 @@
     "zod-form-data": "^2.0.2"
   },
   "devDependencies": {
-    "@eslint/compat": "^1.2.1",
+    "@eslint/compat": "^1.2.2",
     "@eslint/eslintrc": "^3.1.0",
     "@eslint/js": "^9.13.0",
     "@faker-js/faker": "^9.0.3",
