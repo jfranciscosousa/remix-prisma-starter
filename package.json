@@ -60,7 +60,7 @@
     "@eslint/js": "^9.13.0",
     "@faker-js/faker": "^9.0.3",
     "@playwright-testing-library/test": "^4.5.0",
-    "@playwright/test": "^1.48.1",
+    "@playwright/test": "^1.48.2",
     "@remix-run/dev": "^2.13.1",
     "@remix-run/eslint-config": "^2.13.1",
     "@remix-run/testing": "^2.13.1",
