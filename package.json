@@ -37,7 +37,7 @@
     "@uidotdev/usehooks": "^2.4.1",
     "accept-language-parser": "^1.5.0",
     "argon2": "^0.41.1",
-    "class-variance-authority": "^0.7.0",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "isbot": "^5.1.17",
