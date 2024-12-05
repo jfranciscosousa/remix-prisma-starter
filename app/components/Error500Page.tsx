@@ -1,4 +1,4 @@
-import { Link, isRouteErrorResponse, useRouteError } from "@remix-run/react";
+import { Link, isRouteErrorResponse, useRouteError } from "react-router";
 import { Button } from "./ui/button";
 import Error404Page from "./Error404Page";
 

@@ -2,7 +2,7 @@ import type {
   ActionFunctionArgs,
   LoaderFunctionArgs,
   MetaFunction,
-} from "@remix-run/node";
+} from "react-router";
 import { login } from "~/data/users/login.server";
 import Login from "~/modules/Auth/Login";
 import { authenticate } from "~/web/auth.server";

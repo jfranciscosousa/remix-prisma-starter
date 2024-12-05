@@ -29,6 +29,8 @@ export default [
       "**/dist/",
       "**/node_modules",
       "**/api/",
+      ".react-router",
+      "playwright-report",
     ],
   },
   ...fixupConfigRules(

@@ -9,6 +9,7 @@ api/*
 test-results/
 playwright-report/
 .eslintcache
+.react-router/
 
 !.env.sample
 !.env.*.sample

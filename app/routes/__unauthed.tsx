@@ -1,5 +1,5 @@
-import { Outlet } from "@remix-run/react";
-import { LoaderFunction, redirect } from "@remix-run/node";
+import { Outlet } from "react-router";
+import { LoaderFunction, redirect } from "react-router";
 import LoggedOutLayout from "~/components/layouts/LoggedOutLayout";
 import { userFromRequest } from "~/web/auth.server";
 import ErrorPage from "~/components/Error500Page";
