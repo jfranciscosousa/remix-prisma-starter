@@ -43,7 +43,6 @@ export default [
       "plugin:react/jsx-runtime",
       "plugin:react/recommended",
       "plugin:react-hooks/recommended",
-      "@remix-run/eslint-config/node",
     ),
   ),
   {
