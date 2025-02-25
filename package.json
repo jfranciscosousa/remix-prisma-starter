@@ -19,6 +19,7 @@
     "prepare": "[ \"$NODE_ENV\" != \"production\" ] && husky || :",
     "deploy": "npm run ts-run tasks/validateConfig.ts && prisma generate && prisma db push && npm run build",
     "ts-check": "react-router typegen && tsc --project tsconfig.json --noEmit --skipLibCheck",
+    "ts-watch": "react-router typegen && tsc --project tsconfig.json --noEmit --skipLibCheck --watch",
     "ts-run": "dotenv ts-node",
     "validate-env": "npm run ts-run tasks/validateConfig.ts",
     "ci": "npm run lint && npm run ts-check && npx playwright install && npm run test"
