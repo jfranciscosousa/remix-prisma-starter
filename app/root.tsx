@@ -1,13 +1,7 @@
 import "./root.css";
 
-import { LoaderFunctionArgs } from "@remix-run/node";
-import {
-  Links,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from "@remix-run/react";
+import { LoaderFunctionArgs } from "react-router";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import acceptLanguage from "accept-language-parser";
 import React, { useEffect } from "react";
 import ErrorPage from "./components/Error500Page";

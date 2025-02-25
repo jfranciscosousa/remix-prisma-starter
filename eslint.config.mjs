@@ -29,6 +29,8 @@ export default [
       "**/dist/",
       "**/node_modules",
       "**/api/",
+      ".react-router",
+      "playwright-report",
     ],
   },
   ...fixupConfigRules(
@@ -41,7 +43,6 @@ export default [
       "plugin:react/jsx-runtime",
       "plugin:react/recommended",
       "plugin:react-hooks/recommended",
-      "@remix-run/eslint-config/node",
     ),
   ),
   {

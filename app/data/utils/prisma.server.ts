@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { PrismaClient } from "@prisma/client";
+import Prisma from "@prisma/client";
 
 import { SERVER_ENV } from "~/env/envFlags.server";
 import { UserFeatureFlagsSchema } from "../../env/userFeatureFlags.server";
 
 function buildClient() {
-  const client = new PrismaClient({
+  const client = new Prisma.PrismaClient({
     log: ["query", "info", "warn", "error"],
   })
     /**

@@ -1,4 +1,4 @@
-import { ActionFunction, LoaderFunction, redirect } from "@remix-run/node";
+import { ActionFunction, LoaderFunction, redirect } from "react-router";
 import { logout } from "~/web/auth.server";
 
 export const action: ActionFunction = async () => logout();

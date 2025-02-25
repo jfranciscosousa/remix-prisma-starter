@@ -3,8 +3,7 @@ import {
   LoaderFunctionArgs,
   MetaFunction,
   redirect,
-  SerializeFrom,
-} from "@remix-run/node";
+} from "react-router";
 import {
   createNote,
   deleteAllNotes,
@@ -13,8 +12,9 @@ import {
 } from "~/data/notes.server";
 import NotesView from "~/modules/Notes/NotesView";
 import { userIdFromRequest } from "~/web/auth.server";
+import { Route } from "./+types/__authed.notes";
 
-export type NotesRouteData = SerializeFrom<typeof loader>;
+export type NotesRouteData = Route.ComponentProps["loaderData"];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const userId = await userIdFromRequest(request);

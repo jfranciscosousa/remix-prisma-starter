@@ -1,4 +1,4 @@
-import { createCookie, redirect } from "@remix-run/node";
+import { createCookie, redirect } from "react-router";
 import prisma from "~/data/utils/prisma.server";
 import { SERVER_ENV } from "~/env/envFlags.server";
 

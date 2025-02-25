@@ -1,4 +1,4 @@
-import type { ActionFunctionArgs, MetaFunction } from "@remix-run/node";
+import type { ActionFunctionArgs, MetaFunction } from "react-router";
 import { createUser } from "~/data/users.server";
 import SignUp from "~/modules/Auth/SignUp";
 import { authenticate } from "~/web/auth.server";

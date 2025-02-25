@@ -1,4 +1,4 @@
-import { useFetcher } from "@remix-run/react";
+import { useFetcher } from "react-router";
 import { Moon, Sun } from "lucide-react";
 import { useEffect } from "react";
 
