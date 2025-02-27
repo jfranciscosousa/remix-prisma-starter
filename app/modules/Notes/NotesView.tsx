@@ -5,7 +5,7 @@ import NotesList from "./NotesList";
 export default function NotesView() {
   return (
     <>
-      <main className="mx-auto w-full max-w-xl flex-grow overflow-hidden">
+      <main className="mx-auto w-full max-w-xl grow overflow-hidden">
         <NotesList />
       </main>
 
