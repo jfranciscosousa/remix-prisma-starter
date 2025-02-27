@@ -1,5 +1,4 @@
-import { LoaderFunctionArgs, redirect } from "react-router";
-import { Outlet, useLoaderData } from "react-router";
+import { LoaderFunctionArgs, Outlet, redirect } from "react-router";
 import ErrorPage from "~/components/Error500Page";
 import LoggedInLayout from "~/components/layouts/LoggedInLayout";
 import { userFromRequest } from "~/web/auth.server";
@@ -27,10 +26,8 @@ export function ErrorBoundary() {
 }
 
 export default function AppPage() {
-  const { user } = useLoaderData<AuthedRouteData>();
-
   return (
-    <LoggedInLayout user={user}>
+    <LoggedInLayout>
       <Outlet />
     </LoggedInLayout>
   );

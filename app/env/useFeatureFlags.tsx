@@ -1,11 +1,11 @@
-import { useContext, useMemo } from "react";
+import { useMemo } from "react";
 
-import { UserContext } from "../hooks/useUser";
-import { UserFeatureFlags } from "./userFeatureFlags.server";
+import { useOptionalUser } from "../hooks/useUser";
 import { GLOBAL_ENV, GlobalEnv } from "./globalEnv";
+import { UserFeatureFlags } from "./userFeatureFlags.server";
 
 export default function useFeatureFlags() {
-  const userContext = useContext(UserContext);
+  const user = useOptionalUser();
 
   return useMemo(
     () => ({
@@ -18,12 +18,12 @@ export default function useFeatureFlags() {
       ): GlobalEnv[T] => GLOBAL_ENV[flag],
       // Check the current user feature flags. If there's no user, this returns false, always
       hasUserFeatureFlag: (flag: keyof UserFeatureFlags): boolean =>
-        !!userContext?.featureFlags?.[flag],
+        !!user?.featureFlags?.[flag],
       // Get the current user feature flag value. If there's no user, this returns undefined, always
       getUserFeatureFlag: <T extends keyof UserFeatureFlags>(
         flag: T,
-      ): UserFeatureFlags[T] | undefined => userContext?.featureFlags?.[flag],
+      ): UserFeatureFlags[T] | undefined => user?.featureFlags?.[flag],
     }),
-    [userContext?.featureFlags],
+    [user?.featureFlags],
   );
 }

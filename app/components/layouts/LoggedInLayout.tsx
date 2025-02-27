@@ -1,19 +1,13 @@
-import { Form, NavLink } from "react-router";
 import { ReactNode } from "react";
-import { UserProvider } from "~/hooks/useUser";
-import { AuthedRouteData } from "~/routes/__authed";
-import { Button } from "../ui/button";
-import ThemeChanger from "../ThemeChanger";
-import useIsLoading from "~/hooks/useIsLoading";
+import { Form, NavLink } from "react-router";
 import useFeatureFlags from "~/env/useFeatureFlags";
+import useIsLoading from "~/hooks/useIsLoading";
+import ThemeChanger from "../ThemeChanger";
+import { Button } from "../ui/button";
+import useUser from "~/hooks/useUser";
 
-function InnerLoggedInLayout({
-  user,
-  children,
-}: {
-  user: NonNullable<AuthedRouteData["user"]>;
-  children: ReactNode;
-}) {
+export default function LoggedInLayout({ children }: { children: ReactNode }) {
+  const user = useUser();
   const { hasUserFeatureFlag } = useFeatureFlags();
   const isLoading = useIsLoading({ action: "/logout" });
 
@@ -63,19 +57,5 @@ function InnerLoggedInLayout({
 
       <div className="contents">{children}</div>
     </div>
-  );
-}
-
-export default function LoggedInLayout({
-  user,
-  children,
-}: {
-  user: NonNullable<AuthedRouteData["user"]>;
-  children: ReactNode;
-}) {
-  return (
-    <UserProvider user={user}>
-      <InnerLoggedInLayout user={user}>{children}</InnerLoggedInLayout>
-    </UserProvider>
   );
 }
